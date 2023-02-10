@@ -1,0 +1,33 @@
+.sider_style {
+  background-color: #f8f9fa !important;
+  width: 220px !important;
+}
+
+.menu_style {
+  background-color: #f8f9fa !important;
+}
+
+.menu_style .ant-menu-item{
+  margin: 0px !important;
+}
+
+.menu_style .ant-menu-submenu {
+  margin: 0px !important;
+}
+
+.submenu_item_style {
+  background-color: #ffffff !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  box-shadow: 10px 10px;
+}
+
+.sider_style .ant-menu-item-icon {
+  font-size: 1.2em !important;
+  vertical-align: middle;
+}
+
+.sider_style .ant-menu-inline-collapsed .ant-menu-item-icon {
+  font-size: 1.5em !important;
+  vertical-align: middle;
+}

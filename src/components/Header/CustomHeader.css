@@ -1,0 +1,34 @@
+.logo {
+  float: left;
+  width: 128px;
+}
+
+.header_style {
+  padding: 0.2rem 1rem !important;
+  border-bottom: 2px solid #c7d1db !important;
+  background-color: #e5ebf0 !important;
+  line-height: 4em !important;
+}
+
+.header_style .ant-row {
+  line-height: 4em;
+}
+.ant-popover-inner-content {
+  padding: 5px !important;
+}
+
+.ant-popover-placement-bottom {
+  top: 3em !important;
+}
+
+.button_header {
+  padding: 5px;
+}
+
+.text_header:hover {
+  color: rgb(24, 144, 252) !important;
+}
+
+.text_header:focus {
+  color: rgb(24, 144, 255) !important;
+}

@@ -1,0 +1,29 @@
+.input_shapefile #file-upload-button {
+  display: none !important;
+}
+
+.ant-input-disabled {
+  cursor: default !important;
+}
+
+.login_form_forgot {
+  float: center !important;
+}
+
+.login_form_button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.login_form_forgot {
+  float: center !important;
+}
+
+.form_button {
+  width: 100%;
+  text-align: center;
+}
+
+.input-dropdown .ant-input {
+  cursor:pointer !important
+}
