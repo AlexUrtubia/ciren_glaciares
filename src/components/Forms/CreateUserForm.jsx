@@ -73,7 +73,7 @@ const CreateUserForm = (props) => {
       <Form.Item>
         <Row gutter={3}>
           <Col>
-            <Button type="danger" onClick={() => navigate("/usuarios")}>
+            <Button type="primary" danger onClick={() => navigate("/admin/usuarios")}>
               Cancelar
             </Button>
           </Col>

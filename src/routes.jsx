@@ -1,5 +1,5 @@
 import Default from "./views/Default";
-// import Usuarios from "./views/admin/Usuarios";
+import Usuarios from "./views/admin/Usuarios";
 import CrearUsuario from "./views/admin/CrearUsuario";
 import Procesos from "./views/admin/Procesos";
 // import Satelites from "./views/admin/Satelites";
@@ -25,18 +25,25 @@ import Configuracion from "./views/perfil/Configuracion";
 // import MisRegiones from "./views/perfil/MisRegiones";
 // import Graficos from "./views/Graficos";
 // import Informes from "./views/Informes";
-// import Login from "./views/Login";
-// import Recovery from "./views/Recovery";
-// import MapaPublico from "./views/MapaPublico";
+import Login from "./views/Login";
+import Recovery from "./views/Recovery";
+import Mapa from "./components/map/Map";
 // import MapaDinamico from "./views/MapaDinamico";
 
 const routes = [
+  // {
+  //   name: null,
+  //   path: "",
+  //   layout: "dashboard",
+  //   component: <Mapa zoom={4.5} />,
+  //   icon: null,
+  // },
   {
-    name: "DEFAULT",
-    path: "default2",
-    layout: "",
-    component: <Default />,
-    icon: null,
+    name: 'Mapa',
+    path: "",
+    layout: "dashboard",
+    component: <Mapa zoom={4.5} />,
+    icon: <FaMap />,
   },
   {
     name: "Administrador",
@@ -44,15 +51,15 @@ const routes = [
     path: "admin",
     layout: "dashboard",
     icon: <FaUsersCog />,
-    admin:true,
+    // admin:true,
     views: [
-      // {
-      //   name: "Usuarios",
-      //   path: "usuarios",
-      //   layout: "dashboard",
-      //   component: <Usuarios />,
-      //   icon: <FaUsers />,
-      // },
+      {
+        name: "Usuarios",
+        path: "usuarios",
+        layout: "dashboard",
+        component: <Usuarios />,
+        icon: <FaUsers />,
+      },
       {
         name: "Crear Usuario",
         path: "crear-usuario",
@@ -60,13 +67,13 @@ const routes = [
         component: <CrearUsuario />,
         icon: <FaUserPlus />,
       },
-      {
-        name: "Procesos",
-        path: "procesos",
-        layout: "dashboard",
-        component: <Procesos />,
-        icon: <FaLaptopCode />,
-      },
+      // {
+      //   name: "Procesos",
+      //   path: "procesos",
+      //   layout: "dashboard",
+      //   component: <Procesos />,
+      //   icon: <FaLaptopCode />,
+      // },
       // {
       //   name: "Satelites",
       //   path: "satelites",
@@ -81,13 +88,13 @@ const routes = [
       //   component: <Regiones />,
       //   icon: <FaMapMarkedAlt />,
       // },
-      {
-        name: "Crear Región",
-        path: "crear-region",
-        layout: "dashboard",
-        component: <CrearRegion />,
-        icon: <RiMapPinAddFill />,
-      },
+      // {
+      //   name: "Crear Región",
+      //   path: "crear-region",
+      //   layout: "dashboard",
+      //   component: <CrearRegion />,
+      //   icon: <RiMapPinAddFill />,
+      // },
     ],
   },
   {
@@ -156,20 +163,20 @@ const routes = [
   //   component: <Informes />,
   //   icon: <FaListAlt />,
   // },
-  // {
-  //   name: "Login",
-  //   path: "login",
-  //   layout: "",
-  //   component: <Login/>,
-  //   icon: null,
-  // },
-  // {
-  //   name: "Recovery",
-  //   path: "restaurar-contrasena",
-  //   layout: "",
-  //   component: <Recovery />,
-  //   icon: null,
-  // },
+  {
+    name: "Login",
+    path: "login",
+    layout: "login",
+    component: <Login/>,
+    icon: null,
+  },
+  {
+    name: "Recovery",
+    path: "restaurar-contrasena",
+    layout: "login",
+    component: <Recovery />,
+    icon: null,
+  },
   // {
   //   name: "Mapa Publico",
   //   path: "",

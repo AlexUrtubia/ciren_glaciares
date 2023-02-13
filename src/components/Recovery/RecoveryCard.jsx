@@ -1,12 +1,9 @@
-//Components
 import { Card, Col, Row } from "antd";
-import LoginForm from "../Forms/LoginForm";
-
-//Import CSS Files
-import "./Login.css";
+import RecoveryForm from "../Forms/RecoveryForm";
+//Images
 import cepal_logo_login from "../../static/img/logo_ciren_login.png"
 
-const LoginCard = (props) => {
+const RecoveryCard = () => {
   return (
     <Card className="login_container">
       <Row
@@ -22,11 +19,11 @@ const LoginCard = (props) => {
         align="middle"
       >
         <Col style={{ width: "auto" }}>
-          <LoginForm />
+          <RecoveryForm />
         </Col>
       </Row>
     </Card>
   );
 };
 
-export default LoginCard;
+export default RecoveryCard;

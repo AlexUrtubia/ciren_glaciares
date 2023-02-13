@@ -1,0 +1,41 @@
+.button {
+  background-color: rgb(0, 0, 0, 0.85);
+  border-color: rgb(0, 0, 0, 0.85);
+}
+
+.button:hover {
+  background-color: rgb(24, 144, 252);
+}
+
+.button:focus {
+  background-color: rgb(24, 144, 255);
+}
+
+.button_create {
+  margin-top: 1rem;
+  vertical-align: middle !important;
+}
+
+.button_watch {
+  background-color: rgb(255, 180, 0) !important;
+  border-color: rgb(255, 180, 0) !important;
+}
+
+
+.button_watch:hover {
+  background-color: rgb(255, 180,0, 0.85) !important;
+  border-color: rgb(255, 180,0) !important;
+}
+
+.button_watch:focus {
+  background-color: rgb(255, 180, 0) !important;
+  border-color: rgb(255, 180, 0) !important;
+}
+
+.button_watch:active{
+  background-color: rgb(255, 150, 0) !important;
+}
+
+button svg{
+  vertical-align: middle!important;
+}

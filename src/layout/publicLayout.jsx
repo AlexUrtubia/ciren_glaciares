@@ -4,6 +4,7 @@ import PublicHeader from "../components/Header/PublicHeaders";
 import CustomSider from "../components/CustomSider/CustomSider";
 import Mapa from "../components/map/Map";
 import cepal_logo from '../static/img/logo_ciren.png'
+import { Outlet } from "react-router-dom";
 
 
 const { Content } = Layout;
@@ -27,7 +28,7 @@ const PublicLayout = (props) => {
                 minHeight: 360,
               }}
             >
-              <Mapa zoom={4.5} />
+              <Outlet />
             </div>
           </Content>
         </Layout>
