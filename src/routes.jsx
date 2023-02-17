@@ -27,7 +27,7 @@ import Configuracion from "./views/perfil/Configuracion";
 // import Informes from "./views/Informes";
 import Login from "./views/Login";
 import Recovery from "./views/Recovery";
-import Mapa from "./components/map/Map";
+import ReMap from "./components/Map/ReMap";
 // import MapaDinamico from "./views/MapaDinamico";
 
 const routes = [
@@ -42,9 +42,16 @@ const routes = [
     name: 'Mapa',
     path: "",
     layout: "dashboard",
-    component: <Mapa zoom={4.5} />,
+    component: <ReMap />,
     icon: <FaMap />,
   },
+    // {
+  //   name: "Informes",
+  //   path: "informes",
+  //   layout: "dashboard",
+  //   component: <Informes />,
+  //   icon: <FaListAlt />,
+  // },
   {
     name: "Administrador",
     collapse: true,

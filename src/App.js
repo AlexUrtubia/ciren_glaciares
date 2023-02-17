@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-import Mapa from "./components/map/Map";
+import Mapa from "./components/Map/Map";
 import PublicLayout from "./layout/publicLayout";
 import LoginDashboard from "./layout/loginDashboard";
 import routesjs from "./routes";
@@ -35,7 +35,7 @@ function App() {
         <Route path='/' element={<PublicLayout routes={routesjs} />}>
           {getRoutes(routesjs, "dashboard")}
         </Route>
-        <Route path='/login' element={<LoginDashboard routes={routesjs} />}>
+        <Route path='/' element={<LoginDashboard routes={routesjs} />}>
           {getRoutes(routesjs, "login")}
         </Route>
       </Routes>

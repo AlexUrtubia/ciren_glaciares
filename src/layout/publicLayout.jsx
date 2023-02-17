@@ -2,7 +2,7 @@ import { Layout } from "antd";
 // import PublicHeader from "../components/Header";
 import PublicHeader from "../components/Header/PublicHeaders";
 import CustomSider from "../components/CustomSider/CustomSider";
-import Mapa from "../components/map/Map";
+import Mapa from "../components/Map/Map";
 import cepal_logo from '../static/img/logo_ciren.png'
 import { Outlet } from "react-router-dom";
 

@@ -1,19 +1,33 @@
 .ol-map {
-    min-width: 600px;
-    min-height: 500px;
-    margin: 50px;
-    height: 500px;
+    position: relative;
+    min-width: 800px;
+    min-height: 800px;
+    height: 93.5vh;
     width: "100%";
 }
+
 .ol-control {
     position: absolute;
     background-color: rgba(255,255,255,0.4);
     border-radius: 4px;
-    padding: 2px;
+    padding: 5px;
 }
+
 .ol-full-screen {
     top: .5em;
     right: .5em;
+
+}
+
+.ol-full-screen-false {
+    height:2.2em;
+    width:2.2em
+}
+
+
+.ol-zoom-in, .ol-zoom-out {
+    height:2.2em;
+    width:2.2em
 }
 
 #zoom-container {
@@ -21,4 +35,5 @@
     z-index: 9999;
     top: 10px;
     left: 10px;
+    /* padding: 20px; */
 }
