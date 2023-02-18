@@ -1,5 +1,6 @@
 import Default from "./views/Default";
 import Usuarios from "./views/admin/Usuarios";
+import Glaciares from "./views/glaciers/Glaciares";
 import CrearUsuario from "./views/admin/CrearUsuario";
 import Procesos from "./views/admin/Procesos";
 // import Satelites from "./views/admin/Satelites";
@@ -18,8 +19,12 @@ import {
   FaMapMarkedAlt,
   FaIdBadge,
   FaCogs,
-  FaMap,
+  FaMap
 } from "react-icons/fa";
+
+import { GiMountainCave } from 'react-icons/gi'
+import { MdOutlineFormatListNumbered } from 'react-icons/md'
+
 import { RiMapPinAddFill } from "react-icons/ri";
 import Configuracion from "./views/perfil/Configuracion";
 // import MisRegiones from "./views/perfil/MisRegiones";
@@ -125,6 +130,22 @@ const routes = [
       //   component: <MisRegiones />,
       //   icon: <FaAtlas />,
       // },
+    ],
+  },
+  {
+    name: "Glaciares",
+    collapse: true,
+    path: "glaciers",
+    layout: "dashboard",
+    icon: <GiMountainCave />,
+    views: [
+      {
+        name: "Detectados",
+        path: "mapa-dinamico",
+        layout: "dashboard",
+        component: <Glaciares />,
+        icon: <MdOutlineFormatListNumbered />,
+      },
     ],
   },
   // {

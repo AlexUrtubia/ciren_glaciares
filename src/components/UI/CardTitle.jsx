@@ -5,7 +5,7 @@ import { Typography } from "antd";
 const CardTitle = ({title, icon : Icon}) => {
     return(
         <Typography.Title level={4}>
-            <Icon/> {" " + title} 
+            <Icon  /> {" " + title} 
         </Typography.Title>
     )
 }

@@ -21,34 +21,34 @@ const obj1 = features.geojsonObject
 
 function ReMap() {
 
-  return (
-  <Map zoom={4.5} 
-    center= { fromLonLat([-70.66, -40.44]) }
-    >
-    <div id="zoom-container" />
-    <Layers>
-      <TileLayer 
-      source={osm()}
-      zIndex={0}
-      />
-      
-      <VectorLayer 
-        source={
-          vector({ 
-            features: new GeoJSON().readFeatures(obj1, { featureProjection: get('EPSG:3857') }) })}
-        style={Styles.MultiPolygon}
-      />
-      
-      <Glaciers
-        style={Styles.MultiPolygon}
+  return (   
+    <Map zoom={4.5} 
+      center= { fromLonLat([-70.66, -40.44]) }
+      >
+      <div id="zoom-container" />
+      <Layers>
+        <TileLayer 
+        source={osm()}
+        zIndex={0}
         />
-    
-    </Layers>
-    <Controls>
-      <Zoom />
-      <FullScreen />
-    </Controls>
-  </Map>
+        
+        <VectorLayer 
+          source={
+            vector({ 
+              features: new GeoJSON().readFeatures(obj1, { featureProjection: get('EPSG:3857') }) })}
+          style={Styles.MultiPolygon}
+        />
+        
+        <Glaciers
+          style={Styles.MultiPolygon}
+          />
+      
+      </Layers>
+      <Controls>
+        <Zoom />
+        <FullScreen />
+      </Controls>
+    </Map>
   )
 }
 
