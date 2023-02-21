@@ -1,6 +1,6 @@
 import { Layout, Image, Divider, Button } from "antd";
 import LanguageSelector from "./LanguageSelector";
-import cepal_logo from "../../static/img/logo_ciren.png"
+import cepal_logo from "../../static/img/ciren1.png"
 import "./CustomHeader.css";
 
 const { Header } = Layout;

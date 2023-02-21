@@ -1,6 +1,7 @@
 import Default from "./views/Default";
 import Usuarios from "./views/admin/Usuarios";
 import Glaciares from "./views/glaciers/Glaciares";
+import Glaciar from "./views/glaciers/Glaciar";
 import CrearUsuario from "./views/admin/CrearUsuario";
 import Procesos from "./views/admin/Procesos";
 // import Satelites from "./views/admin/Satelites";
@@ -141,9 +142,17 @@ const routes = [
     views: [
       {
         name: "Detectados",
-        path: "mapa-dinamico",
+        path: "list",
         layout: "dashboard",
         component: <Glaciares />,
+        icon: <MdOutlineFormatListNumbered />,
+      },
+      {
+        name: "Glaciar",
+        hide: true,
+        path: ":id",
+        layout: "dashboard",
+        component: <Glaciar />,
         icon: <MdOutlineFormatListNumbered />,
       },
     ],

@@ -22,6 +22,7 @@ const obj1 = features.geojsonObject
 function ReMap() {
 
   return (   
+    
     <Map zoom={4.5} 
       center= { fromLonLat([-70.66, -40.44]) }
       >

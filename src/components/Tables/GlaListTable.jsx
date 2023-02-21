@@ -1,10 +1,10 @@
 //React Utils
 import { Fragment } from "react";
 //Hooks & Routing
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 //Components
 import { Table, Button, Typography, Row, Col } from "antd";
-import { FaUserEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { FaEye, FaTrash, FaPlus } from "react-icons/fa";
 //Style
 import "./CustomTables.css";
 // Dummies
@@ -39,29 +39,33 @@ const date_format = {
 
 const DUMMY_DATA = glaciers
 console.log('DUMMY_DATA', DUMMY_DATA)
-
 const GlaListTable = (props) => {
+
   const navigate = useNavigate()
   const COLUMNS = [
     {
       title: <Text strong>Nombre</Text>,
       dataIndex: "name",
       sorter: (a, b) => (a.name < b.name ? -1 : 1),
+      key: "name"
     },
     {
       title: <Text strong>Provincia</Text>,
       dataIndex: ['attributes', 'NOM_PROV'],
       sorter: (a, b) => (a.attributes.NOM_PROV < b.attributes.NOM_PROV ? -1 : 1),
+      key: ['attributes', 'NOM_PROV'],
     },
     {
       title: <Text strong>Región</Text>,
       dataIndex: ['attributes', 'NOM_REG'],
       sorter: (a, b) => (a.attributes.NOM_REG < b.attributes.NOM_REG ? -1 : 1),
+      key: ['attributes', 'NOM_REG'],
     },
     {
       title: <Text strong>Superficie</Text>,
       dataIndex: ['attributes', 'SUP_M2'],
       sorter: (a, b) => (a.attributes.SUP_M2 < b.attributes.SUP_M2 ? -1 : 1),
+      key: ['attributes', 'SUP_M2'],
     },
     /* {
       title: <Text strong>Estado</Text>,
@@ -78,11 +82,12 @@ const GlaListTable = (props) => {
       title: <Text strong>Fecha detección</Text>,
       dataIndex: "creation",
       sorter: (a, b) =>
-        Date(a.creation) < Date(b.creation) ? -1 : 1,
+      Date(a.creation) < Date(b.creation) ? -1 : 1,
+      key: "creation"
     },
     {
       dataIndex: "actions",
-      id: "id",
+      key: "actions",
       render: (_, record) => (
         <Fragment>
           <Row gutter={5}>
@@ -91,10 +96,10 @@ const GlaListTable = (props) => {
                 onClick={() => {
                   console.log(_);
                   console.log(record);
-                  navigate("/editar-usuario")
+                  navigate(`/glaciers/${record.id}`)
                 }}
                 type={"primary"}
-                icon={<FaUserEdit />}
+                icon={<FaEye />}
               />
             </Col>
             <Col>
@@ -114,12 +119,14 @@ const GlaListTable = (props) => {
       ),
     },
   ];
+  
   return (
     <Fragment>
       <Table
         columns={COLUMNS}
         scroll={{ x: 800 }}
         dataSource={DUMMY_DATA}
+        rowKey={(DUMMY_DATA) => DUMMY_DATA.id}
         pagination={{ position: ["bottomRight"] }}
       />
     </Fragment>

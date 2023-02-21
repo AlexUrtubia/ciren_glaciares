@@ -6,8 +6,9 @@
 .header_style {
   padding: 0.2rem 1rem !important;
   border-bottom: 2px solid #c9c9c9 !important;
-  background-color: #f8f9fa !important;
+  background-color: #ffffff !important;
   line-height: 4em !important;
+  /* #f8f9fa  */
 }
 
 .header_style .ant-row {

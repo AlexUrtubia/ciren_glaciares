@@ -38,6 +38,7 @@ function App() {
         <Route path='/' element={<LoginDashboard routes={routesjs} />}>
           {getRoutes(routesjs, "login")}
         </Route>
+        <Route path='/glaciers/:id' element={<Mapa routes={routesjs} />}></Route>
       </Routes>
     </Router>
   </>
