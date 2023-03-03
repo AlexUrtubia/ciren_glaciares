@@ -142,6 +142,14 @@ const routes = [
     icon: <GiMountainCave />,
     views: [
       {
+        name: 'Vista en Mapa',
+        path: "map",
+        // hide: "true",
+        layout: "dashboard",
+        component: <ReMap />,
+        icon: <FaMap />,
+      },
+      {
         name: "Detectados",
         path: "list",
         layout: "dashboard",

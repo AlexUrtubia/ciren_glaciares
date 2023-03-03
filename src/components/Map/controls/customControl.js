@@ -44,7 +44,7 @@ export class CustomControl extends Control {
           let visible = content.style.visibility === 'visible';
           content.style.visibility = visible ? 'hidden' : 'visible';
           content.style.display = visible ? 'none' : 'block';
-          container.style.width = visible? '40px' : '550px';
+          container.style.width = visible? '40px' : '580px';
           container.style.height = visible? '35px' : 'auto';
           // container.style.padding = visible? 'auto' : '';
           button.style.position = visible ? '' : 'relative'; 

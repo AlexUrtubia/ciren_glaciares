@@ -32,27 +32,7 @@ const FilteredGlaciers = ({  vectorstyle, zIndex = 0 }) => {
     })
     if (!map) return;
     let VectorLayer = vectorLayer
-    // 
-    // VectorLayer.style = vectorstyle
-    /* $(document).on('click', '#search-button', function() {
-      console.log('filtered_pol')
-      // setFiltered(true)
-      let reg = parseInt($('#region_id').val());
-      let filtered_pol = getFilterd(reg)
-      console.log('filtered_pol', filtered_pol)
-      vectorSource.clear()                
-      filtered_pol.map(
-        glacier => {
-          const wktFormat = new WKT();
-          const geometry = wktFormat.readFeature(glacier.wkt, {
-            dataProjection: "EPSG:3857",
-            featureProjection: "EPSG:3857",
-          });
-          // geometry.setId(glacier.id)
-          VectorLayer.getSource().addFeature(geometry);
-        }
-      )
-    }) */
+
     map.addLayer(VectorLayer);
     VectorLayer.setZIndex(zIndex);
     VectorLayer.set('vectortype', 'filtered');

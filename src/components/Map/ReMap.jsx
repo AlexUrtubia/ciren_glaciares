@@ -49,14 +49,14 @@ function ReMap() {
           style={Styles.Filtered}
         /> }
 
-        { id && !filtered && <Glacier
+        { id && <Glacier
           style={ Styles.MultiPolygon }
           id = { id }
         /> }
 
-        { !id && filtered  && <FilteredGlaciers
+        {/* { !id && filtered  && <FilteredGlaciers
           vectorstyle={Styles.Filtered}
-        /> }
+        /> } */}
 
       </Layers>
       <OpenModal/>
