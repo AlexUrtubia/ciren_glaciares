@@ -8,7 +8,6 @@ const Mapa = ({ children, zoom, center }) => {
   
   const mapRef = useRef();
   const [map, setMap] = useState(null);
-  
   // on component mount
   useEffect(() => {
     let options = {
@@ -20,6 +19,7 @@ const Mapa = ({ children, zoom, center }) => {
     let mapObject = new ol.Map(options);
     mapObject.setTarget(mapRef.current);
     setMap(mapObject);
+    
     return () => mapObject.setTarget(undefined);
   }, []);
 

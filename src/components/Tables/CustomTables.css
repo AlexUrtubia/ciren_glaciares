@@ -39,7 +39,9 @@
 button svg{
   vertical-align: middle!important;
 }
-
+.ant-image-mask{
+  margin-left: -28%;
+}
 /* .ant-card-body{
   padding: 10px!important;
 } */

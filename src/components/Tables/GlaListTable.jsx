@@ -20,25 +20,9 @@ const date_format = {
   month: "numeric",
 };
 
-// const DUMMY_DATA = [
-//   {
-//     key: "1",
-//     nombre: "Angel A",
-//     tipo: "Administrador",
-//     status: <Text type="danger">Inactivo</Text>,
-//     fecha_creacion: new Date(2020, 3, 5).toLocaleString([], date_format),
-//   },
-//   {
-//     key: "2",
-//     nombre: "Bastian B",
-//     tipo: "Pais",
-//     status: <Text type="success">Activo</Text>,
-//     fecha_creacion: new Date(2021, 4, 6).toLocaleString([], date_format),
-//   },
-// ];
-
 const DUMMY_DATA = glaciers
 console.log('DUMMY_DATA', DUMMY_DATA)
+
 const GlaListTable = (props) => {
 
   const navigate = useNavigate()
@@ -66,24 +50,20 @@ const GlaListTable = (props) => {
       dataIndex: ['attributes', 'SUP_M2'],
       sorter: (a, b) => (a.attributes.SUP_M2 < b.attributes.SUP_M2 ? -1 : 1),
       key: ['attributes', 'SUP_M2'],
+      render: (value) => <Fragment> { Math.round((value  + Number.EPSILON) * 100) / 100 } m<sup>2</sup></Fragment>,
     },
-    /* {
-      title: <Text strong>Estado</Text>,
-      dataIndex: "status",
-      sorter: (a, b) =>
-        a.status.props.childen < b.status.props.childen ? -1 : 1,
-      filters: [
-        { text: "Activo", value: "Activo" },
-        { text: "Inactivo", value: "Inactivo" },
-      ],
-      onFilter: (value, record) => value === record.status.props.children,
-    }, */
     {
       title: <Text strong>Fecha detección</Text>,
       dataIndex: "creation",
       sorter: (a, b) =>
       Date(a.creation) < Date(b.creation) ? -1 : 1,
-      key: "creation"
+      key: "creation",
+      render: (value) => 
+      <Fragment> 
+        { new Date(value).getDate() + "/" 
+        + (new Date(value).getMonth()+1) + "/"
+        + new Date(value).getFullYear() } 
+      </Fragment>,
     },
     {
       dataIndex: "actions",

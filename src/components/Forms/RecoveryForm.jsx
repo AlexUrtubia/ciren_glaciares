@@ -16,7 +16,7 @@ const RecoveryForm = (props) => {
         onFinish={onFinish}
       >
         <Form.Item
-          style={{ marginBottom: "10px" }}
+          style={{ marginBottom: "25px" }}
           name="Email"
           rules={[
             {
@@ -32,7 +32,7 @@ const RecoveryForm = (props) => {
         </Form.Item>
         <Form.Item>
           <Row align="center" 
-            style={{ marginBottom: '20px'}}
+            style={{ marginBottom: '10px'}}
           >
             <Col >
               <Button
@@ -56,8 +56,8 @@ const RecoveryForm = (props) => {
             </Col>
           </Row>
           <a
-              className={"login_form_forgot login_form_href"}
-              href="login"
+            className={"login_form_forgot login_form_href"}
+            href="login"
             >
               Volver
             </a>

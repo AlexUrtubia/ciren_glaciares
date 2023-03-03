@@ -29,4 +29,13 @@ export default {
       color: "rgba(0, 0, 255, 0.1)",
     }),
   }),
+  Filtered: new Style({
+    stroke: new Stroke({
+      color: "red",
+      width: 1,
+    }),
+    fill: new Fill({
+      color: "rgba(0, 0, 255, 0.1)",
+    }),
+  }),
 };

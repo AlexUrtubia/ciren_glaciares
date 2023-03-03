@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd-button-color/dist/css/style.css'; // or 'antd-button-color/dist/css/style.less'
+import { FilterProvider } from './context/FilterContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <FilterProvider>
+      <App />
+    </FilterProvider>
   </React.StrictMode>
 );
 

@@ -16,7 +16,7 @@ const Glaciares = () => {
 
     return (
         <Card title={<CardTitle title={`Glaciar ${glacier.name}`} icon={GiMountainCave}/>} style={{ margin: "1rem" }}>
-            <GlaTable/>
+            <GlaTable glaciers={glaciers} id={id}/>
         </Card>
     )
 }
