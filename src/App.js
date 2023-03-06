@@ -26,7 +26,6 @@ const getRoutes = (routes, layout) => {
   });
 };
 
-
 function App() {
   return (
   <>

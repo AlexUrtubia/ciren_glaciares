@@ -8,7 +8,7 @@ const { Header } = Layout;
 const PublicHeader = (props) => {
   return (
     <Header className={"header_style"}>
-      <div className="logo">
+      {/* <div className="logo">
         <a
           href="https://www.cepal.org/es"
           target="_blank"
@@ -16,14 +16,14 @@ const PublicHeader = (props) => {
         >
           <Image src={cepal_logo} preview={false} />
         </a>
-      </div>
+      </div> */}
       <div style={{ float: "right" }}>
         {/* <Divider type="vertical" style={{ height: "2em" }} /> */}
         <Button
           style={{ padding: "5px" }}
           type={"text"}
         >
-          <a href="/login" style={{ color: "black" }}>
+          <a href="/login" style={{ color: "black", textDecorationLine: 'none' }}>
             Iniciar Sesion
           </a>
         </Button>

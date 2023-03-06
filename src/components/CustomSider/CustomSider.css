@@ -1,6 +1,12 @@
 .sider_style {
   background-color: #f8f9fa !important;
   width: 220px !important;
+  padding-bottom: 5cm;
+}
+
+.ant-layout-sider-trigger{
+  position: fixed !important;
+  bottom: 73px !important;
 }
 
 .menu_style {
@@ -11,6 +17,16 @@
   margin: 0px !important;
 }
 
+a{
+  text-decoration: none !important;
+}
+
+a:focus{
+  /* text-decoration: underline !important; */
+  color: rgb(46, 102, 187) !important;
+  /* margin-left: 12px !important; */
+
+}
 .menu_style .ant-menu-submenu {
   margin: 0px !important;
 }
@@ -30,4 +46,5 @@
 .sider_style .ant-menu-inline-collapsed .ant-menu-item-icon {
   font-size: 1.5em !important;
   vertical-align: middle;
+  bottom: 50%;
 }

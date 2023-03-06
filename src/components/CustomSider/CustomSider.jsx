@@ -56,14 +56,17 @@ const getItems = (routes, parentPath, layout, admin) => {
 };
 
 const CustomSider = ({ routes, layout }) => {
+
   const { admin, CheckLogIn, isLoggedIn } = useContext(AuthContext);
   const location = useLocation();
   const [pressedKey, setPressedKey] = useState(
     location.pathname.split("/").slice(-1)
   );
+
   useEffect(() => {
     setPressedKey(location.pathname.split("/").slice(-1));
   }, [location.pathname]);
+
   const [collapsed, setCollapsed] = useState(false);
   const onCollapse = (collapse_state) => {
     setCollapsed(collapse_state);

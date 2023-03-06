@@ -101,7 +101,10 @@
 
 .custom-label {
   padding: 8px !important;
-  /* background-color: aliceblue; */
+}
+
+button{
+  border-radius: 4px !important;
 }
 
 /* th {

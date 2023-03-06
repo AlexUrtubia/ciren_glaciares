@@ -14,7 +14,6 @@ import UserAvatarHeader from "./UserAvatarHeader";
 import LanguageSelector from "./LanguageSelector";
 //Images
 import cepal_logo from '../static/img/ciren1.png'
-import "./"
 
 // const theme = createTheme({
 //   components: {
