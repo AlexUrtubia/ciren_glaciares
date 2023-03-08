@@ -3,7 +3,7 @@ import MapContext from "../../context/MapContext";
 import TileLayer from "./layers/TileLayer"
 import Map from "./Map"
 import Layers from './layers/Layers'
-import Controls from "./controls/Control"
+import Controls from "./controls/Controls"
 import { fromLonLat } from 'ol/proj';
 import { osm } from "./source";
 import FullScreen from "./controls/FullScreenControl"
@@ -13,7 +13,7 @@ import Glaciers from "./layers/Glaciers"
 import Glacier from "./layers/Glacier"
 import { useParams } from "react-router-dom";
 import OpenModal from "./PixelModal"
-import SearchControl from "./controls/SearchControl";
+import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
 
 function ReMap() {
@@ -59,7 +59,7 @@ function ReMap() {
         <Zoom />
         <FullScreen />
         { !id &&
-          <SearchControl />
+          <SearchFilterControl />
         }
       </Controls>
     

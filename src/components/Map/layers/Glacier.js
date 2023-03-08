@@ -34,6 +34,13 @@ const Glaciar = ({  style, zIndex = 0, id }) => {
     map.getView().fit(
       VectorLayer.getSource().getExtent(),
     {"maxZoom":14} );   
+    
+    map.on('singleclick', function (evt) {
+      console.log(evt.coordinate);
+  
+      // convert coordinate to EPSG-4326
+      // console.log(ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326'));
+    });
 
     return () => {
       if (map) {

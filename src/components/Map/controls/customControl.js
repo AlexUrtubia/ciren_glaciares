@@ -9,9 +9,9 @@ export class CustomControl extends Control {
       'left': '100em'
     };
 
+    const width = options.width || '700px'
     const container = document.createElement('div');
     container.className = 'custom-control ol-unselectable ol-control';    
-    container.id = 'asdasd'
     container.style.top = position['top']
     container.style.left = position['left']
     container.classList.add('element-hidden')
@@ -44,12 +44,13 @@ export class CustomControl extends Control {
           let visible = content.style.visibility === 'visible';
           content.style.visibility = visible ? 'hidden' : 'visible';
           content.style.display = visible ? 'none' : 'block';
-          container.style.width = visible? '40px' : '580px';
+          container.style.width = visible? '40px' : width;
           container.style.height = visible? '35px' : 'auto';
           // container.style.padding = visible? 'auto' : '';
           button.style.position = visible ? '' : 'relative'; 
           button.style.left = visible ? '' : '-4px' 
-          button.style.backgroundColor = visible ? '#efefef' : 'rgba(255,  255,  255,  0.01)'
+          button.style.backgroundColor = visible ? 'rgba(255,  255,  255,  0.4)' : 'rgba(255,  255,  255,  0.01)'
+          container.style.backgroundColor = visible ? 'rgba(255,  255,  255,  0.4)' : 'rgba(255,  255,  255,  0.6)'
           button.style.border = visible ? 'solid #212121 2px' : 'none'
           button.style.borderRadius = visible ? '2px' : 'none';
           i.className = visible ? 'fa fa-' + options.icon : 'fa fa-times'
@@ -60,6 +61,7 @@ export class CustomControl extends Control {
       element: container,
       target: options.target,
       icon: options.icon,
+      width: options.width,
       position: options.position // Definir la posición del control
     });
   }

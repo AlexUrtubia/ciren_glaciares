@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { FullScreen } from "ol/control";
 import MapContext from "../../../context/MapContext";
 
 const FullScreenControl = () => {
+
   const { map } = useContext(MapContext);
+  
   useEffect(() => {
     if (!map) return;
     let fullScreenControl = new FullScreen({});
@@ -11,6 +13,8 @@ const FullScreenControl = () => {
     
     return () => map.controls.remove(fullScreenControl);
   }, [map]);
+  
   return null;
 };
+
 export default FullScreenControl;

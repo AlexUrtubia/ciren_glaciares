@@ -11,7 +11,7 @@ const PublicHeader = (props) => {
 
     <Header className={"header_style"}>
       <Row justify={'space-between'}>
-        <Col></Col>
+        <Col className="mx-5 ">&nbsp;</Col>
         <Col  >
           <div className="logo">
             <a
