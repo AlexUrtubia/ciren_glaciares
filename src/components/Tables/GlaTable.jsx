@@ -4,15 +4,16 @@ import { Fragment, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 //Components
 import { Descriptions, Image, Typography, Button, Space, Row, Col, Badge, Modal,
-  Cascader,
+  // Cascader,
   DatePicker,
   Form,
   Input,
   InputNumber,
   Radio,
-  Select,
-  Switch,
-  TreeSelect, } from "antd";
+  // Select,
+  // Switch,
+  TreeSelect, 
+} from "antd";
 //Style
 import "./CustomTables.css";
 // Dummies

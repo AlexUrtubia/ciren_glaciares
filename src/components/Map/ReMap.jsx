@@ -14,7 +14,6 @@ import Glacier from "./layers/Glacier"
 import { useParams } from "react-router-dom";
 import OpenModal from "./PixelModal"
 import SearchControl from "./controls/SearchControl";
-import FilteredGlaciers from './layers/FileterdGlaciers';
 import { FilterContext } from '../../context/FilterContext';
 
 function ReMap() {
@@ -53,10 +52,6 @@ function ReMap() {
           style={ Styles.MultiPolygon }
           id = { id }
         /> }
-
-        {/* { !id && filtered  && <FilteredGlaciers
-          vectorstyle={Styles.Filtered}
-        /> } */}
 
       </Layers>
       <OpenModal/>

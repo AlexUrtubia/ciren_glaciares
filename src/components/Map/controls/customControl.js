@@ -50,7 +50,7 @@ export class CustomControl extends Control {
           button.style.position = visible ? '' : 'relative'; 
           button.style.left = visible ? '' : '-4px' 
           button.style.backgroundColor = visible ? '#efefef' : 'rgba(255,  255,  255,  0.01)'
-          button.style.border = visible ? 'solid #767676 1px' : 'none'
+          button.style.border = visible ? 'solid #212121 2px' : 'none'
           button.style.borderRadius = visible ? '2px' : 'none';
           i.className = visible ? 'fa fa-' + options.icon : 'fa fa-times'
       }

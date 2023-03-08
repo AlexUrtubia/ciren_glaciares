@@ -76,7 +76,7 @@ const StatisticsTable = () => {
         scroll={{ x: 800 }}
         dataSource={DUMMY_DATA}
         style={{ width: "100%" }}
-      ></Table>
+      />
   );
 };
 

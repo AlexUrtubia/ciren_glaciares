@@ -6,7 +6,6 @@ import CrearUsuario from "./views/admin/CrearUsuario";
 import Procesos from "./views/admin/Procesos";
 // import Satelites from "./views/admin/Satelites";
 // import Regiones from "./views/admin/Regiones";
-import CrearRegion from "./views/admin/CrearRegion";
 // import EditarRegion from "./views/EditarRegion";
 import {
   FaUsers,

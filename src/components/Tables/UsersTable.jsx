@@ -8,11 +8,7 @@ import { FaUserEdit, FaTrash, FaPlus } from "react-icons/fa";
 //Style
 import "./CustomTables.css";
 
-
-
 const Text = Typography.Text;
-
-
 
 const date_format = {
   day: "numeric",

@@ -1,14 +1,16 @@
 .logo {
   float: left;
-  width: 128px;
+  /* width: 128px; */
 }
 
 .header_style {
-  padding: 0.2rem 1rem !important;
+  padding: 0.1rem 2rem !important;
   border-bottom: 2px solid #c9c9c9 !important;
   background-color: #ffffff !important;
   line-height: 4em !important;
-  /* #f8f9fa  */
+}
+.ant-layout-header {
+  height: auto !important;
 }
 
 .header_style .ant-row {

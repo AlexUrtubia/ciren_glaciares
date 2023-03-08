@@ -8,16 +8,19 @@ export const FilterContext = new React.createContext();
 export const FilterProvider = ({children}) => {
 
   const [filtered, setFiltered] = React.useState((false))
+  
   let vectorSource = new VectorSource
+  
   let vectorLayer = new OLVectorLayer({
       source: vectorSource,
       // style
-    }); 
+  }); 
     
-    React.useEffect(() => {
-      console.log('filtered from context', filtered)
-      
-    }, [filtered]);
+  React.useEffect(() => {
+    console.log('filtered from context', filtered)
+    
+  }, [filtered]);
+  
   return  <FilterContext.Provider value={{filtered, setFiltered, vectorLayer, vectorSource}} >
             {children}
           </FilterContext.Provider>
