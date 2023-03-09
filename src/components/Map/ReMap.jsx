@@ -9,8 +9,8 @@ import { osm } from "./source";
 import FullScreen from "./controls/FullScreenControl"
 import Zoom from "./controls/ZoomControl"
 import Styles from "./features/Styles"
-import Glaciers from "./layers/Glaciers"
-import Glacier from "./layers/Glacier"
+import Glaciers from "./layers/glaciers/Glaciers"
+import Glacier from "./layers/glaciers/Glacier"
 import { useParams } from "react-router-dom";
 import OpenModal from "./PixelModal"
 import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";

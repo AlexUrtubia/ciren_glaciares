@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import MapContext from "../../../context/MapContext";
+import MapContext from "../../../../context/MapContext";
 import OLVectorLayer from "ol/layer/Vector";
-import glaciers from '../features/glaciers.json'
+import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
 import VectorSource from 'ol/source/Vector'
 

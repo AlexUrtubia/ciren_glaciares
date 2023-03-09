@@ -1,4 +1,4 @@
-import {  Control, defaults as defaultControls } from "ol/control";
+import { Control } from "ol/control";
 
 
 export class CustomControl extends Control {

@@ -3,7 +3,9 @@ import MapContext from "../../../context/MapContext";
 import OLVectorLayer from "ol/layer/Vector";
 
 const VectorLayer = ({ source, style, zIndex = 0 }) => {
+
   const { map } = useContext(MapContext);
+  
   useEffect(() => {
     if (!map) return;
     let vectorLayer = new OLVectorLayer({
@@ -18,12 +20,7 @@ const VectorLayer = ({ source, style, zIndex = 0 }) => {
       }
     };
   }, [map]);
+  
   return null;
 };
 export default VectorLayer;
-
-// 4341
-// 1
-// 4115
-// 4112
-// 10

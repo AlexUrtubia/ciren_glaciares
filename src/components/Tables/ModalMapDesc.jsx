@@ -1,5 +1,4 @@
 import { Descriptions, Image, Badge, Button } from 'antd';
-import { Link } from "react-router-dom";
 import 'antd-button-color/dist/css/style.css'; // or 'antd-button-color/dist/css/style.less'
 import { FaEdit } from "react-icons/fa"
 

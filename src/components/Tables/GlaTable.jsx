@@ -10,9 +10,6 @@ import { Descriptions, Image, Typography, Button, Space, Row, Col, Badge, Modal,
   Input,
   InputNumber,
   Radio,
-  // Select,
-  // Switch,
-  TreeSelect, 
 } from "antd";
 //Style
 import "./CustomTables.css";
@@ -20,7 +17,8 @@ import "./CustomTables.css";
 // import glaciers from '../../components/Map/features/glaciers.json'
 import { FaMapMarkedAlt, FaEdit, FaTrashAlt } from "react-icons/fa"
 // Css antd-buttons
-
+import ChartComponent from "../charts/ChartComponent";
+import puntos from "../Map/features/points.json"
 
 const GlaTable = ({glaciers, id }) => {
 
@@ -43,7 +41,7 @@ const GlaTable = ({glaciers, id }) => {
     <Fragment>
       <Descriptions layout="horizontal" style={{ padding: '1em' }} bordered={true} column={2}>
         <Descriptions.Item span={2} labelStyle={{ visibility: ''}} contentStyle={{textAlign: 'center', marginLeft: "-7rem"}}>
-          <Image src={glacier.img} width={'35%'} style={{  marginLeft: "-8rem" }}/>
+          <ChartComponent />
         </Descriptions.Item>
         <Descriptions.Item label="Región"> {glacier.region} </Descriptions.Item>
         <Descriptions.Item label="Provincia"> {glacier.province} </Descriptions.Item>
