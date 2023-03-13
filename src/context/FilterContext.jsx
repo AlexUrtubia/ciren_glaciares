@@ -16,10 +16,10 @@ export const FilterProvider = ({children}) => {
       // style
   }); 
     
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     console.log('filtered from context', filtered)
     
-  }, [filtered]);
+  }, [filtered]); */
   
   return  <FilterContext.Provider value={{filtered, setFiltered, vectorLayer, vectorSource}} >
             {children}

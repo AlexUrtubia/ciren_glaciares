@@ -19,12 +19,8 @@ import { FilterContext } from '../../context/FilterContext';
 function ReMap() {
 
   let { id } = useParams()
-  let { filtered } = React.useContext(FilterContext)
+  // let { filtered } = React.useContext(FilterContext)
 
-  React.useEffect(() => {
-    console.log('filtered', filtered)
-    
-  }, [filtered]);
 
   return (   
     
@@ -32,11 +28,11 @@ function ReMap() {
     center= { fromLonLat([-70.66, -40.44]) }
     >
       <div id="zoom-container" />
-      <div id="popup" className="ol-popup">
+      {/* <div id="popup" className="ol-popup">
         <a href="#" id="popup-closer" className="ol-popup-closer"></a>
         <div id="popup-content">
         </div>
-      </div>
+      </div> */}
       <Layers>
 
         <TileLayer 
