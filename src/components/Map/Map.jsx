@@ -4,10 +4,12 @@ import * as ol from "ol";
 import MapContext from "../../context/MapContext";
 
 
-const Mapa = ({ children, zoom, center }) => {
+const Mapa = ({ children, zoom, center, isFooterOpen }) => {
   
   const mapRef = useRef();
   const [map, setMap] = useState(null);
+  // const [isFooterOpen, setIsFooterOpen] = useState(false);
+
   // on component mount
   useEffect(() => {
     let options = {

@@ -94,6 +94,12 @@ button{
   border-radius: 4px !important;
 }
 
+.map-footer{
+  position: absolute !important;
+  bottom: 0;
+  z-index: 999 !important;
+  width: 100% !important;
+}
 /* th {
   background-color: blueviolet;
 } */

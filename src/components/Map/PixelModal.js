@@ -8,7 +8,7 @@ import ChartComponent from "../charts/ChartComponent";
 import { createPortal } from "react-dom";
 import { Popover } from "antd";
 import { render } from "react-dom";
-
+import MyFooter from "./MapFooter";
 import { Button } from 'antd';
 
 const OpenModal = () => {
@@ -35,6 +35,7 @@ const OpenModal = () => {
       id:'pop-up',
       autoPan: true,
       offset: [0, -10],
+      positioning: 'bottom-center'
     });
 
     closer.onclick = function () {
@@ -73,11 +74,12 @@ const OpenModal = () => {
           let vtype = layer.get("vectortype");
           let featureId = feature.getId();
           if (vtype == "glaciers") {
+            console.log('olaaa')
             setOverlayContent(
               <ModalMapDesc
                 id={featureId}
                 glaciers={glaciers}
-              />
+              /> 
             );
             map.getOverlayById("pop-up").setPosition(coord);
           }
@@ -90,7 +92,7 @@ const OpenModal = () => {
     };
   }, [map, glaciers]);
 
-  return <div id="popup" />;
+  // return <div id="popup" />;
 };
 
 export default OpenModal;

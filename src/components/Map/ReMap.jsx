@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MapContext from "../../context/MapContext";
 import TileLayer from "./layers/TileLayer"
 import Map from "./Map"
@@ -15,17 +15,36 @@ import { useParams } from "react-router-dom";
 import OpenModal from "./PixelModal"
 import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
+import MyFooter from './MapFooter';
 
 function ReMap() {
 
   let { id } = useParams()
-  // let { filtered } = React.useContext(FilterContext)
+  const [footerContent, setFooterContent] = useState({ title: "ola", description: "chao" });
+
+  const handleFeatureClick = (feature) => {
+
+    console.log('first')
+    // Define el contenido del footer según la feature clickeada
+    setFooterContent({ 
+      title: feature.get("name"), 
+      description: feature.get("description")
+    });
+    // Abre el footer
+    // setIsFooterOpen(true);
+  };
+
+  const handleCloseFooter = () => {
+    // Cierra el footer
+    // setIsFooterOpen(false);
+  };
 
 
   return (   
     
-    <Map zoom={4.5} 
+    <Map zoom={6.5} 
     center= { fromLonLat([-70.66, -40.44]) }
+    isFooterOpen = {true}
     >
       <div id="zoom-container" />
       {/* <div id="popup" className="ol-popup">
@@ -42,6 +61,7 @@ function ReMap() {
         
         { !id && <Glaciers
           style={Styles.Filtered}
+          onFeatureClick={handleFeatureClick}
         /> }
 
         { id && <Glacier
@@ -58,7 +78,12 @@ function ReMap() {
           <SearchFilterControl />
         }
       </Controls>
-    
+      {  <MyFooter
+        isOpen={true}
+        onClose={handleCloseFooter}
+        title={footerContent.title}
+        description={footerContent.description}
+      />}
     </Map>
   )
 }
