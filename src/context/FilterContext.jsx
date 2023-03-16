@@ -7,21 +7,16 @@ export const FilterContext = new React.createContext();
 
 export const FilterProvider = ({children}) => {
 
-  const [filtered, setFiltered] = React.useState((false))
-  
-  let vectorSource = new VectorSource
-  
-  let vectorLayer = new OLVectorLayer({
-      source: vectorSource,
-      // style
-  }); 
+  // const [filtered, setFiltered] = React.useState((false))
+  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
+  const [id, setId] = React.useState(1);
     
   /* React.useEffect(() => {
     console.log('filtered from context', filtered)
     
   }, [filtered]); */
   
-  return  <FilterContext.Provider value={{filtered, setFiltered, vectorLayer, vectorSource}} >
+  return  <FilterContext.Provider value={{ isFooterOpen, setIsFooterOpen, id, setId }} >
             {children}
           </FilterContext.Provider>
 }

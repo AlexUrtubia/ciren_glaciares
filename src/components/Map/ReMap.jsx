@@ -20,6 +20,8 @@ import MyFooter from './MapFooter';
 function ReMap() {
 
   let { id } = useParams()
+  const { isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
+
   const [footerContent, setFooterContent] = useState({ title: "ola", description: "chao" });
 
   const handleFeatureClick = (feature) => {
@@ -36,7 +38,7 @@ function ReMap() {
 
   const handleCloseFooter = () => {
     // Cierra el footer
-    // setIsFooterOpen(false);
+    setIsFooterOpen(false);
   };
 
 
@@ -79,7 +81,7 @@ function ReMap() {
         }
       </Controls>
       {  <MyFooter
-        isOpen={true}
+        isOpen={isFooterOpen}
         onClose={handleCloseFooter}
         title={footerContent.title}
         description={footerContent.description}

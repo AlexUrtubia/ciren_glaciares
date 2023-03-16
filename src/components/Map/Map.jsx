@@ -8,7 +8,6 @@ const Mapa = ({ children, zoom, center, isFooterOpen }) => {
   
   const mapRef = useRef();
   const [map, setMap] = useState(null);
-  // const [isFooterOpen, setIsFooterOpen] = useState(false);
 
   // on component mount
   useEffect(() => {

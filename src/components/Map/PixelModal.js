@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useContext, useEffect } from "react";
 import MapContext from "../../context/MapContext";
+import { FilterContext } from "../../context/FilterContext";
 import Overlay from "ol/Overlay";
 import { renderToString } from "react-dom/server";
 import glaciers from "./features/glaciers.json";
@@ -13,6 +14,7 @@ import { Button } from 'antd';
 
 const OpenModal = () => {
   const { map } = useContext(MapContext);
+  const { setIsFooterOpen, setId } = useContext(FilterContext);
 
   const [overlayContent, setOverlayContent] = useState(null);
   const [overlayElement, setOverlayElement] = useState(null);
@@ -75,13 +77,14 @@ const OpenModal = () => {
           let featureId = feature.getId();
           if (vtype == "glaciers") {
             console.log('olaaa')
-            setOverlayContent(
-              <ModalMapDesc
-                id={featureId}
-                glaciers={glaciers}
-              /> 
-            );
-            map.getOverlayById("pop-up").setPosition(coord);
+            setIsFooterOpen(true)
+            setId(featureId)
+            // setOverlayContent(
+            //   <ModalMapDesc
+            //     id={featureId}
+            //   /> 
+            // );
+            // map.getOverlayById("pop-up").setPosition(coord);
           }
         }
       });

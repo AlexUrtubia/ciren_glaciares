@@ -28,7 +28,7 @@ Chart.register(
 );
 
 function LineChart({id}) {
-
+  console.log('id from chart', id)
   const options = {
     responsive: true,
     maintainAspectRatio: false,  

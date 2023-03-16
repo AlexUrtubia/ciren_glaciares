@@ -1,12 +1,22 @@
+import React from 'react';
 import { Descriptions, Image, Badge, Button } from 'antd';
 import 'antd-button-color/dist/css/style.css'; // or 'antd-button-color/dist/css/style.less'
 import { FaEdit } from "react-icons/fa"
 import ChartComponent from "../charts/ChartComponent"
+import glaciers from "../Map/features/glaciers.json"
 
-export default function ModalMapDesc({ id, glaciers, chart }) {
+export default function ModalMapDesc({ id, chart }) {
+    const [showChart, setShowChart] = React.useState(null)
+    console.log('id from modal ', id)
     const glacier =  glaciers.find(glacier => glacier.id == id)
     var dateFormat = new Date(glacier.creation);
     var fecha = dateFormat.getDate()+ "/" + (dateFormat.getMonth()+1)+ "/"+dateFormat.getFullYear()
+
+    React.useEffect(() => {
+      setShowChart(true)
+
+    }, [id])
+    
 
     return (
       <>
@@ -28,7 +38,10 @@ export default function ModalMapDesc({ id, glaciers, chart }) {
         >
           <Descriptions.Item span={3} className="custom-label-img" contentStyle={{ textAlign: 'center', justifyContent: 'center' }}>
             {/* { chart } */}
+            { showChart &&
+
             <ChartComponent id={glacier.id}/>
+            }
             {/* <Image preview={false}  src={glacier.img} width={'100%'} /> */}
           </Descriptions.Item>
           <Descriptions.Item span={3} className="custom-label" labelStyle={{ textAlign: 'center'}} label="Descripción">{glacier.description} </Descriptions.Item>
