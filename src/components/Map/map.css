@@ -100,6 +100,12 @@ button{
   z-index: 999 !important;
   width: 100% !important;
 }
-/* th {
-  background-color: blueviolet;
-} */
+
+
+
+.close-map-footer {
+  font-size: '20px' !important;
+  border-radius: '2px' !important;
+  background-color: '#212121' !important;
+  color:"#efefef" !important;
+}

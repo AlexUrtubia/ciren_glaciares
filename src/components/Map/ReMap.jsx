@@ -20,7 +20,7 @@ import MyFooter from './MapFooter';
 function ReMap() {
 
   let { id } = useParams()
-  const { isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
+  const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
 
   const [footerContent, setFooterContent] = useState({ title: "ola", description: "chao" });
 
@@ -45,7 +45,7 @@ function ReMap() {
   return (   
     
     <Map zoom={6.5} 
-    center= { fromLonLat([-70.66, -40.44]) }
+    center= { fromLonLat(center) }
     isFooterOpen = {true}
     >
       <div id="zoom-container" />

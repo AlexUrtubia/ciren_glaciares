@@ -4,7 +4,7 @@ import * as ol from "ol";
 import MapContext from "../../context/MapContext";
 
 
-const Mapa = ({ children, zoom, center, isFooterOpen }) => {
+const Mapa = ({ children, zoom, center }) => {
   
   const mapRef = useRef();
   const [map, setMap] = useState(null);

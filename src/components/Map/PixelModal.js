@@ -4,17 +4,21 @@ import { FilterContext } from "../../context/FilterContext";
 import Overlay from "ol/Overlay";
 import { renderToString } from "react-dom/server";
 import glaciers from "./features/glaciers.json";
-import ModalMapDesc from "../Tables/ModalMapDesc";
+import FooterTimeSeries from "./footer/FooterTimeSeries";
 import ChartComponent from "../charts/ChartComponent";
 import { createPortal } from "react-dom";
 import { Popover } from "antd";
 import { render } from "react-dom";
 import MyFooter from "./MapFooter";
 import { Button } from 'antd';
+import {getCenter, getHeight, getTop} from 'ol/extent';
+import { fromLonLat } from 'ol/proj';
+
+
 
 const OpenModal = () => {
   const { map } = useContext(MapContext);
-  const { setIsFooterOpen, setId } = useContext(FilterContext);
+  const { setIsFooterOpen, setId, id} = useContext(FilterContext);
 
   const [overlayContent, setOverlayContent] = useState(null);
   const [overlayElement, setOverlayElement] = useState(null);
@@ -67,32 +71,39 @@ const OpenModal = () => {
 
   useEffect(() => {
     if (!map) return;
-
     map.on("click", (e) => {
-      var coord = e.coordinate;
       let pixel = map.getEventPixel(e.originalEvent);
       map.forEachFeatureAtPixel(pixel, (feature, layer) => {
         if (layer.getVisible()) {
           let vtype = layer.get("vectortype");
           let featureId = feature.getId();
           if (vtype == "glaciers") {
-            console.log('olaaa')
-            setIsFooterOpen(true)
-            setId(featureId)
-            // setOverlayContent(
-            //   <ModalMapDesc
-            //     id={featureId}
-            //   /> 
-            // );
-            // map.getOverlayById("pop-up").setPosition(coord);
+            setIsFooterOpen(true);
+            setId(featureId);
+            
+            // Calculate the midPoint of the lower half of the feature's geometry
+            let extent = feature.getGeometry().getExtent();
+            let midPoint = [(extent[0] + extent[2]) / 2, extent[1] + (extent[3] - extent[1]) / 2];
+            console.log('extent, midPoint', extent, midPoint)
+            // Calculate the point of reference for the zoom
+            let upperHalfHeight = (extent[3] - extent[1]) / 9;
+            let referencePoint = [midPoint[0], midPoint[1] - upperHalfHeight * 30.9];
+            
+            // Zoom to the point of reference with animation
+            let view = map.getView();
+            view.animate({
+              center: referencePoint,
+              zoom: view.getZoom() + 4, // Zoom level 2 higher than the current zoom level
+              duration: 500 // Animation duration in milliseconds
+            });
+            // setCenter(fromLonLat(midPoint))
           }
         }
       });
     });
 
-    return () => {
-      map.un("click");
-    };
+    return 
+    
   }, [map, glaciers]);
 
   // return <div id="popup" />;
