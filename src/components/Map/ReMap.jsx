@@ -26,7 +26,6 @@ function ReMap() {
 
   const handleFeatureClick = (feature) => {
 
-    console.log('first')
     // Define el contenido del footer según la feature clickeada
     setFooterContent({ 
       title: feature.get("name"), 

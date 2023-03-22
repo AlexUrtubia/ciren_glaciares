@@ -12,7 +12,7 @@ const { TabPane } = Tabs;
 
 const MyFooter = ({ isOpen, onClose }) => {
 
-  const { id, setCenter } = React.useContext(FilterContext);
+  const { id } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
 
   useEffect(() => {

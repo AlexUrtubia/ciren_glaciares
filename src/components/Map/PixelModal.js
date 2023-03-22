@@ -6,9 +6,14 @@ import { renderToString } from "react-dom/server";
 import glaciers from "./features/glaciers.json";
 import FooterTimeSeries from "./footer/FooterTimeSeries";
 import ChartComponent from "../charts/ChartComponent";
-import { createPortal } from "react-dom";
 import { Popover } from "antd";
 import { render } from "react-dom";
+import { translate } from 'ol/geom/Geometry';
+import Point from 'ol/geom/Point';
+import { transform } from 'ol/proj';
+import View from 'ol/View';
+
+
 import MyFooter from "./MapFooter";
 import { Button } from 'antd';
 import {getCenter, getHeight, getTop} from 'ol/extent';
@@ -18,7 +23,7 @@ import { fromLonLat } from 'ol/proj';
 
 const OpenModal = () => {
   const { map } = useContext(MapContext);
-  const { setIsFooterOpen, setId, id} = useContext(FilterContext);
+  const { setIsFooterOpen, setId, id, setCenter} = useContext(FilterContext);
 
   const [overlayContent, setOverlayContent] = useState(null);
   const [overlayElement, setOverlayElement] = useState(null);
@@ -72,6 +77,7 @@ const OpenModal = () => {
   useEffect(() => {
     if (!map) return;
     map.on("click", (e) => {
+      console.log('e.coordinate', e.coordinate)
       let pixel = map.getEventPixel(e.originalEvent);
       map.forEachFeatureAtPixel(pixel, (feature, layer) => {
         if (layer.getVisible()) {
@@ -80,23 +86,24 @@ const OpenModal = () => {
           if (vtype == "glaciers") {
             setIsFooterOpen(true);
             setId(featureId);
+
+            var distance = -5000; // Distancia en metros
+            var bearing = 180; // Dirección en grados (0° = norte, 90° = este, 180° = sur, 270° = oeste)
+            var coord = e.coordinate;
             
-            // Calculate the midPoint of the lower half of the feature's geometry
-            let extent = feature.getGeometry().getExtent();
-            let midPoint = [(extent[0] + extent[2]) / 2, extent[1] + (extent[3] - extent[1]) / 2];
-            console.log('extent, midPoint', extent, midPoint)
-            // Calculate the point of reference for the zoom
-            let upperHalfHeight = (extent[3] - extent[1]) / 9;
-            let referencePoint = [midPoint[0], midPoint[1] - upperHalfHeight * 30.9];
+            var newCoordinates = [
+              coord[0] + (distance * Math.sin(bearing * Math.PI / 180)),
+              coord[1] - (distance * Math.cos(bearing * Math.PI / 180))
+            ];
+            // setCenter(fromLonLat([newCoordinates[0], newCoordinates[1]]));
+
+            console.log('coord', coord, featureId, newCoordinates)
             
-            // Zoom to the point of reference with animation
-            let view = map.getView();
-            view.animate({
-              center: referencePoint,
-              zoom: view.getZoom() + 4, // Zoom level 2 higher than the current zoom level
-              duration: 500 // Animation duration in milliseconds
+            var newView = new View({
+              center: newCoordinates,
+              zoom: 11 // Zoom deseado
             });
-            // setCenter(fromLonLat(midPoint))
+            map.setView(newView);
           }
         }
       });
@@ -104,7 +111,7 @@ const OpenModal = () => {
 
     return 
     
-  }, [map, glaciers]);
+  }, [map, glaciers, id]);
 
   // return <div id="popup" />;
 };

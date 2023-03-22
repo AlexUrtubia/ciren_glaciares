@@ -8,7 +8,7 @@ import glaciers from "../features/glaciers.json"
 
 export default function FooterGlacier({ id, chart }) {
     // const [showChart, setShowChart] = React.useState(null)
-    console.log('id from modal ', id)
+    // console.log('id from modal ', id)
     const glacier =  glaciers.find(glacier => glacier.id == id)
     var dateFormat = new Date(glacier.creation);
     var fecha = dateFormat.getDate()+ "/" + (dateFormat.getMonth()+1)+ "/"+dateFormat.getFullYear()
