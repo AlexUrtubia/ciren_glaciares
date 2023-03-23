@@ -9,7 +9,7 @@ export const FilterProvider = ({children}) => {
 
   // const [filtered, setFiltered] = React.useState((false))
   const [isFooterOpen, setIsFooterOpen] = React.useState(false);
-  const [id, setId] = React.useState(1);
+  const [id, setId] = React.useState('10-1');
   const [center, setCenter] = React.useState([-70.66, -40.44])
 
     

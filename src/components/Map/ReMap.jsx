@@ -16,6 +16,7 @@ import OpenModal from "./PixelModal"
 import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
 import MyFooter from './MapFooter';
+import Points from './layers/glaciers/Points';
 
 function ReMap() {
 
@@ -62,12 +63,18 @@ function ReMap() {
         
         { !id && <Glaciers
           style={Styles.Filtered}
-          onFeatureClick={handleFeatureClick}
+          zIndex={100}
+
         /> }
+
+        <Points
+          style={ Styles.Point }
+          />
 
         { id && <Glacier
           style={ Styles.MultiPolygon }
           id = { id }
+          zIndex={100}
         /> }
 
       </Layers>

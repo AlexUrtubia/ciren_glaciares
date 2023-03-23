@@ -64,17 +64,6 @@ const OpenModal = () => {
   }, [map]);
 
   useEffect(() => {
-    
-    if (!overlayElement) return;
-
-    if (overlayContent) {
-      render(overlayContent, overlayElement.lastChild);
-    } else {
-      render(null, overlayElement.lastChild);
-    }
-  }, [overlayElement, overlayContent]);
-
-  useEffect(() => {
     if (!map) return;
     map.on("click", (e) => {
       console.log('e.coordinate', e.coordinate)
@@ -82,10 +71,9 @@ const OpenModal = () => {
       map.forEachFeatureAtPixel(pixel, (feature, layer) => {
         if (layer.getVisible()) {
           let vtype = layer.get("vectortype");
-          let featureId = feature.getId();
-          if (vtype == "glaciers") {
+          // let featureId = feature.getId();
+          // if (vtype == "glaciers") {
             setIsFooterOpen(true);
-            setId(featureId);
 
             var distance = -5000; // Distancia en metros
             var bearing = 180; // Dirección en grados (0° = norte, 90° = este, 180° = sur, 270° = oeste)
@@ -97,24 +85,32 @@ const OpenModal = () => {
             ];
             // setCenter(fromLonLat([newCoordinates[0], newCoordinates[1]]));
 
-            console.log('coord', coord, featureId, newCoordinates)
+            // console.log('coord', coord, featureId, newCoordinates)
             
             var newView = new View({
               center: newCoordinates,
               zoom: 11 // Zoom deseado
             });
             map.setView(newView);
-          }
+          // }
         }
       });
     });
+  });
 
-    return 
+  useEffect(() => {
     
-  }, [map, glaciers, id]);
+    if (!overlayElement) return;
+
+    if (overlayContent) {
+      render(overlayContent, overlayElement.lastChild);
+    } else {
+      render(null, overlayElement.lastChild);
+    }
+  }, [overlayElement, overlayContent]);
 
   // return <div id="popup" />;
-};
+}
 
 export default OpenModal;
 

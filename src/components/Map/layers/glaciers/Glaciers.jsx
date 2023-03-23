@@ -14,10 +14,9 @@ const mapping_elements = (elements, layer, founded, onFeatureClick) => {
         dataProjection: "EPSG:3857",
         featureProjection: "EPSG:3857",
       });
-      geometry.setId(element.id)
+      // geometry.setId(element.id)
       layer.getSource().addFeature(geometry);
-      //
-
+      
       geometry.on('click', () => {
         if (onFeatureClick) {
           onFeatureClick(element);

@@ -24,7 +24,12 @@ const Glaciar = ({  style, zIndex = 0, id }) => {
       dataProjection: "EPSG:3857",
       featureProjection: "EPSG:3857",
     });
-    geometry.setId(glacier.id)
+    
+    const selectedGla = Object.entries(glacier)[13][1]
+    console.log('selectedGla', selectedGla)
+    selectedGla.map( point => {console.log('point', point)})
+
+    // geometry.setId(glacier.id)
     VectorLayer.getSource().addFeature(geometry);
 
     map.addLayer(VectorLayer);

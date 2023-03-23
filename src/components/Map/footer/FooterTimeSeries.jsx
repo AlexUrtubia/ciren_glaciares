@@ -46,7 +46,10 @@ function convertCoords(point) {
 
 export default function FooterTimeSeries({ id, chart }) {
     // const [showChart, setShowChart] = React.useState(null)
-    const glacier =  glaciers.find(glacier => glacier.id == id)
+    // var id = id[0, id.indexOf('-')]
+    console.log('typeOf(id', id[0, id.indexOf('-')])
+
+    const glacier =  glaciers.find(glacier => glacier.id == 10)
     const { setCenter } = React.useContext(FilterContext);
     
     const coords = convertCoords(glacier.points[0].point);
@@ -57,6 +60,9 @@ export default function FooterTimeSeries({ id, chart }) {
 
     React.useEffect(() => {
       console.log('coords', coords)
+      if (id != 1) {
+      }
+
       setCenter([coords['lng'], coords['lat']])
     }, [id]);
 
@@ -71,7 +77,7 @@ export default function FooterTimeSeries({ id, chart }) {
           column={2}
         >
           <Descriptions.Item span={2} className="custom-label-img" contentStyle={{ textAlign: 'center', justifyContent: 'center' }}>
-            <ChartComponent id={glacier.id}/>
+            <ChartComponent id={10-1}/>
           </Descriptions.Item>
           <Descriptions.Item span={1} className="custom-label" labelStyle={{ textAlign: 'center'}} label="Latitud">{coords.lat} </Descriptions.Item>
           <Descriptions.Item span={1} className="custom-label" label="Longitud"> {coords.lng} </Descriptions.Item>
