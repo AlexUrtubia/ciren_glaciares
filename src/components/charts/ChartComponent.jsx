@@ -14,7 +14,7 @@ import { Line } from 'react-chartjs-2';
 import glaciers from '../Map/features/glaciers.json'
 // import randomColor from 'randomcolor';
 
-const Color = require('color');
+// const Color = require('color');
 
 ChartJS.register(
   CategoryScale,
@@ -27,9 +27,9 @@ ChartJS.register(
   Legend
 );
 
-function LineChart({id}) {
+function ChartComponent({gla_id, point_id}) {
   
-  console.log('id from chart', id)
+  console.log('id from chart', point_id)
 
   const options = {
     responsive: true,
@@ -51,18 +51,22 @@ function LineChart({id}) {
       },
     },
   };
-  console.log('from chart', id)
-  var glaById = glaciers.find(glacier => glacier.id == id)
-  const selectedGla = Object.entries(glaById)[13][1]  // reemplazar 0 por id de glaciar
-  // console.log('selectedGla', selectedGla)
+  console.log('from chart', gla_id)
 
-  const labelsFechas = Object.keys(selectedGla[0]['fechas']).map(date => {
+  var glaById = glaciers.find(glacier => glacier.id == gla_id)
+  const selectedGla = Object.entries(glaById)[13][1]  // reemplazar 0 por id de glaciar
+  
+  var selectedPoint =  selectedGla.find(point => point.id == point_id)
+  console.log('selectedGla', selectedPoint)
+  console.log('selectedPoint',  Object.values(selectedPoint['fechas']))
+
+  const labelsFechas = Object.keys(selectedPoint['fechas']).map(date => {
     var dateFormat = new Date(date * 1000)
     const mes = dateFormat.toLocaleString('default', { month: 'short' });
     return dateFormat.getDate()+ "/" + mes;
   })
 
-  var datasets = selectedGla.map(asd => {
+  /* var datasets = selectedGla.map(asd => {
     //var color = randomColor()
     //var brighter = Color(color).lighten(0.4).hex()
     return {
@@ -72,16 +76,24 @@ function LineChart({id}) {
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     }
-  })
+  }) */
   
+  var datasets = {
+      fill: true,
+      label: selectedPoint.id,
+      data: Object.values(selectedPoint['fechas']),
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    }
+
   const labels = labelsFechas
 
   const data = {
     labels,
-    datasets: datasets
+    datasets: [datasets]
   };
 
   return <Line options={options} height={200} data={data} />;
 }
 
-export default LineChart;
+export default ChartComponent;

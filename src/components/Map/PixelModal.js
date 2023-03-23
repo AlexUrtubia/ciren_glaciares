@@ -71,8 +71,8 @@ const OpenModal = () => {
       map.forEachFeatureAtPixel(pixel, (feature, layer) => {
         if (layer.getVisible()) {
           let vtype = layer.get("vectortype");
-          // let featureId = feature.getId();
-          // if (vtype == "glaciers") {
+          let featureId = feature.getId();
+          if (featureId ) {
             setIsFooterOpen(true);
 
             var distance = -5000; // Distancia en metros
@@ -92,9 +92,11 @@ const OpenModal = () => {
               zoom: 11 // Zoom deseado
             });
             map.setView(newView);
-          // }
+          }
         }
-      });
+      },
+      {hitTolerance: 300}
+      );
     });
   });
 

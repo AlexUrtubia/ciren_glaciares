@@ -13,21 +13,6 @@ import { transform } from 'ol/proj';
 import View from 'ol/View';
 
 
-// function convertCoords(point) {
-//   // Definimos la proyección de origen y destino
-//   const source = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs';
-//   const dest = '+proj=longlat +datum=WGS84 +no_defs';
-
-//   // Convertimos las coordenadas de formato WKT a un array
-//   const coords = point.replace('POINT (', '').replace(')', '').split(' ');
-
-//   // Creamos un objeto point de la clase Point de proj4js
-//   const pointObj = new proj4(source, dest).forward([parseFloat(coords[0]), parseFloat(coords[1])]);
-
-//   // Retornamos las coordenadas convertidas como un objeto { lat, lng }
-//   return { lat: pointObj[1], lng: pointObj[0] };
-// }
-
 function convertCoords(point) {
   // Definimos la proyección de origen y destino
   const source = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs';
@@ -43,46 +28,136 @@ function convertCoords(point) {
   return { lat: pointObj[1], lng: pointObj[0] };
 }
 
+export default function FooterTimeSeries({ id }) {
 
-export default function FooterTimeSeries({ id, chart }) {
-    // const [showChart, setShowChart] = React.useState(null)
-    // var id = id[0, id.indexOf('-')]
-    console.log('typeOf(id', id[0, id.indexOf('-')])
-
-    const glacier =  glaciers.find(glacier => glacier.id == 10)
-    const { setCenter } = React.useContext(FilterContext);
+  const { setCenter, center, setIsFooterOpen } = React.useContext(FilterContext);
+  /* React.useEffect(() => {
     
-    const coords = convertCoords(glacier.points[0].point);
+    // console.log("coords", coords);
+    // setCenter([coords["lng"], coords["lat"]]);
+    setCenter(center);
+
+  },); */
+  // var id = toString(id);
+
+  React.useEffect(() => {
+    if (!id) {
+    console.log('es undefined')
+      return null;
   
+    }
+  }, [id]);
 
-
+  if (!id) {
+    console.log('es undefined')
     
+    return null;
 
-    React.useEffect(() => {
-      console.log('coords', coords)
-      if (id != 1) {
-      }
-
-      setCenter([coords['lng'], coords['lat']])
-    }, [id]);
-
-    // console.log('coords', coords)
+  } else {
+    
+    const glacier = glaciers.find((glacier) => glacier.id == 10);
+    var selectedPoint = glacier.points.find((point) => point.id == id);
+    const coords = convertCoords(selectedPoint.point);
+  
     return (
       <>
-        <Descriptions title={`Point ${glacier.points[0].id}`} 
-          className="custom-top" 
-          layout="vertical" 
-          style={{ padding: '1em' }} 
-          bordered={true} 
+        { id && glacier && selectedPoint && coords &&
+        <Descriptions
+          title={`Point ${selectedPoint.id}`}
+          className="custom-top"
+          layout="vertical"
+          style={{ padding: "1em" }}
+          bordered={true}
           column={2}
         >
-          <Descriptions.Item span={2} className="custom-label-img" contentStyle={{ textAlign: 'center', justifyContent: 'center' }}>
-            <ChartComponent id={10-1}/>
+          <Descriptions.Item
+            span={2}
+            className="custom-label-img"
+            contentStyle={{ textAlign: "center", justifyContent: "center" }}
+          >
+            <ChartComponent point_id={id} gla_id={10} />
           </Descriptions.Item>
-          <Descriptions.Item span={1} className="custom-label" labelStyle={{ textAlign: 'center'}} label="Latitud">{coords.lat} </Descriptions.Item>
-          <Descriptions.Item span={1} className="custom-label" label="Longitud"> {coords.lng} </Descriptions.Item>
+          <Descriptions.Item
+            span={1}
+            className="custom-label"
+            labelStyle={{ textAlign: "center" }}
+            label="Latitud"
+          >
+            {coords.lat}{" "}
+          </Descriptions.Item>
+          <Descriptions.Item
+            span={1}
+            className="custom-label"
+            label="Longitud"
+          >
+            {" "}
+            {coords.lng}{" "}
+          </Descriptions.Item>
         </Descriptions>
+        }
       </>
     );
   }
+
+
+  
+
+  
+
+  
+  
+
+
+  
+}
+
+
+/* export default function FooterTimeSeries({ id }) {
+
+    const { setCenter, setIsFooterOpen } = React.useContext(FilterContext);
+    // const [showChart, setShowChart] = React.useState(null)
+    if (id === undefined) {
+      setIsFooterOpen(false);
+      return null;
+    }
+
+    const glacier =  glaciers.find(glacier => glacier.id == 10)
+    var selectedPoint = glacier.points.find(point => point.id == id)
+    const coords = convertCoords(selectedPoint.point);
+
+    React.useEffect(() => {
+      console.log('coords', coords);
+      setCenter([coords.lng, coords.lat]);
+    }, [id, setCenter]);
+
+    /* React.useEffect(() => {
+      
+      if (id == undefined) {
+        setIsFooterOpen(false)
+        return
+      } else {
+       
+        console.log('coords', coords)
+        setCenter([coords['lng'], coords['lat']])
+      }
+    }, [id]); */
+
+  //   return (
+  //     <>
+  //       <Descriptions title={`Point ${selectedPoint.id}`} 
+  //         className="custom-top" 
+  //         layout="vertical" 
+  //         style={{ padding: '1em' }} 
+  //         bordered={true} 
+  //         column={2}
+  //       >
+  //         <Descriptions.Item span={2} className="custom-label-img" contentStyle={{ textAlign: 'center', justifyContent: 'center' }}>
+  //           <ChartComponent point_id={id} gla_id={10}/>
+  //         </Descriptions.Item>
+  //         <Descriptions.Item span={1} className="custom-label" labelStyle={{ textAlign: 'center'}} label="Latitud">{coords.lat} </Descriptions.Item>
+  //         <Descriptions.Item span={1} className="custom-label" label="Longitud"> {coords.lng} </Descriptions.Item>
+  //       </Descriptions>
+  //     </>
+  //   );
+  // } */
 

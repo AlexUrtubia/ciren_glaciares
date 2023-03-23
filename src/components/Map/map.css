@@ -84,6 +84,8 @@
 .custom-label-img {
     padding: 0 !important;
     height: 0px !important;
+    text-align: center;
+    border: 0 !important;
 }
 
 .custom-label {
@@ -100,8 +102,6 @@ button{
   z-index: 999 !important;
   width: 100% !important;
 }
-
-
 
 .close-map-footer {
   font-size: '20px' !important;

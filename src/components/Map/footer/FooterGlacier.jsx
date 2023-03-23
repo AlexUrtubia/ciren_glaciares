@@ -9,7 +9,7 @@ import glaciers from "../features/glaciers.json"
 export default function FooterGlacier({ id, chart }) {
     // const [showChart, setShowChart] = React.useState(null)
     // console.log('id from modal ', id)
-    const glacier =  glaciers.find(glacier => glacier.id == id)
+    const glacier =  glaciers.find(glacier => glacier.id == 10)
     var dateFormat = new Date(glacier.creation);
     var fecha = dateFormat.getDate()+ "/" + (dateFormat.getMonth()+1)+ "/"+dateFormat.getFullYear()
 
@@ -25,21 +25,21 @@ export default function FooterGlacier({ id, chart }) {
             column={2}
           >
             <Descriptions.Item span={2} className="custom-label-img" contentStyle={{ textAlign: 'center', justifyContent: 'center' }}>
-              <Image preview={false} src={glacier.img}/>
+              <Image preview={false} style={{  maxHeight: 250 }} src={glacier.img}/>
             </Descriptions.Item>
           </Descriptions>
         </Col>
         <Col span={17}  style={{marginLeft: ''}}>
           <Descriptions
           layout="vertical" 
-          style={{ padding: '', marginTop: '', paddingRight:'', height: '' }} 
+          style={{ padding: '', marginTop: '45px', paddingRight:'', height: '' }} 
           bordered={true} 
           column={3}>
             <Descriptions.Item span={1} className="custom-label" label="Región"> {glacier.attributes.NOM_REG} </Descriptions.Item>
             <Descriptions.Item span={1} className="custom-label" label="Comuna"> {glacier.attributes.NOM_COM} </Descriptions.Item>
-            <Descriptions.Item span={1} className="custom-label" label="Folio">{glacier.folio} </Descriptions.Item>
+            <Descriptions.Item span={1} className="custom-label" label="Folio"> {glacier.folio} </Descriptions.Item>
             <Descriptions.Item span={1} className="custom-label" label="Categoría"> {glacier.attributes.Categoria} </Descriptions.Item>
-            <Descriptions.Item span={1} className="custom-label" label="Fecha">{fecha} </Descriptions.Item>
+            <Descriptions.Item span={1} className="custom-label" label="Fecha"> {fecha} </Descriptions.Item>
             <Descriptions.Item span={1} className="custom-label" label="Estado">
             { glacier.active ? 
               <Badge status="success" text="A" /> :

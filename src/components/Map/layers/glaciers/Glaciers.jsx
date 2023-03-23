@@ -14,7 +14,7 @@ const mapping_elements = (elements, layer, founded, onFeatureClick) => {
         dataProjection: "EPSG:3857",
         featureProjection: "EPSG:3857",
       });
-      // geometry.setId(element.id)
+      geometry.setId(element.id)
       layer.getSource().addFeature(geometry);
       
       geometry.on('click', () => {
@@ -63,6 +63,7 @@ const Glaciares = ({ style, zIndex = 0, onFeatureClick }) => {
 
         $('#zoom-to').click(function () {
           let glaciar_id = parseInt($('#founded_id').val());
+          console.log('glaciar_id', glaciar_id)
           map.getView().fit(
             VectorLayer.getSource().getFeatureById(glaciar_id).getGeometry().getExtent(),
             { maxZoom: 17 }

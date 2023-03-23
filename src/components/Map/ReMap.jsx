@@ -45,7 +45,7 @@ function ReMap() {
   return (   
     
     <Map zoom={6.5} 
-    center= { fromLonLat(center) }
+    center= { center }
     isFooterOpen = {true}
     >
       <div id="zoom-container" />
@@ -67,13 +67,15 @@ function ReMap() {
 
         /> }
 
-        <Points
+        { !id &&<Points
           style={ Styles.Point }
           />
-
+        }
         { id && <Glacier
           style={ Styles.MultiPolygon }
-          id = { id }
+          point_style={ Styles.Point }
+
+          gla_id = { id }
           zIndex={100}
         /> }
 

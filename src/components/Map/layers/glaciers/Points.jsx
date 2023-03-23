@@ -12,7 +12,7 @@ import { transform } from 'ol/proj';
 const Points = ({  style, zIndex = 999 }) => {
 
   const { map } = useContext(MapContext);
-  const { id, center, setIsFooterOpen, setId } = useContext(FilterContext);
+  const { id, setCenter, center, setIsFooterOpen, setId } = useContext(FilterContext);
 
   var pointsLayer = new OLVectorLayer({
     source: new VectorSource({
@@ -72,7 +72,7 @@ const Points = ({  style, zIndex = 999 }) => {
           console.log('ID del punto clickeado:', featureId);
           setId(featureId);
         }
-
+        setCenter(event.coordinate);
       });
 
     return () => {
@@ -97,13 +97,13 @@ const Points = ({  style, zIndex = 999 }) => {
       
       let resolution = this.getResolution();
       // console.log('resolution', resolution, vectorLayer.get('vectortype'))
-      var radius = 1
+      var radius = 3
       if (resolution <= 100) {
         radius = 9; // aumenta el radio para zooms más cercanos
       } else if (resolution > 100 && resolution <= 500) {
-        radius = 3;
+        radius = 6;
       } else if (resolution >= 500) {
-        radius = 1;
+        radius = 2;
       }
       pointsLayer.getStyle().getImage().setRadius(radius)
     })
