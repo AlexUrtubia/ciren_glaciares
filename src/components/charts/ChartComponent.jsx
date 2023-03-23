@@ -51,6 +51,7 @@ function LineChart({id}) {
       },
     },
   };
+  console.log('from chart', id)
   var glaById = glaciers.find(glacier => glacier.id == id)
   const selectedGla = Object.entries(glaById)[13][1]  // reemplazar 0 por id de glaciar
   // console.log('selectedGla', selectedGla)
