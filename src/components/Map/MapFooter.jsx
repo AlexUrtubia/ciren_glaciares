@@ -25,7 +25,7 @@ const MyFooter = ({ isOpen, onClose }) => {
     setKey(key => key + 1);
     const chart = Chart.getChart("grafico_id");
     console.log('chart', chart)
-    chart.draw()
+    // chart.draw()
     
   }, [id]);
 
