@@ -51,6 +51,7 @@ function ChartComponent({gla_id, point_id}) {
       },
     },
   };
+  
   console.log('from chart', gla_id)
 
   var glaById = glaciers.find(glacier => glacier.id == gla_id)
@@ -93,7 +94,7 @@ function ChartComponent({gla_id, point_id}) {
     datasets: [datasets]
   };
 
-  return <Line options={options} height={200} data={data} />;
+  return <Line options={options} id='grafico_id' height={200} data={data} />;
 }
 
 export default ChartComponent;

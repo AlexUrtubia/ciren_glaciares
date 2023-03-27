@@ -9,7 +9,7 @@ import { FilterContext } from "../../../../context/FilterContext";
 import View from 'ol/View';
 import { transform } from 'ol/proj';
 
-const Points = ({  style, zIndex = 999 }) => {
+const Points = ({  style, zIndex = 0 }) => {
 
   const { map } = useContext(MapContext);
   const { id, setCenter, center, setIsFooterOpen, setId } = useContext(FilterContext);
@@ -18,7 +18,8 @@ const Points = ({  style, zIndex = 999 }) => {
     source: new VectorSource({
       features: [],
     }),
-    style
+    style,
+    name: 'glacier_points'
   });
 
   let resolution
@@ -52,27 +53,27 @@ const Points = ({  style, zIndex = 999 }) => {
         
       })
       map.addLayer(pointsLayer);
-      pointsLayer.setZIndex(zIndex);
+      pointsLayer.setZIndex(2);
       pointsLayer.set('vectortype', 'glaciers_points');
 
       map.on('click', function(event) {
         // Obtener la feature clickeada
         var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
-          return feature;
+          return layer.get('zIndex') === 2 ? feature : undefined;
         }, 
-        // {
-        //   hitTolerance: 10
-        // }
+        {
+          hitTolerance: 10
+        }
         );
-        let vtype = pointsLayer.get("vectortype");
-        console.log('vtype', vtype)
         // Si hay una feature, obtener su ID
         if (feature) {
           var featureId = feature.getId();
           console.log('ID del punto clickeado:', featureId);
           setId(featureId);
+          setIsFooterOpen(false)
+          setIsFooterOpen(true)
         }
-        setCenter(event.coordinate);
+        // setCenter(event.coordinate);
       });
 
     return () => {
@@ -80,7 +81,7 @@ const Points = ({  style, zIndex = 999 }) => {
         map.removeLayer(pointsLayer);
       }
     };
-  }, [map]);
+  }, [map, id]);
 
   if (map) {
     resolution = map.getView().getResolution()
@@ -99,7 +100,7 @@ const Points = ({  style, zIndex = 999 }) => {
       // console.log('resolution', resolution, vectorLayer.get('vectortype'))
       var radius = 3
       if (resolution <= 100) {
-        radius = 9; // aumenta el radio para zooms más cercanos
+        radius = 12; // aumenta el radio para zooms más cercanos
       } else if (resolution > 100 && resolution <= 500) {
         radius = 6;
       } else if (resolution >= 500) {

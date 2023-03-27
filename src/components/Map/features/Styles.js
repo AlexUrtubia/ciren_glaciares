@@ -5,7 +5,7 @@ export default {
     image: new CircleStyle({
       radius: 5,
       fill: new Fill({
-        color: 'green'
+        color: 'rgba(0, 255, 0, 0.5)'
       }),
       stroke: new Stroke({
         color: "green",

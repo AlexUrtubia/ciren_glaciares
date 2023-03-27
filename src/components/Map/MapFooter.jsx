@@ -5,6 +5,7 @@ import FooterTimeSeries from "./footer/FooterTimeSeries";
 import FooterGlacier from "./footer/FooterGlacier";
 import { FaWindowClose } from "react-icons/fa"
 import { CloseSquareFilled } from '@ant-design/icons'
+import {Chart} from 'chart.js';
 
 
 const { Footer } = Layout;
@@ -12,20 +13,29 @@ const { TabPane } = Tabs;
 
 const MyFooter = ({ isOpen, onClose }) => {
 
-  const { id } = React.useContext(FilterContext);
+  const { id, setIsFooterOpen } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
 
+  const tabPane1 = () => {
+    // const chart = Chart.getChart("grafico_id");
+    console.log('chart')
+  }
+
   useEffect(() => {
-    setKey(key => key + 1); // Actualizar el estado local cuando cambie el valor de "id"
+    setKey(key => key + 1);
+    const chart = Chart.getChart("grafico_id");
+    console.log('chart', chart)
+    chart.draw()
+    
   }, [id]);
 
   return (
     <Footer className="map-footer" style={{ display: isOpen ? "block" : "none", padding: 15}}>
-    <Tabs size="small" type="card" 
+    <Tabs size="small" type="card" onTabClick={tabPane1}
       tabBarExtraContent={
         <Button onClick={onClose} type="" icon={ <CloseSquareFilled  style={{ fontSize: '20px', borderRadius: '2px', backgroundColor: '#212121', color:"#efefef", position: 'absolute', top: -2}}  />}
     />}>
-      <TabPane tab="Serie de Tiempo" key="1">
+      <TabPane  tab="Serie de Tiempo" key="1">
         <FooterTimeSeries id={id} key={key}/> {/* Agregar el estado local como prop "key" */}
       </TabPane>
       <TabPane tab="Glaciar" key="2">

@@ -28,7 +28,7 @@ function convertCoords(point) {
   return { lat: pointObj[1], lng: pointObj[0] };
 }
 
-export default function FooterTimeSeries({ id }) {
+export default function FooterTimeSeries({ id, key }) {
 
   const { setCenter, center, setIsFooterOpen } = React.useContext(FilterContext);
   /* React.useEffect(() => {
@@ -41,24 +41,28 @@ export default function FooterTimeSeries({ id }) {
   // var id = toString(id);
 
   React.useEffect(() => {
+    console.log('cambio id', id)
     if (!id) {
-    console.log('es undefined')
+    console.log('es undefined', id)
       return null;
   
     }
   }, [id]);
 
-  if (!id) {
-    console.log('es undefined')
-    
-    return null;
+  if (typeof id == 'number') {
+    // setIsFooterOpen(false)
+    return null
+  }
 
-  } else {
+  if (id.includes('-') && id != '0-0' ) {
     
-    const glacier = glaciers.find((glacier) => glacier.id == 10);
+    console.log('tiene un "-"', id.includes('-'), typeof asd)
+    var id_code = id.split('-')
+
+    const glacier = glaciers.find((glacier) => glacier.id == id_code[0]);
     var selectedPoint = glacier.points.find((point) => point.id == id);
     const coords = convertCoords(selectedPoint.point);
-  
+    // console.log('id_code[0]', id_code)
     return (
       <>
         { id && glacier && selectedPoint && coords &&
@@ -75,7 +79,7 @@ export default function FooterTimeSeries({ id }) {
             className="custom-label-img"
             contentStyle={{ textAlign: "center", justifyContent: "center" }}
           >
-            <ChartComponent point_id={id} gla_id={10} />
+            <ChartComponent point_id={id} gla_id={id_code[0]} />
           </Descriptions.Item>
           <Descriptions.Item
             span={1}
@@ -97,18 +101,11 @@ export default function FooterTimeSeries({ id }) {
         }
       </>
     );
+  } else {
+    console.log('NO tiene un "-"', id)
+    return null;
   }
 
-
-  
-
-  
-
-  
-  
-
-
-  
 }
 
 

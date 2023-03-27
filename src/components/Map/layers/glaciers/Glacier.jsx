@@ -43,7 +43,8 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
       source: new VectorSource({
         features: [],
       }),
-      style: point_style
+      style: point_style,
+      name: 'glacier_points'
     });
 
     selectedGla.map( points => {
@@ -65,8 +66,10 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     map.getView().fit(
       VectorLayer.getSource().getExtent(),
     {"maxZoom":12} );   
-    
-    map.on('click', function(event) {
+
+    var layer = map.getLayerByName('glacier_points');
+
+/*     layer.on('click', function(event) {
         // Obtener la feature clickeada
         var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
           return feature;
@@ -84,7 +87,7 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
           setId(featureId);
         }
 
-      });
+      }); */
 
     return () => {
       if (map) {

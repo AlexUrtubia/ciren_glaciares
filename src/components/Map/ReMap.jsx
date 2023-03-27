@@ -63,12 +63,13 @@ function ReMap() {
         
         { !id && <Glaciers
           style={Styles.Filtered}
-          zIndex={100}
+          zIndex={1}
 
         /> }
 
-        { !id &&<Points
+        { !id && <Points
           style={ Styles.Point }
+          zIndex={2}
           />
         }
         { id && <Glacier

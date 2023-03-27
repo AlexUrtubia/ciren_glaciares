@@ -64,8 +64,10 @@ const OpenModal = () => {
   }, [map]);
 
   useEffect(() => {
+
     if (!map) return;
-    map.on("click", (e) => {
+    
+    /* map.on("click", (e) => {
       console.log('e.coordinate', e.coordinate)
       let pixel = map.getEventPixel(e.originalEvent);
       map.forEachFeatureAtPixel(pixel, (feature, layer) => {
@@ -97,7 +99,7 @@ const OpenModal = () => {
       },
       {hitTolerance: 300}
       );
-    });
+    }); */
   });
 
   useEffect(() => {
