@@ -15,19 +15,21 @@ const MyFooter = ({ isOpen, onClose }) => {
 
   const { id, setIsFooterOpen } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
+  const chart = Chart.getChart("grafico_id");
 
   const tabPane1 = () => {
     // const chart = Chart.getChart("grafico_id");
-    console.log('chart')
+    // console.log('chart', chart.options.plugins.title.text)
+    // chart.options.plugins.title.display = false; // actualizar las opciones del gráfico
+    // chart.update({ redraw: true }); // forzar un re-renderizado
+    // setKey(key => key + 1);
+    // chart.draw()
   }
 
-  useEffect(() => {
+/*   useEffect(() => {
     setKey(key => key + 1);
-    const chart = Chart.getChart("grafico_id");
-    console.log('chart', chart)
-    // chart.draw()
     
-  }, [id]);
+  }, [id]); */
 
   return (
     <Footer className="map-footer" style={{ display: isOpen ? "block" : "none", padding: 15}}>

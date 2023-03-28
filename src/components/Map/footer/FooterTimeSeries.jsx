@@ -31,6 +31,7 @@ function convertCoords(point) {
 export default function FooterTimeSeries({ id, key }) {
 
   const { setCenter, center, setIsFooterOpen } = React.useContext(FilterContext);
+
   /* React.useEffect(() => {
     
     // console.log("coords", coords);
@@ -42,6 +43,8 @@ export default function FooterTimeSeries({ id, key }) {
 
   React.useEffect(() => {
     console.log('cambio id', id)
+    // setIsFooterOpen(false)
+    // setIsFooterOpen(true)
     if (!id) {
     console.log('es undefined', id)
       return null;

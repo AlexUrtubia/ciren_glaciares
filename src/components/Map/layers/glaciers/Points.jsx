@@ -70,7 +70,7 @@ const Points = ({  style, zIndex = 0 }) => {
           var featureId = feature.getId();
           console.log('ID del punto clickeado:', featureId);
           setId(featureId);
-          setIsFooterOpen(false)
+          // setIsFooterOpen(false)
           setIsFooterOpen(true)
         }
         // setCenter(event.coordinate);
@@ -101,9 +101,11 @@ const Points = ({  style, zIndex = 0 }) => {
       var radius = 3
       if (resolution <= 100) {
         radius = 12; // aumenta el radio para zooms más cercanos
-      } else if (resolution > 100 && resolution <= 500) {
+      } else if (resolution > 100 && resolution <= 300) {
         radius = 6;
-      } else if (resolution >= 500) {
+      } else if (resolution > 300 && resolution <= 500) {
+        radius = 4;
+      } else if (resolution > 500) {
         radius = 2;
       }
       pointsLayer.getStyle().getImage().setRadius(radius)

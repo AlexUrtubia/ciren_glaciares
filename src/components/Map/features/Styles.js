@@ -3,7 +3,7 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style";
 export default {
   Point: new Style({
     image: new CircleStyle({
-      radius: 5,
+      radius: 2,
       fill: new Fill({
         color: 'rgba(0, 255, 0, 0.5)'
       }),
