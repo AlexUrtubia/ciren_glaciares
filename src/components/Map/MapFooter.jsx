@@ -17,23 +17,9 @@ const MyFooter = ({ isOpen, onClose }) => {
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
   const chart = Chart.getChart("grafico_id");
 
-  const tabPane1 = () => {
-    // const chart = Chart.getChart("grafico_id");
-    // console.log('chart', chart.options.plugins.title.text)
-    // chart.options.plugins.title.display = false; // actualizar las opciones del gráfico
-    // chart.update({ redraw: true }); // forzar un re-renderizado
-    // setKey(key => key + 1);
-    // chart.draw()
-  }
-
-/*   useEffect(() => {
-    setKey(key => key + 1);
-    
-  }, [id]); */
-
   return (
     <Footer className="map-footer" style={{ display: isOpen ? "block" : "none", padding: 15}}>
-    <Tabs size="small" type="card" onTabClick={tabPane1}
+    <Tabs size="small" type="card"
       tabBarExtraContent={
         <Button onClick={onClose} type="" icon={ <CloseSquareFilled  style={{ fontSize: '20px', borderRadius: '2px', backgroundColor: '#212121', color:"#efefef", position: 'absolute', top: -2}}  />}
     />}>

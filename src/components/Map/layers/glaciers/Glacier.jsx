@@ -10,7 +10,15 @@ import { FilterContext } from "../../../../context/FilterContext";
 const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
 
   const { map } = useContext(MapContext);
-  const {  setId } = useContext(FilterContext);
+  const { id, setIsFooterOpen, setId } = useContext(FilterContext);
+
+    var pointsLayer = new OLVectorLayer({
+      source: new VectorSource({
+        features: [],
+      }),
+      style: point_style,
+      name: 'glacier_points'
+    });
 
   useEffect(() => {
 
@@ -39,13 +47,7 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     VectorLayer.setZIndex(zIndex);
     VectorLayer.set('vectortype', 'glaciers');
 
-    var pointsLayer = new OLVectorLayer({
-      source: new VectorSource({
-        features: [],
-      }),
-      style: point_style,
-      name: 'glacier_points'
-    });
+
 
     selectedGla.map( points => {
       var wkt = points.point.replace(',', '')
@@ -59,15 +61,33 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     })
 
     map.addLayer(pointsLayer);
-    pointsLayer.setZIndex(999);
+    pointsLayer.setZIndex(9);
 
-
+          map.on('click', function(event) {
+        // Obtener la feature clickeada
+        var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
+          return layer.get('zIndex') === 9 ? feature : undefined;
+        }, 
+        {
+          hitTolerance: 40
+        }
+        );
+        // Si hay una feature, obtener su ID
+        if (feature) {
+          var featureId = feature.getId();
+          console.log('ID del punto clickeado:', featureId);
+          setId(featureId);
+          // setIsFooterOpen(false)
+          setIsFooterOpen(true)
+        }
+        // setCenter(event.coordinate);
+      });
 
     map.getView().fit(
       VectorLayer.getSource().getExtent(),
     {"maxZoom":12} );   
-
-    var layer = map.getLayerByName('glacier_points');
+      
+    // var layer = map.getLayerByName('glacier_points');
 
 /*     layer.on('click', function(event) {
         // Obtener la feature clickeada
@@ -95,6 +115,32 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
       }
     };
   }, [map]);
+
+    useEffect(() => {
+
+    if (!map) return;
+    // console.log('resolution', resolution)
+    // var features = pointsLayer.getSource().getFeatures()
+    console.log('features', )
+    // features.getStyle().getImage().setRadius(radius)
+    map.getView().on('change:resolution', function() {
+      
+      let resolution = this.getResolution();
+      // console.log('resolution', resolution, vectorLayer.get('vectortype'))
+      var radius = 3
+      if (resolution <= 100) {
+        radius = 12; // aumenta el radio para zooms más cercanos
+      } else if (resolution > 100 && resolution <= 300) {
+        radius = 6;
+      } else if (resolution > 300 && resolution <= 500) {
+        radius = 4;
+      } else if (resolution > 500) {
+        radius = 2;
+      }
+      pointsLayer.getStyle().getImage().setRadius(radius)
+    })
+  }, [map, id ]);
+
   return null;
 };
 export default Glaciar;
