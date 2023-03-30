@@ -101,11 +101,6 @@ button{
   bottom: 0;
   z-index: 999 !important;
   width: 100% !important;
-}
+  transition: transform 0.4s ease;
 
-.close-map-footer {
-  font-size: '20px' !important;
-  border-radius: '2px' !important;
-  background-color: '#212121' !important;
-  color:"#efefef" !important;
 }

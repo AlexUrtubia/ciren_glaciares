@@ -1,15 +1,14 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../../../../context/MapContext";
-// import {OpenLayersContent} from "./content"
 import { CustomControl } from "../customControl"
 import { Control } from "ol/control";
 import { renderToString } from "react-dom/server";
 import SearchForm from "./SearchFilterContainer";
 import SearchFilterForm from "./Forms/SearchFilterForm"
-// import { FilterContext } from '../../../../context/FilterContext';
 
 
 const customControl = new CustomControl({
+
   content: renderToString(
   <SearchForm 
     title={'Buscador de glaciares'}

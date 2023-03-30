@@ -4,15 +4,12 @@ import OLVectorLayer from "ol/layer/Vector";
 import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
 import VectorSource from 'ol/source/Vector'
-import Feature from 'ol/Feature.js';
 import { FilterContext } from "../../../../context/FilterContext";
-import View from 'ol/View';
-import { transform } from 'ol/proj';
 
 const Points = ({  style, zIndex = 0 }) => {
 
   const { map } = useContext(MapContext);
-  const { id, setCenter, center, setIsFooterOpen, setId } = useContext(FilterContext);
+  const { id, setIsFooterOpen, setId } = useContext(FilterContext);
 
   var pointsLayer = new OLVectorLayer({
     source: new VectorSource({
@@ -23,6 +20,7 @@ const Points = ({  style, zIndex = 0 }) => {
   });
 
   let resolution
+  var hitTolerance = 10;
 
   useEffect(() => {
 
@@ -33,22 +31,10 @@ const Points = ({  style, zIndex = 0 }) => {
         var selectedGla = Object.entries(glacier)[13][1]
         selectedGla.map( points => {
           var wkt = points.point.replace(',', '')
-          // console.log('point', points.point.replace(',', ''))
           var wktFormat = new WKT();
           var point = wktFormat.readFeature(wkt);
           point.setId(points.id)
-          // console.log('points', points.id)
           pointsLayer.getSource().addFeature(point);
-
-          /* const geometry = wktFormat.readGeometry(points.point.replace(',', ''), {
-            dataProjection: "EPSG:3857",
-            featureProjection: "EPSG:3857",
-          });
-          const feature = new Feature({
-            geometry: geometry,
-            id: points.id
-          });
-          vectorLayer.getSource().addFeature(feature); */
         })
         
       })
@@ -56,24 +42,33 @@ const Points = ({  style, zIndex = 0 }) => {
       pointsLayer.setZIndex(2);
       pointsLayer.set('vectortype', 'glaciers_points');
 
+      // Escuchar el evento change:resolution para actualizar hitTolerance según sea necesario
+      map.getView().on('change:resolution', function() {
+        // Obtener la resolución actual del mapa
+        var resolution = map.getView().getResolution();
+
+        if (resolution <= 100) {
+          hitTolerance = 50;
+        } else if (resolution > 100 && resolution <= 300) {
+          hitTolerance = 30;
+        } else if (resolution > 300 && resolution <= 500) {
+          hitTolerance = 10;
+        }
+      });   
+      
       map.on('click', function(event) {
         // Obtener la feature clickeada
+        console.log('hitTolerance', hitTolerance)
         var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
           return layer.get('zIndex') === 2 ? feature : undefined;
-        }, 
-        {
-          hitTolerance: 10
-        }
-        );
+        }, { hitTolerance: hitTolerance } );
         // Si hay una feature, obtener su ID
         if (feature) {
           var featureId = feature.getId();
           console.log('ID del punto clickeado:', featureId);
           setId(featureId);
-          // setIsFooterOpen(false)
           setIsFooterOpen(true)
         }
-        // setCenter(event.coordinate);
       });
 
     return () => {
@@ -90,17 +85,13 @@ const Points = ({  style, zIndex = 0 }) => {
   useEffect(() => {
 
     if (!map) return;
-    // console.log('resolution', resolution)
-    // var features = pointsLayer.getSource().getFeatures()
-    console.log('features', )
-    // features.getStyle().getImage().setRadius(radius)
+
     map.getView().on('change:resolution', function() {
       
       let resolution = this.getResolution();
-      // console.log('resolution', resolution, vectorLayer.get('vectortype'))
       var radius = 3
       if (resolution <= 100) {
-        radius = 12; // aumenta el radio para zooms más cercanos
+        radius = 12;
       } else if (resolution > 100 && resolution <= 300) {
         radius = 6;
       } else if (resolution > 300 && resolution <= 500) {
@@ -110,78 +101,7 @@ const Points = ({  style, zIndex = 0 }) => {
       }
       pointsLayer.getStyle().getImage().setRadius(radius)
     })
-  }, [map, id, center]);
-
-  // useEffect(() => {
-  //   if (!map) return;
-    
-  //   map.on("click", (e) => {
-  //     let tolerance = 1000;
-  //     let pixel = map.getEventPixel(e.originalEvent);
-      
-  //     // Transforma las coordenadas del pixel a la proyección del mapa
-  //     let coord = map.getCoordinateFromPixel(pixel);
-  //     console.log('coord', coord)
-  //     // coord = transform(coord, map.getView().getProjection(), 'EPSG:4326');
-  //     // console.log('coord2', coord)
-  //     // Añade el radio de tolerancia alrededor del punto clickeado
-  //     let extent = [coord[0] - tolerance, coord[1] - tolerance, coord[0] + tolerance, coord[1] + tolerance];
-    
-  //     // Busca las features dentro del radio de tolerancia
-  //     map.forEachFeatureAtPixel(pixel, (feature, layer) => {
-  //       console.log('first', pixel)
-  //       if (layer.getVisible()) {
-  //         let vtype = layer.get("vectortype");
-  //         console.log('vtype', vtype);
-  //       } else {
-  //         console.log('no hay na');
-  //       }
-  //     }, {hitTolerance: tolerance, layerFilter: (layer) => layer.get('vectortype') === 'glaciers_points' && layer.getVisible(), extent: extent});
-  //   });
-    
-    
-  //   // map.on("click", (e) => {
-  //   //   console.log('e.coordinate', e.coordinate)
-  //   //   let pixel = map.getEventPixel(e.originalEvent);
-  //   //   console.log('vtype', pixel)
-  //   //   map.forEachFeatureAtPixel(pixel, (feature, layer) => {
-  //   //     if (layer.getVisible()) {
-  //   //       let vtype = layer.get("vectortype");
-  //   //       // let featureId = feature.getId();
-  //   //       /* if (vtype == "glaciers_points") {
-  //   //         setIsFooterOpen(true);
-  //   //         setId(featureId);
-
-  //   //         var distance = -5000; // Distancia en metros
-  //   //         var bearing = 180; // Dirección en grados (0° = norte, 90° = este, 180° = sur, 270° = oeste)
-  //   //         var coord = e.coordinate;
-            
-  //   //         var newCoordinates = [
-  //   //           coord[0] + (distance * Math.sin(bearing * Math.PI / 180)),
-  //   //           coord[1] - (distance * Math.cos(bearing * Math.PI / 180))
-  //   //         ];
-  //   //         // setCenter(fromLonLat([newCoordinates[0], newCoordinates[1]]));
-
-  //   //         console.log('coord', coord, featureId, newCoordinates)
-            
-  //   //         var newView = new View({
-  //   //           center: newCoordinates,
-  //   //           zoom: 11 // Zoom deseado
-  //   //         });
-  //   //         map.setView(newView);
-  //   //       } */
-  //   //     } else {
-  //   //       console.log('no hay na')
-  //   //     }
-  //   //   },  {
-  //   //     hitTolerance: 999
-  //   //   });
-  //   // });
-
-  //   return 
-    
-  // }, [map, glaciers, id]);
-
+  }, [map, id]);
 
   return null;
 };

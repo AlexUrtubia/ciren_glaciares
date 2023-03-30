@@ -1,6 +1,5 @@
 import { Control } from "ol/control";
 
-
 export class CustomControl extends Control {
   constructor(options) {
 
@@ -46,7 +45,6 @@ export class CustomControl extends Control {
           content.style.display = visible ? 'none' : 'block';
           container.style.width = visible? '40px' : width;
           container.style.height = visible? '35px' : 'auto';
-          // container.style.padding = visible? 'auto' : '';
           button.style.position = visible ? '' : 'relative'; 
           button.style.left = visible ? '' : '-4px' 
           button.style.backgroundColor = visible ? 'rgba(255,  255,  255,  0.4)' : 'rgba(255,  255,  255,  0.01)'

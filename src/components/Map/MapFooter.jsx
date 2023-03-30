@@ -13,24 +13,23 @@ const { TabPane } = Tabs;
 
 const MyFooter = ({ isOpen, onClose }) => {
 
-  const { id, setIsFooterOpen } = React.useContext(FilterContext);
+  const { id } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
-  const chart = Chart.getChart("grafico_id");
 
   return (
     <Footer className="map-footer" style={{ display: isOpen ? "block" : "none", padding: 15}}>
-    <Tabs size="small" type="card"
-      tabBarExtraContent={
-        <Button onClick={onClose} type="" icon={ <CloseSquareFilled  style={{ fontSize: '20px', borderRadius: '2px', backgroundColor: '#212121', color:"#efefef", position: 'absolute', top: -2}}  />}
-    />}>
-      <TabPane  tab="Serie de Tiempo" key="1">
-        <FooterTimeSeries id={id} key={key}/> {/* Agregar el estado local como prop "key" */}
-      </TabPane>
-      <TabPane tab="Glaciar" key="2">
-        <FooterGlacier id={id}/>
-      </TabPane>
-    </Tabs>
-  </Footer>
+      <Tabs size="small" type="card"
+        tabBarExtraContent={
+          <Button onClick={onClose} type="" icon={ <CloseSquareFilled  style={{ fontSize: '20px', borderRadius: '2px', backgroundColor: '#212121', color:"#efefef", position: 'absolute', top: -2}}  />}
+      />}>
+        <TabPane  tab="Serie de Tiempo" key="1">
+          <FooterTimeSeries id={id} key={key}/> {/* Agregar el estado local como prop "key" */}
+        </TabPane>
+        <TabPane tab="Glaciar" key="2">
+          <FooterGlacier id={id}/>
+        </TabPane>
+      </Tabs>
+    </Footer>
   
   );
 };

@@ -12,9 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import glaciers from '../Map/features/glaciers.json'
-// import randomColor from 'randomcolor';
 
-// const Color = require('color');
 
 ChartJS.register(
   CategoryScale,
@@ -66,18 +64,6 @@ function ChartComponent({gla_id, point_id}) {
     const mes = dateFormat.toLocaleString('default', { month: 'short' });
     return dateFormat.getDate()+ "/" + mes;
   })
-
-  /* var datasets = selectedGla.map(asd => {
-    //var color = randomColor()
-    //var brighter = Color(color).lighten(0.4).hex()
-    return {
-      fill: true,
-      label: asd.id,
-      data: Object.values(asd.fechas),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    }
-  }) */
   
   var datasets = {
       fill: true,

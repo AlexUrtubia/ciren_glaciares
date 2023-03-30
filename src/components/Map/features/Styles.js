@@ -13,6 +13,18 @@ export default {
       }),
     }),
   }),
+  SinglePoint: new Style({
+    image: new CircleStyle({
+      radius: 12,
+      fill: new Fill({
+        color: 'rgba(0, 255, 0, 0.7)'
+      }),
+      stroke: new Stroke({
+        color: "green",
+        width: 2,
+      }),
+    }),
+  }),
   Polygon: new Style({
     stroke: new Stroke({
       color: "blue",
