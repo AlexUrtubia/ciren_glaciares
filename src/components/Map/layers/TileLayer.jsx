@@ -3,7 +3,7 @@ import MapContext from "../../../context/MapContext";
 import OLTileLayer from "ol/layer/Tile";
 
 
-const TileLayer = ({ source, zIndex = 0 }) => {
+const TileLayer = ({ source, zIndex = 0, title, type }) => {
 
   const { map } = useContext(MapContext); 
   
@@ -13,6 +13,8 @@ const TileLayer = ({ source, zIndex = 0 }) => {
     let tileLayer = new OLTileLayer({
       source,
       zIndex,
+      title,
+      type,
     });
     map.addLayer(tileLayer);
     tileLayer.setZIndex(zIndex);

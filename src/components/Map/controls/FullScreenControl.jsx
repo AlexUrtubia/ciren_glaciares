@@ -11,6 +11,9 @@ const FullScreenControl = () => {
     let fullScreenControl = new FullScreen({});
     map.controls.push(fullScreenControl);
     
+    const button = document.querySelector('.ol-full-screen-false');
+    button.innerHTML = '';
+    
     return () => map.controls.remove(fullScreenControl);
   }, [map]);
   

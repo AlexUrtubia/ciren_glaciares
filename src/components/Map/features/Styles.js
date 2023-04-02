@@ -37,12 +37,21 @@ export default {
   }),
   MultiPolygon: new Style({
     stroke: new Stroke({
-      color: "blue",
+      color: "green",
       width: 1,
     }),
     fill: new Fill({
       color: "rgba(0, 0, 255, 0.1)",
     }),
+  }),
+  GeoJson: new Style({
+    fill: new Fill({
+      color: "rgba(0, 0, 255, 0.1)" //color del relleno en formato RGBA
+    }),
+    stroke: new Stroke({
+      color: 'red', //color del borde
+      width: 1 //ancho del borde
+    })
   }),
   Filtered: new Style({
     stroke: new Stroke({
