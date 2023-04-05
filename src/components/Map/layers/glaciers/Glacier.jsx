@@ -6,6 +6,8 @@ import WKT from "ol/format/WKT";
 import VectorSource from 'ol/source/Vector'
 import { FilterContext } from "../../../../context/FilterContext";
 import { pointRadiusResolution } from "../../Functions/pointRadiusResolution";
+import { MultiPolygon } from "ol/geom";
+import { Feature } from "ol";
 
 
 const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
@@ -33,10 +35,14 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     });
 
     const glacier =  glaciers.find(glacier => glacier.id == gla_id)
-    const wktFormat = new WKT();
+    /* const wktFormat = new WKT();
     const geometry = wktFormat.readFeature(glacier.wkt, {
       dataProjection: "EPSG:3857",
       featureProjection: "EPSG:3857",
+    }); */
+
+    const feature = new Feature({
+      geometry: new MultiPolygon(glacier.wkt)
     });
     
     const selectedGla = Object.entries(glacier)[13][1]
@@ -44,7 +50,7 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     selectedGla.map( point => {console.log('point', point)})
 
     // geometry.setId(glacier.id)
-    VectorLayer.getSource().addFeature(geometry);
+    VectorLayer.getSource().addFeature(feature);
 
     map.addLayer(VectorLayer);
     VectorLayer.setZIndex(zIndex);
@@ -78,6 +84,7 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
 
     map.on('click', function(event) {
       // Obtener la feature clickeada
+      console.log('event.coordinates', event.coordinate)
       var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
         return layer.get('zIndex') === 9 ? feature : undefined;
       }, 

@@ -15,7 +15,7 @@ export default {
   }),
   SinglePoint: new Style({
     image: new CircleStyle({
-      radius: 12,
+      radius: 7,
       fill: new Fill({
         color: 'rgba(0, 255, 0, 0.7)'
       }),
@@ -37,8 +37,8 @@ export default {
   }),
   MultiPolygon: new Style({
     stroke: new Stroke({
-      color: "green",
-      width: 1,
+      color: "yellow",
+      width: 2,
     }),
     fill: new Fill({
       color: "rgba(0, 0, 255, 0.1)",

@@ -72,11 +72,11 @@ function ReMap() {
           gla_id = { id }
           zIndex={100}
         /> }
-        <GeoGlacier
+        
+ {/*        <GeoGlacier
           style={ Styles.GeoJson }
           zIndex={100}
-
-        />
+        /> */}
       </Layers>
       {/* <OpenModal/> */}
       <Controls>

@@ -5,19 +5,27 @@ import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
 import vectorSource from 'ol/source/Vector'
 import $ from 'jquery';
+import { MultiPolygon } from "ol/geom";
+import { Feature } from "ol";
+
 
 const mapping_elements = (elements, layer, founded, onFeatureClick) => {
   elements.map(
     element => {
-      const wktFormat = new WKT();
-      const geometry = wktFormat.readFeature(element.wkt, {
-        dataProjection: "EPSG:3857",
-        featureProjection: "EPSG:3857",
+
+      const feature = new Feature({
+        geometry: new MultiPolygon(element.wkt)
       });
-      geometry.setId(element.id)
-      layer.getSource().addFeature(geometry);
+      // const wktFormat = new WKT();
+      // const geometry = wktFormat.readFeature(element.wkt, {
+      //   dataProjection: "EPSG:3857",
+      //   featureProjection: "EPSG:3857",
+      // });
+
+      feature.setId(element.id)
+      layer.getSource().addFeature(feature);
       
-      geometry.on('click', () => {
+      feature.on('click', () => {
         if (onFeatureClick) {
           onFeatureClick(element);
         }
@@ -86,10 +94,8 @@ const Glaciares = ({ style, zIndex = 0, onFeatureClick }) => {
     VectorLayer.setZIndex(zIndex);
     VectorLayer.set('vectortype', 'glaciers');
 
-    VectorLayer.on('click', (event) => {
-      if (onFeatureClick) {
-        onFeatureClick(event.target);
-      }
+    map.on('click', (event) => {
+      console.log('event.coordinates', event.coordinate)
     });
 
     return () => {

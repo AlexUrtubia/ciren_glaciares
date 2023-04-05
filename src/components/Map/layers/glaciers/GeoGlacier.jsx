@@ -21,15 +21,35 @@ const GeoGlacier = ({style, zIndex = 0}) => {
     source: vectorSource,
     style
   });
+  let addedFeatureIds = [];
+
   // agregar conteo de features para no volver a agregar fetch
   if (!map) {
     return null
   } else {
+    // console.log('vectorSource.getFeatures() a a', vectorSource.getFeatures())
+    
     fetch(geoJsonGla)
     .then(response => response.json())
     .then(geojson => {
       var geojsonFeatures = geojsonFormat.readFeatures(geojson);
-      vectorSource.addFeatures(geojsonFeatures)
+      // console.log('geojson', geojson.features[0].properties.Id)
+      console.log('geojson', geojsonFeatures)
+
+      geojsonFeatures.forEach(feature => {
+        console.log('feature', feature)
+        feature.setId(geojson.features[0].properties.Id); // asigna un ID único basado en el índice
+      });
+
+
+      var newFeatures = [];
+      geojsonFeatures.forEach(feature => {
+        if (!addedFeatureIds.includes(feature.getId())) {
+          newFeatures.push(feature);
+          addedFeatureIds.push(feature.getId());
+        }
+      });
+      vectorSource.addFeatures(newFeatures)
       map.addLayer(vectorLayer);
       vectorLayer.setZIndex(zIndex);
     });

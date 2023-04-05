@@ -117,8 +117,8 @@ button{
   background-color: rgb(239, 239, 239) !important;
   border-top: solid #72787a 2px !important;
   border-left: solid #72787a 2px !important;
-  border-right: solid #212121 2px !important;
-  border-bottom:  solid #212121 2px !important;
+  border-right: solid #222120 2px !important;
+  border-bottom:  solid #222120 2px !important;
 }
 
 .ol-full-screen button{

@@ -91,7 +91,7 @@ const Points = ({  style, zIndex = 0 }) => {
       let resolution = this.getResolution();
       var radius = 3
       if (resolution <= 100) {
-        radius = 12;
+        radius = 9;
       } else if (resolution > 100 && resolution <= 300) {
         radius = 6;
       } else if (resolution > 300 && resolution <= 500) {
