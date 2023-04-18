@@ -5,7 +5,7 @@ import geoJsonGla from '../../features/glaciar1.geojson'
 import GeoJSON from "ol/format/GeoJSON";
 import VectorSource from 'ol/source/Vector'
 import { FilterContext } from "../../../../context/FilterContext";
-import { pointRadiusResolution } from "../../Functions/pointRadiusResolution";
+import { pointRadiusResolution } from "../../functions/pointRadiusResolution";
 import { json } from "react-router-dom";
 import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style";
 

@@ -36,9 +36,9 @@ function SearchFilterForm() {
         <Text type="danger" id='text-error'></Text>
       </Space>
       <Row id='rowform' style={{height: '0px'}}>
-        <Space id="founded" style={{justifyContent: 'center', visibility: 'hidden',  height: '0px', marginTop: '12px'}}>
+        <Space id="finded" style={{justifyContent: 'center', visibility: 'hidden',  height: '0px', marginTop: '12px'}}>
           <Form.Select
-            id='founded_id'
+            id='finded_id'
             size='sm'
             >
             <option value="-1">Zoom a</option>

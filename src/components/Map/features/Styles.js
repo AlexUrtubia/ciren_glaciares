@@ -15,7 +15,7 @@ export default {
   }),
   SinglePoint: new Style({
     image: new CircleStyle({
-      radius: 7,
+      radius: 2,
       fill: new Fill({
         color: 'rgba(0, 255, 0, 0.7)'
       }),

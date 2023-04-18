@@ -1,6 +1,7 @@
 import React from 'react'
 import { Space } from 'antd';
 import { Typography } from 'antd';
+import SearchFilterForm from './Forms/SearchFilterForm';
 
 const { Title, Text } = Typography;
 
@@ -14,7 +15,8 @@ export default function SearchFilterContainer({title, secondary, form}) {
         <Space direction="horizontal" style={{width:'100%', justifyContent: 'center', padding: '10px', textAlign: 'center', marginTop: '-11px'}}>
           <Text italic >{secondary}</Text>
         </Space>
-        {form}
+        {/* {form} */}
+        <SearchFilterForm/>
     </div>
   )
 }

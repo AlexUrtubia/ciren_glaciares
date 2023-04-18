@@ -5,15 +5,16 @@ export function pointRadiusResolution(map, layer, isGlacier) {
   map.getView().on('change:resolution', function() {
       
     let resolution = this.getResolution();
+    
     var radius = isGlacier ? 9 : 8
 
-    if (resolution <= 100) {
-      radius = 7;
-    } else if (resolution > 100 && resolution <= 300) {
+    if (resolution <= 60) {
+      radius = 9;
+    } else if (resolution > 60 && resolution <= 140) {
       radius = 6;
-    } else if (resolution > 300 && resolution <= 500) {
+    } else if (resolution > 140 && resolution <= 300) {
       radius = 4;
-    } else if (resolution > 500) {
+    } else if (resolution > 300) {
       radius = 2;
     }
     layer.getStyle().getImage().setRadius(radius)

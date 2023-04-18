@@ -11,8 +11,9 @@ export const FilterProvider = ({children}) => {
   const [isFooterOpen, setIsFooterOpen] = React.useState(false);
   const [id, setId] = React.useState('0-0');
   const [center, setCenter] = React.useState([-7871356.531809503, -3972601.1183426552])
-  
-  return  <FilterContext.Provider value={{ isFooterOpen, setIsFooterOpen, id, setId, center, setCenter }} >
+  const [hitTolerance, setHitTolerance] = React.useState(10)
+
+  return  <FilterContext.Provider value={{ isFooterOpen, setIsFooterOpen, id, setId, center, setCenter, hitTolerance, setHitTolerance }} >
             {children}
           </FilterContext.Provider>
 }

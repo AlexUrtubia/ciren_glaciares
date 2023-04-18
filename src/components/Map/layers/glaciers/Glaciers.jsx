@@ -1,102 +1,46 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../../../../context/MapContext";
 import OLVectorLayer from "ol/layer/Vector";
-import glaciers from '../../features/glaciers.json'
-import WKT from "ol/format/WKT";
-import vectorSource from 'ol/source/Vector'
-import $ from 'jquery';
-import { MultiPolygon } from "ol/geom";
-import { Feature } from "ol";
+import glaciers from "../../features/glaciers.json";
+import vectorSource from "ol/source/Vector";
+import $ from "jquery";
+import { mappingElements } from "../../functions/mappingElements";
+import { handleSearchButtom } from "../../functions/searchButtonHandler";
+import { addingWktPoints } from "../../functions/addWktPoints";
+import { openMapFooter } from "../../functions/openMapFooter";
+import { FilterContext } from "../../../../context/FilterContext";
+import { hitToleranceByZoom } from "../../functions/hitToleranceByZoom";
+import { clearLayerByName } from "../../functions/clearLayerByName";
 
+const Glaciares = ({ style, point_style, zIndex = 0 }) => {
 
-const mapping_elements = (elements, layer, founded, onFeatureClick) => {
-  elements.map(
-    element => {
-
-      const feature = new Feature({
-        geometry: new MultiPolygon(element.wkt)
-      });
-      // const wktFormat = new WKT();
-      // const geometry = wktFormat.readFeature(element.wkt, {
-      //   dataProjection: "EPSG:3857",
-      //   featureProjection: "EPSG:3857",
-      // });
-
-      feature.setId(element.id)
-      layer.getSource().addFeature(feature);
-      
-      feature.on('click', () => {
-        if (onFeatureClick) {
-          onFeatureClick(element);
-        }
-      });
-
-      var value = element.id
-      var text = element.name
-      {
-        founded && $('#founded_id').append(new Option(text, value))
-      }
-    }
-  )
-}
-
-const Glaciares = ({ style, zIndex = 0, onFeatureClick }) => {
   const { map } = useContext(MapContext);
-
+  const { setIsFooterOpen, setId } = useContext(FilterContext);
+  
   useEffect(() => {
+
     if (!map) return;
 
+    const resolution = map.getView().getResolution();
+    const hitTolerance = hitToleranceByZoom(resolution);
+    openMapFooter(map, setId, setIsFooterOpen, hitTolerance);
+
+    // falta limpiar puntos al hacer search
     let VectorSource = new vectorSource();
     let VectorLayer = new OLVectorLayer({
       source: VectorSource,
       style,
     });
 
-    $(document).on('click', '#search-button', function () {
-      document.getElementById('founded').style.visibility = 'hidden';
-      document.getElementById('rowform').style.height = '0px';
-
-      let reg = parseInt($('#region_id').val());
-      let filtrados = glaciers.filter(
-        (glacier) => glacier.region_code == reg
-      );
-      VectorSource.clear();
-      if (filtrados.length > 0) {
-        document.getElementById('text-error').innerText = '';
-        document.getElementById('founded').style.visibility = 'visible';
-        document.getElementById('rowform').style.height = '50px';
-
-        $('#founded_id').empty();
-        mapping_elements(filtrados, VectorLayer, true, onFeatureClick);
-
-        $('#zoom-to').click(function () {
-          let glaciar_id = parseInt($('#founded_id').val());
-          console.log('glaciar_id', glaciar_id)
-          map.getView().fit(
-            VectorLayer.getSource().getFeatureById(glaciar_id).getGeometry().getExtent(),
-            { maxZoom: 17 }
-          );
-        });
-      } else {
-        if (reg == 0 || reg == -1) {
-          document.getElementById('text-error').innerText = '';
-        } else {
-          document.getElementById('text-error').innerText =
-            'No se encontraron resultados';
-        }
-        mapping_elements(glaciers, VectorLayer, false, onFeatureClick);
-      }
+    $(document).on("click", "#search-button", function () {
+      handleSearchButtom(map, glaciers, VectorSource, VectorLayer, point_style);
     });
 
-    mapping_elements(glaciers, VectorLayer, false, onFeatureClick);
+    mappingElements(glaciers, VectorLayer, false);
 
     map.addLayer(VectorLayer);
     VectorLayer.setZIndex(zIndex);
-    VectorLayer.set('vectortype', 'glaciers');
-
-    map.on('click', (event) => {
-      console.log('event.coordinates', event.coordinate)
-    });
+    VectorLayer.set("vectortype", "glaciers");
 
     return () => {
       if (map) {
@@ -108,4 +52,4 @@ const Glaciares = ({ style, zIndex = 0, onFeatureClick }) => {
   return null;
 };
 
-export default Glaciares;
+export default Glaciares; 

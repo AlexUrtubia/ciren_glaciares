@@ -59,13 +59,15 @@ function ReMap() {
         />
         { !id && <Glaciers
           style={Styles.Filtered}
+          point_style={ Styles.SinglePoint }
           zIndex={1}
         /> }
-        { !id && <Points
+
+        {/* { !id && <Points
           style={ Styles.Point }
           zIndex={2}
-          />
-        }
+          /> } */}
+
         { id && <Glacier
           style={ Styles.MultiPolygon }
           point_style={ Styles.SinglePoint }
@@ -73,7 +75,7 @@ function ReMap() {
           zIndex={100}
         /> }
         
- {/*        <GeoGlacier
+        {/* <GeoGlacier
           style={ Styles.GeoJson }
           zIndex={100}
         /> */}

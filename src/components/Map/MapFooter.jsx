@@ -3,9 +3,7 @@ import { Layout, Button, Tabs } from "antd";
 import { FilterContext } from '../../context/FilterContext';
 import FooterTimeSeries from "./footer/FooterTimeSeries";
 import FooterGlacier from "./footer/FooterGlacier";
-import { FaWindowClose } from "react-icons/fa"
 import { CloseSquareFilled } from '@ant-design/icons'
-import {Chart} from 'chart.js';
 
 
 const { Footer } = Layout;

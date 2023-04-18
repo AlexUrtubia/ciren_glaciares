@@ -5,7 +5,7 @@ import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
 import VectorSource from 'ol/source/Vector'
 import { FilterContext } from "../../../../context/FilterContext";
-import { pointRadiusResolution } from "../../Functions/pointRadiusResolution";
+import { pointRadiusResolution } from "../../functions/pointRadiusResolution";
 import { MultiPolygon } from "ol/geom";
 import { Feature } from "ol";
 
@@ -35,28 +35,20 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     });
 
     const glacier =  glaciers.find(glacier => glacier.id == gla_id)
-    /* const wktFormat = new WKT();
-    const geometry = wktFormat.readFeature(glacier.wkt, {
-      dataProjection: "EPSG:3857",
-      featureProjection: "EPSG:3857",
-    }); */
 
     const feature = new Feature({
       geometry: new MultiPolygon(glacier.wkt)
     });
     
     const selectedGla = Object.entries(glacier)[13][1]
-    console.log('selectedGla', selectedGla)
+
     selectedGla.map( point => {console.log('point', point)})
 
-    // geometry.setId(glacier.id)
     VectorLayer.getSource().addFeature(feature);
 
     map.addLayer(VectorLayer);
     VectorLayer.setZIndex(zIndex);
     VectorLayer.set('vectortype', 'glaciers');
-
-
 
     selectedGla.map( points => {
       var wkt = points.point.replace(',', '')
@@ -83,23 +75,20 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     }); 
 
     map.on('click', function(event) {
-      // Obtener la feature clickeada
-      console.log('event.coordinates', event.coordinate)
+      
       var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
         return layer.get('zIndex') === 9 ? feature : undefined;
       }, 
       {
         hitTolerance: hitTolerance
-      }
-      );
-      // Si hay una feature, obtener su ID
+      });
+
       if (feature) {
 
         var featureId = feature.getId();
         setId(featureId);
         setIsFooterOpen(true)
       }
-      // setCenter(event.coordinate);
     });
 
     map.getView().fit(
@@ -111,14 +100,14 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
         map.removeLayer(VectorLayer);
       }
     };
+
   }, [map]);
 
-    useEffect(() => {
+  useEffect(() => {
 
     if (!map) return;
-
     pointRadiusResolution(map, pointsLayer, true)
-  
+
   }, [map, id ]);
 
   return null;

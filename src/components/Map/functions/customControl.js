@@ -63,7 +63,7 @@ export class CustomControl extends Control {
       target: options.target,
       icon: options.icon,
       width: options.width,
-      position: options.position // Definir la posición del control
+      position: options.position 
     });
   }
 }

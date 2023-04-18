@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../../../../context/MapContext";
 import OLVectorLayer from "ol/layer/Vector";
+import VectorSource from 'ol/source/Vector'
 import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
-import VectorSource from 'ol/source/Vector'
 import { FilterContext } from "../../../../context/FilterContext";
 
 const Points = ({  style, zIndex = 0 }) => {
@@ -37,39 +37,39 @@ const Points = ({  style, zIndex = 0 }) => {
           pointsLayer.getSource().addFeature(point);
         })
         
-      })
-      map.addLayer(pointsLayer);
-      pointsLayer.setZIndex(2);
-      pointsLayer.set('vectortype', 'glaciers_points');
+    })
+    map.addLayer(pointsLayer);
+    pointsLayer.setZIndex(2);
+    pointsLayer.set('vectortype', 'glaciers_points');
 
-      // Escuchar el evento change:resolution para actualizar hitTolerance según sea necesario
-      map.getView().on('change:resolution', function() {
-        // Obtener la resolución actual del mapa
-        var resolution = map.getView().getResolution();
+    // Escuchar el evento change:resolution para actualizar hitTolerance según sea necesario
+    map.getView().on('change:resolution', function() {
+      // Obtener la resolución actual del mapa
+      var resolution = map.getView().getResolution();
 
-        if (resolution <= 100) {
-          hitTolerance = 50;
-        } else if (resolution > 100 && resolution <= 300) {
-          hitTolerance = 30;
-        } else if (resolution > 300 && resolution <= 500) {
-          hitTolerance = 10;
-        }
-      });   
-      
-      map.on('click', function(event) {
-        // Obtener la feature clickeada
-        console.log('hitTolerance', hitTolerance)
-        var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
-          return layer.get('zIndex') === 2 ? feature : undefined;
-        }, { hitTolerance: hitTolerance } );
-        // Si hay una feature, obtener su ID
-        if (feature) {
-          var featureId = feature.getId();
-          console.log('ID del punto clickeado:', featureId);
-          setId(featureId);
-          setIsFooterOpen(true)
-        }
-      });
+      if (resolution <= 100) {
+        hitTolerance = 50;
+      } else if (resolution > 100 && resolution <= 300) {
+        hitTolerance = 30;
+      } else if (resolution > 300 && resolution <= 500) {
+        hitTolerance = 10;
+      }
+    });   
+    
+    map.on('click', function(event) {
+      // Obtener la feature clickeada
+      console.log('hitTolerance', hitTolerance)
+      var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
+        return layer.get('zIndex') === 2 ? feature : undefined;
+      }, { hitTolerance: hitTolerance } );
+      // Si hay una feature, obtener su ID
+      if (feature) {
+        var featureId = feature.getId();
+        console.log('ID del punto clickeado:', featureId);
+        setId(featureId);
+        setIsFooterOpen(true)
+      }
+    });
 
     return () => {
       if (map) {

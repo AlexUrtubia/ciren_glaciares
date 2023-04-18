@@ -2,7 +2,7 @@ import React from 'react';
 import { Descriptions } from 'antd';
 import ChartComponent from "../../charts/ChartComponent"
 import glaciers from "../features/glaciers.json"
-import { convertCoords } from '../Functions/convertCoords';
+import { convertCoords } from '../functions/convertCoords';
 
 export default function FooterTimeSeries({ id }) {
 
