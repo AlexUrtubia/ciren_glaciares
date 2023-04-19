@@ -19,11 +19,11 @@ import {
   FaMapMarkedAlt,
   FaIdBadge,
   FaCogs,
-  FaMap
+  FaMap,
 } from "react-icons/fa";
 
 import { GiMountainCave } from 'react-icons/gi'
-import { MdOutlineFormatListNumbered } from 'react-icons/md'
+import { MdOutlineFormatListNumbered, MdCompare } from 'react-icons/md'
 
 import { RiMapPinAddFill } from "react-icons/ri";
 import Configuracion from "./views/perfil/Configuracion";
@@ -33,6 +33,7 @@ import Configuracion from "./views/perfil/Configuracion";
 import Login from "./views/Login";
 import Recovery from "./views/Recovery";
 import ReMap from "./components/Map/ReMap";
+import Comparar from "./views/glaciers/Comparar";
 // import MapaDinamico from "./views/MapaDinamico";
 
 const routes = [
@@ -154,6 +155,13 @@ const routes = [
         layout: "dashboard",
         component: <Glaciares />,
         icon: <MdOutlineFormatListNumbered />,
+      },
+      {
+        name: "Comparar",
+        path: "compare",
+        layout: "dashboard",
+        component: <Comparar />,
+        icon: <MdCompare />,
       },
       {
         name: "Glaciar",

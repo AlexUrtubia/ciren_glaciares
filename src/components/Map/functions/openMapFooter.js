@@ -21,7 +21,6 @@ export function openMapFooter(map, setId, setIsFooterOpen) {
           lastHitTolerance = hitTolerance;
         }
         return layer.get('zIndex') === 5 ? feature : undefined
-      
       },
       
       { hitTolerance: hitTolerance }
