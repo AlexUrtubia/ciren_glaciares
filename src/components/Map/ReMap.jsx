@@ -11,7 +11,8 @@ import Styles from "./features/Styles"
 import Glaciers from "./layers/glaciers/Glaciers"
 import Glacier from "./layers/glaciers/Glacier"
 import GeoGlacier from "./layers/glaciers/GeoGlacier"
-import { useParams } from "react-router-dom";
+import { useParams, useRouteMatch  } from "react-router-dom";
+
 import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
 import MyFooter from './MapFooter';
@@ -22,23 +23,23 @@ import LayerSwitcher from './controls/LayerSwitcher';
 function ReMap() {
 
   let { id } = useParams()
-  let { compare } = useParams()
+  // const compare = useRouteMatch('/glaciers/compare/');
   console.log('id desde useParams', id, compare)
   const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
 
   const handleCloseFooter = () => {
     // Cierra el footer
     setIsFooterOpen(false);
-    const footer = document.getElementById("map-footer");
-    footer.classList.add("slide-bottom");
+    // const footer = document.getElementById("map-footer");
+    // footer.classList.add("slide-bottom");
   };
 
   return (   
     
     <Map 
-    zoom={6.5} 
-    center= { center }
-    isFooterOpen = {true}
+      zoom={6.5} 
+      center= { center }
+      isFooterOpen = {true}
     >
       <div id="zoom-container" />
       <Layers>
