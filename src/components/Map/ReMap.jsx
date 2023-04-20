@@ -22,6 +22,8 @@ import LayerSwitcher from './controls/LayerSwitcher';
 function ReMap() {
 
   let { id } = useParams()
+  let { compare } = useParams()
+  console.log('id desde useParams', id, compare)
   const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
 
   const handleCloseFooter = () => {
@@ -74,13 +76,7 @@ function ReMap() {
           gla_id = { id }
           zIndex={100}
         /> }
-        
-        {/* <GeoGlacier
-          style={ Styles.GeoJson }
-          zIndex={100}
-        /> */}
       </Layers>
-      {/* <OpenModal/> */}
       <Controls>
         <LayerSwitcher/>
         <Zoom />

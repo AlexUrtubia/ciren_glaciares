@@ -10,8 +10,6 @@ function Comparar() {
       <div className='w-50 border-3 border-dark'>
         <ReMap/>
       </div>
-      {/* 
-       */}
     </div>
   )
 }
