@@ -19,6 +19,7 @@ const SearchFilterControl = () => {
         />
       ),
     target: 'map',
+    id: 'search-filter-region',
     icon: 'search',
     position: {
       top: '90px',

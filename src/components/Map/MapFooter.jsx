@@ -9,7 +9,7 @@ import { CloseSquareFilled } from '@ant-design/icons'
 const { Footer } = Layout;
 const { TabPane } = Tabs;
 
-const MyFooter = ({ isOpen, onClose }) => {
+const MapFooter = ({ isOpen, onClose }) => {
 
   const { id } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
@@ -32,4 +32,4 @@ const MyFooter = ({ isOpen, onClose }) => {
   );
 };
 
-export default MyFooter;
+export default MapFooter;

@@ -60,6 +60,7 @@ export class CustomControl extends Control {
 
     super({
       element: container,
+      id: options.id,
       target: options.target,
       icon: options.icon,
       width: options.width,

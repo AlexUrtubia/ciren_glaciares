@@ -106,7 +106,9 @@ button{
 }
 
 .layer-switcher{
-  margin-top: .6em;
+  margin-top: 0.6em !important;
+  top: 1 !important;
+
 }
 
 .layer-switcher button{

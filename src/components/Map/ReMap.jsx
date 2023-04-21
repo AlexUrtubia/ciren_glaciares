@@ -11,21 +11,37 @@ import Styles from "./features/Styles"
 import Glaciers from "./layers/glaciers/Glaciers"
 import Glacier from "./layers/glaciers/Glacier"
 import GeoGlacier from "./layers/glaciers/GeoGlacier"
-import { useParams, useRouteMatch  } from "react-router-dom";
-
+import { useParams, useLocation  } from "react-router-dom";
 import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
-import MyFooter from './MapFooter';
+import MapFooter from './MapFooter';
 import Points from './layers/glaciers/Points';
 import LayerSwitcher from './controls/LayerSwitcher';
 
 
-function ReMap() {
+function ReMap({compare = false}) {
 
   let { id } = useParams()
-  // const compare = useRouteMatch('/glaciers/compare/');
-  console.log('id desde useParams', id, compare)
+  // const location = useLocation().pathname
   const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
+  const searchFilter = document.getElementById('#search-filter-region');
+  console.log('searchFilter', searchFilter)
+  useEffect(() => {
+
+    setTimeout(() => {
+      const layerSwitchers = document.querySelectorAll('.layer-switcher');
+
+      layerSwitchers.forEach(layerSwitcher => {
+        if (layerSwitcher) {
+          if (compare) {
+            layerSwitcher.style.top = '0';
+          } else {
+            layerSwitcher.style.top = '1';
+          }
+        }
+      });
+    }, 100);
+  }, [compare]);
 
   const handleCloseFooter = () => {
     // Cierra el footer
@@ -79,14 +95,12 @@ function ReMap() {
         /> }
       </Layers>
       <Controls>
-        <LayerSwitcher/>
-        <Zoom />
-        <FullScreen />
-        { !id &&
-          <SearchFilterControl />
-        }
+        <LayerSwitcher />
+        { !compare && <Zoom />}
+        { !compare && <FullScreen />}
+        { !id && <SearchFilterControl />}
       </Controls>
-      <MyFooter
+      <MapFooter
         isOpen={isFooterOpen}
         onClose={handleCloseFooter}
       /> 
