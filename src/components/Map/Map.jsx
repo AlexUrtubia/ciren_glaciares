@@ -8,6 +8,7 @@ const Mapa = ({ children, zoom, center }) => {
   
   const mapRef = useRef();
   const [map, setMap] = useState(null);
+  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
 
   // on component mount
   useEffect(() => {
@@ -20,6 +21,10 @@ const Mapa = ({ children, zoom, center }) => {
     let mapObject = new ol.Map(options);
     mapObject.setTarget(mapRef.current);
     setMap(mapObject);
+    mapObject.setProperties('nombre', 'Mapa 1')
+    /* let mapObject = new ol.Map(options);
+    mapObject.setTarget(mapRef.current);
+    setMap(mapObject); */
     
     return () => mapObject.setTarget(undefined);
   }, []);
@@ -38,7 +43,7 @@ const Mapa = ({ children, zoom, center }) => {
   
   return (
     
-    <MapContext.Provider value={{ map }}>
+    <MapContext.Provider value={{ map, isFooterOpen, setIsFooterOpen }}>
       <div ref={mapRef} className="ol-map">
         {children}
       </div>

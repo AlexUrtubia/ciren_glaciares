@@ -1,5 +1,7 @@
 export function openMapFooter(map, setId, setIsFooterOpen) {
   map.on('click', function(event) {
+    console.log('mapitaaaaaaaxxxxxxxxxxxxxxxxxxxx', map)
+    console.log('setisiisidisidisidsid', setIsFooterOpen)
     const resolution = map.getView().getResolution();
     let hitTolerance;
 

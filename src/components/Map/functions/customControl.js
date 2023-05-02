@@ -20,11 +20,11 @@ export class CustomControl extends Control {
     i.className = 'fa fa-' + options.icon
     
     button.appendChild(i);
-    container.style.width = '40px'
-    container.style.height = '35px'
+    container.style.width = '3.15em'
+    container.style.height = '3em'
 
-    button.style.width = '30px'
-    button.style.height = '25px'
+    button.style.width = '2.4em'
+    button.style.height = '2.2em'
     button.style.zIndex = '999'
     
     const content = document.createElement('div');
@@ -43,8 +43,8 @@ export class CustomControl extends Control {
           let visible = content.style.visibility === 'visible';
           content.style.visibility = visible ? 'hidden' : 'visible';
           content.style.display = visible ? 'none' : 'block';
-          container.style.width = visible? '40px' : width;
-          container.style.height = visible? '35px' : 'auto';
+          container.style.width = visible? '3.15em' : width;
+          container.style.height = visible? '3em' : 'auto';
           button.style.position = visible ? '' : 'relative'; 
           button.style.left = visible ? '' : '-4px' 
           button.style.backgroundColor = visible ? '#efefef' : 'rgba(255,  255,  255,  0.01)'

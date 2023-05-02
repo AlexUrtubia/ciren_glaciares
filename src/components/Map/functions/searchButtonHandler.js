@@ -4,7 +4,6 @@ import { zoomToById } from "./zoomToById";
 import { clearLayerByName } from './clearLayerByName';
 import { addingWktPoints } from './addWktPoints';
 
-
 export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, point_style) {
 
   const finded = document.getElementById('finded')

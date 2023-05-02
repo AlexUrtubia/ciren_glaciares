@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../../../../context/MapContext";
+import MapContext2 from "../../../../context/MapContext2";
 import OLVectorLayer from "ol/layer/Vector";
 import geoJsonGla from '../../features/glaciar1.geojson'
 import GeoJSON from "ol/format/GeoJSON";
@@ -12,7 +13,10 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style";
 
 const GeoGlacier = ({style, zIndex = 0}) => {
 
-  const { map } = useContext(MapContext);
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  const { map } = mapContext || mapContext2;
+
   const { id, setIsFooterOpen, setId } = useContext(FilterContext);
 
   var geojsonFormat = new GeoJSON()

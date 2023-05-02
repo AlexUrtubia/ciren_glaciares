@@ -22,8 +22,8 @@ import {
   FaMap,
 } from "react-icons/fa";
 
-import { GiMountainCave } from 'react-icons/gi'
-import { MdOutlineFormatListNumbered, MdCompare } from 'react-icons/md'
+import { GiMountainCave } from "react-icons/gi";
+import { MdOutlineFormatListNumbered, MdCompare } from "react-icons/md";
 
 import { RiMapPinAddFill } from "react-icons/ri";
 import Configuracion from "./views/perfil/Configuracion";
@@ -45,14 +45,14 @@ const routes = [
   //   icon: null,
   // },
   {
-    name: 'Mapa',
+    name: "Mapa",
     path: "",
     hide: "true",
     layout: "dashboard",
     component: <ReMap />,
     icon: <FaMap />,
   },
-    // {
+  // {
   //   name: "Informes",
   //   path: "informes",
   //   layout: "dashboard",
@@ -142,7 +142,7 @@ const routes = [
     icon: <GiMountainCave />,
     views: [
       {
-        name: 'Vista en Mapa',
+        name: "Vista en Mapa",
         path: "map",
         // hide: "true",
         layout: "dashboard",
@@ -228,7 +228,7 @@ const routes = [
     name: "Login",
     path: "login",
     layout: "login",
-    component: <Login/>,
+    component: <Login />,
     icon: null,
   },
   {

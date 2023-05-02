@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../../../../context/MapContext";
+import MapContext2 from "../../../../context/MapContext2";
 import OLVectorLayer from "ol/layer/Vector";
 import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
@@ -12,7 +13,10 @@ import { Feature } from "ol";
 
 const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
 
-  const { map } = useContext(MapContext);
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  const { map } = mapContext || mapContext2;
+
   const { id, setIsFooterOpen, setId } = useContext(FilterContext);
 
   var pointsLayer = new OLVectorLayer({

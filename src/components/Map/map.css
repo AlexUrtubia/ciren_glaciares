@@ -1,9 +1,9 @@
 .ol-map {
     position: relative;
-    min-width: 850px;
+    min-width: 800px;
     min-height: 800px;
     height: 93.5vh;
-    width: "100%";
+    width: 100%;
 }
 
 .ol-control {
@@ -26,8 +26,8 @@
 
 
 .ol-zoom-in, .ol-zoom-out {
-    height:2.2em;
-    width:2.2em
+    height: 2.4em;
+    width:2.4em;
 }
 
 #zoom-container {

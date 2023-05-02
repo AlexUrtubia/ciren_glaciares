@@ -2,11 +2,14 @@ import React, { useEffect, useContext } from 'react';
 import LayerSwitcher from 'ol-layerswitcher';
 import 'ol-layerswitcher/src/ol-layerswitcher.css';
 import MapContext from "../../../context/MapContext";
+import MapContext2 from "../../../context/MapContext2";
 
 
 function LayerSwitcherControl() {
 
-  const { map } = useContext(MapContext);
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  const { map } = mapContext || mapContext2;
 
   useEffect(() => {
 

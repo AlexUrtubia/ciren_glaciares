@@ -1,5 +1,6 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import MapContext from "../../../../context/MapContext";
+import MapContext2 from "../../../../context/MapContext2";
 import OLVectorLayer from "ol/layer/Vector";
 import glaciers from "../../features/glaciers.json";
 import vectorSource from "ol/source/Vector";
@@ -12,11 +13,20 @@ import { FilterContext } from "../../../../context/FilterContext";
 import { hitToleranceByZoom } from "../../functions/hitToleranceByZoom";
 import { clearLayerByName } from "../../functions/clearLayerByName";
 
-const Glaciares = ({ style, point_style, zIndex = 0 }) => {
+const Glaciares = ({ style, point_style, zIndex = 0, setIsFooterOpen }) => {
 
-  const { map } = useContext(MapContext);
-  const { setIsFooterOpen, setId } = useContext(FilterContext);
-  
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  // console.log('mapContex1', mapContext)
+  // console.log('mapContex2', mapContext2)
+  const { map } = mapContext || mapContext2;
+
+  // const map = contextMap
+  // const {  } = React.useContext(MapContext)
+
+  const { setId } = useContext(FilterContext);
+
+
   useEffect(() => {
 
     if (!map) return;

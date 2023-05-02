@@ -4,13 +4,15 @@ import { CustomControl } from "../../functions/customControl"
 import { Control } from "ol/control";
 import { renderToString } from "react-dom/server";
 import SearchForm from "./SearchFilterContainer";
+import MapContext2 from "../../../../context/MapContext2";
 
-const SearchFilterControl = () => {
+const SearchFilterControl = ({compare}) => {
 
-  const { map } = useContext(MapContext);
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  const { map } = mapContext || mapContext2;
 
   const customSearch = new CustomControl({
-
     content: 
       renderToString(
         <SearchForm
@@ -19,11 +21,11 @@ const SearchFilterControl = () => {
         />
       ),
     target: 'map',
-    id: 'search-filter-region',
     icon: 'search',
     position: {
-      top: '90px',
-      left: '10px'
+      id: 'search-filter-region',
+      top: compare ? '9px' : '94px',
+      left: compare ? '10px' : '10px'
     },
     width: '560px'
   });
@@ -35,12 +37,13 @@ const SearchFilterControl = () => {
     let searchControl = new Control({
       element: customSearch.element,
     }) 
-    
+
     map.controls.push(searchControl);
     
     return () => map.controls.remove(searchControl);
 
   }, [map]);
+
   return null;
 };
 export default SearchFilterControl;

@@ -1,10 +1,13 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../../../context/MapContext";
+import MapContext2 from "../../../context/MapContext2";
 import OLVectorLayer from "ol/layer/Vector";
 
-const VectorLayer = ({ source, style, zIndex = 0 }) => {
+const VectorLayer = ({ source, style, zIndex = 0, map }) => {
 
-  const { map } = useContext(MapContext);
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  const { map } = mapContext || mapContext2;
   
   useEffect(() => {
     if (!map) return;

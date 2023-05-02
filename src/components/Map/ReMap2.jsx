@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import TileLayer from "./layers/TileLayer"
-import Map from "./Map"
-import MapContext from "./Map"
+import Map2 from "./Map2"
 import Layers from './layers/Layers'
 import Controls from "./controls/Controls"
 import { osm } from "./source";
@@ -18,21 +17,16 @@ import { FilterContext } from '../../context/FilterContext';
 import MapFooter from './MapFooter';
 import Points from './layers/glaciers/Points';
 import LayerSwitcher from './controls/LayerSwitcher';
-// import MapContext from '../../context/MapContext';
+import MapContext2 from '../../context/MapContext2';
 
 
-function ReMap({compare = false, mapContext }) {
-  
-  // const { map } = React.useContext(MapContext)
-  // const map = mapContext
+
+function ReMap2({compare = false}) {
+
   let { id } = useParams()
   // const location = useLocation().pathname
-  // const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
   const { center } = React.useContext(FilterContext);
-  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
-  // const { isFooterOpen, setIsFooterOpen } = React.useContext(MapContext); // utiliza el hook useContext para acceder al contexto
-
-  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaADDDDDDDDDDDDDSDSdSDSDmap', setIsFooterOpen)
+  const [isFooterOpen, setIsFooterOpen] = React.useContext(MapContext2);
 
   useEffect(() => {
 
@@ -60,22 +54,20 @@ function ReMap({compare = false, mapContext }) {
 
   return (   
     
-    <Map 
-      zoom={6.5} 
-      center={ center }
-      isFooterOpen = {isFooterOpen}
+    <Map2 
+      zoom={8.5} 
+      center={center} //{ [-4371356.531, -1872601.1183] }
+      isFooterOpen = {true}
     >
       <div id="zoom-container" />
       <Layers>
         <TileLayer 
-          // map={map}
           source={osm()}
           zIndex={0}
           title={'Open Street Maps'}
           type={'base'}
         />
         <TileLayer 
-          // map={map}
           source={xyz(
             {
               url:'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -86,14 +78,11 @@ function ReMap({compare = false, mapContext }) {
           title={'Satelital'}
           type={'base'}
         />
-        { !id && <Glaciers
-          setIsFooterOpen={setIsFooterOpen}
-          // map={map}
-          // contextMap={map}
+        {/* { !id && <Glaciers
           style={Styles.Filtered}
           point_style={ Styles.SinglePoint }
           zIndex={1}
-        /> }
+        /> } */}
 
         { !id && <Points
           style={ Styles.Point }
@@ -101,8 +90,6 @@ function ReMap({compare = false, mapContext }) {
           /> }
 
         { id && <Glacier
-          // map={map}
-
           style={ Styles.MultiPolygon }
           point_style={ Styles.SinglePoint }
           gla_id = { id }
@@ -110,25 +97,17 @@ function ReMap({compare = false, mapContext }) {
         /> }
       </Layers>
       <Controls>
-        <LayerSwitcher 
-          // map={map}
-        />
-        { !compare && <Zoom 
-          // map={map}
-          />}
-        { !compare && <FullScreen 
-          // map={map}
-          />}
-        { !id && <SearchFilterControl compare={compare}
-          // map={map}
-          />}
+        <LayerSwitcher />
+        { !compare && <Zoom />}
+        { !compare && <FullScreen />}
+        { !id && <SearchFilterControl compare={compare}/>}
       </Controls>
-      <MapFooter
+      {/* <MapFooter
         isOpen={isFooterOpen}
         onClose={handleCloseFooter}
-      /> 
-    </Map>
+      />  */}
+    </Map2>
   )
 }
 
-export default ReMap
+export default ReMap2
