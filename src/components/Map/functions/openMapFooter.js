@@ -1,7 +1,7 @@
-export function openMapFooter(map, setId, setIsFooterOpen) {
+export function openMapFooter(map, setId, handleOpenFooter) {
   map.on('click', function(event) {
     console.log('mapitaaaaaaaxxxxxxxxxxxxxxxxxxxx', map)
-    console.log('setisiisidisidisidsid', setIsFooterOpen)
+    console.log('setisiisidisidisidsid', handleOpenFooter())
     const resolution = map.getView().getResolution();
     let hitTolerance;
 
@@ -31,7 +31,7 @@ export function openMapFooter(map, setId, setIsFooterOpen) {
     if (feature) {
       const featureId = feature.getId();
       setId(featureId);
-      setIsFooterOpen(true);
+      handleOpenFooter()
     }
   });
 }

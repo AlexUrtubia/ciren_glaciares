@@ -29,7 +29,7 @@ function ReMap({compare = false, mapContext }) {
   // const location = useLocation().pathname
   // const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
   const { center } = React.useContext(FilterContext);
-  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
+  const [isFooterOpen, setIsFooterOpen] = React.useState(true);
   // const { isFooterOpen, setIsFooterOpen } = React.useContext(MapContext); // utiliza el hook useContext para acceder al contexto
 
   console.log('aaaaaaaaaaaaaaaaaaaaaaaaaADDDDDDDDDDDDDSDSdSDSDmap', setIsFooterOpen)
@@ -51,9 +51,17 @@ function ReMap({compare = false, mapContext }) {
     }, 100);
   }, [compare]);
 
+
   const handleCloseFooter = () => {
     // Cierra el footer
     setIsFooterOpen(false);
+    // const footer = document.getElementById("map-footer");
+    // footer.classList.add("slide-bottom");
+  };
+
+  const handleOpenFooter = () => {
+    // Cierra el footer
+    setIsFooterOpen(true);
     // const footer = document.getElementById("map-footer");
     // footer.classList.add("slide-bottom");
   };
@@ -63,7 +71,6 @@ function ReMap({compare = false, mapContext }) {
     <Map 
       zoom={6.5} 
       center={ center }
-      isFooterOpen = {isFooterOpen}
     >
       <div id="zoom-container" />
       <Layers>
@@ -87,7 +94,7 @@ function ReMap({compare = false, mapContext }) {
           type={'base'}
         />
         { !id && <Glaciers
-          setIsFooterOpen={setIsFooterOpen}
+          openFooter={handleOpenFooter}
           // map={map}
           // contextMap={map}
           style={Styles.Filtered}

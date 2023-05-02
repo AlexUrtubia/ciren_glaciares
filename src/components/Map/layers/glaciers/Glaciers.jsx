@@ -13,7 +13,7 @@ import { FilterContext } from "../../../../context/FilterContext";
 import { hitToleranceByZoom } from "../../functions/hitToleranceByZoom";
 import { clearLayerByName } from "../../functions/clearLayerByName";
 
-const Glaciares = ({ style, point_style, zIndex = 0, setIsFooterOpen }) => {
+const Glaciares = ({ style, point_style, zIndex = 0, openFooter }) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
@@ -33,7 +33,7 @@ const Glaciares = ({ style, point_style, zIndex = 0, setIsFooterOpen }) => {
 
     const resolution = map.getView().getResolution();
     const hitTolerance = hitToleranceByZoom(resolution);
-    openMapFooter(map, setId, setIsFooterOpen, hitTolerance);
+    openMapFooter(map, setId, openFooter, hitTolerance);
 
     // falta limpiar puntos al hacer search
     let VectorSource = new vectorSource();
