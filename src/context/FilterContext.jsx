@@ -10,7 +10,7 @@ export const FilterProvider = ({children}) => {
   const [center, setCenter] = React.useState([-7871356.531809503, -3972601.1183426552])
   const [hitTolerance, setHitTolerance] = React.useState(10)
 
-  return  <FilterContext.Provider value={{ id, setId, center, setCenter, hitTolerance, setHitTolerance }} >
+  return  <FilterContext.Provider value={{ center, setCenter, hitTolerance, setHitTolerance }} >
             {children}
           </FilterContext.Provider>
 }

@@ -94,6 +94,9 @@ function ReMap({compare = false, mapContext }) {
           /> } */}
 
         { id && <Glacier
+          openFooter={handleOpenFooter}
+          setPointId={setPointId}
+          pointId={pointId}
           style={ Styles.MultiPolygon }
           point_style={ Styles.SinglePoint }
           gla_id = { id }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Button, Tabs } from "antd";
-import { FilterContext } from '../../context/FilterContext';
 import FooterTimeSeries from "./footer/FooterTimeSeries";
 import FooterGlacier from "./footer/FooterGlacier";
 import { CloseSquareFilled } from '@ant-design/icons'
@@ -11,7 +10,6 @@ const { TabPane } = Tabs;
 
 const MapFooter = ({ isOpen, onClose, pointId }) => {
 
-  const { id } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
 
   return (

@@ -15,7 +15,6 @@ import { clearLayerByName } from "../../functions/clearLayerByName";
 
 const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = '', setPointId }) => {
 
-  const { setId } = useContext(FilterContext);
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
   

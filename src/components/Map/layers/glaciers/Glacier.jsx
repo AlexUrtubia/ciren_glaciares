@@ -11,7 +11,7 @@ import { MultiPolygon } from "ol/geom";
 import { Feature } from "ol";
 
 
-const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
+const Glaciar = ({  style, point_style, zIndex = 0, gla_id, openFooter, pointId, setPointId }) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
@@ -90,8 +90,8 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
       if (feature) {
 
         var featureId = feature.getId();
-        setId(featureId);
-        setIsFooterOpen(true)
+        setPointId(featureId);
+        openFooter(true)
       }
     });
 
@@ -112,7 +112,7 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id }) => {
     if (!map) return;
     pointRadiusResolution(map, pointsLayer, true)
 
-  }, [map, id ]);
+  }, [map, pointId ]);
 
   return null;
 };
