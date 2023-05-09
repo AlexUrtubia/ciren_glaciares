@@ -8,13 +8,14 @@ import { MdMyLocation } from 'react-icons/md';
 const { Text } = Typography;
 
 
-function SearchFilterForm() {
+function SearchFilterForm({mapaId = ''}) {
   return (
     <Form>
       <Row>
         <Col sm={11}>
           <Form.Select
-            id='region_id'
+            // id='region_id'
+            id={`region_id-${mapaId}`}
             size='sm'
             >
             <option value="-1">Seleccione Región</option>
@@ -24,7 +25,7 @@ function SearchFilterForm() {
         </Col>
         <Col style={{ marginLeft: '-15px'}} sm={1}>
           <Button
-            id='search-button'
+            id={`search-button-${mapaId}`}
             shape="round"
             type='primary'
             >
@@ -33,18 +34,18 @@ function SearchFilterForm() {
         </Col>
       </Row>
       <Space direction="horizontal" style={{width:'100%', justifyContent: 'center', textAlign: 'center', marginTop: '14px'}}>
-        <Text type="danger" id='text-error'></Text>
+        <Text type="danger" id={`text-error-${mapaId}`}></Text>
       </Space>
-      <Row id='rowform' style={{height: '0px'}}>
-        <Space id="finded" style={{justifyContent: 'center', visibility: 'hidden',  height: '0px', marginTop: '12px'}}>
+      <Row id={`rowform-${mapaId}`} style={{height: '0px'}}>
+        <Space id={`finded-${mapaId}`} style={{justifyContent: 'center', visibility: 'hidden',  height: '0px', marginTop: '12px'}}>
           <Form.Select
-            id='finded_id'
+            id={`finded_id-${mapaId}`}
             size='sm'
             >
             <option value="-1">Zoom a</option>
           </Form.Select>
           <Button
-            id='zoom-to'
+            id={`zoom-to-${mapaId}`}
             shape="round"
             type='primary'
             >

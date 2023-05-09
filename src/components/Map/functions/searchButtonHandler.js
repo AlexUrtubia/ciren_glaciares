@@ -4,19 +4,21 @@ import { zoomToById } from "./zoomToById";
 import { clearLayerByName } from './clearLayerByName';
 import { addingWktPoints } from './addWktPoints';
 
-export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, point_style) {
+export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, point_style, mapaId = '') {
 
-  const finded = document.getElementById('finded')
-  const rowForm = document.getElementById('rowform')
-  const textError = document.getElementById('text-error')
+  const finded = document.getElementById(`finded-${mapaId}`)
+  const rowForm = document.getElementById(`rowform-${mapaId}`)
+  const textError = document.getElementById(`text-error-${mapaId}`)
   
   finded.style.visibility = 'hidden';
   rowForm.style.height = '0px';
+  const inputSelector = `#region_id-${mapaId}`
+  const reg = parseInt($(inputSelector).val());
 
-  let reg = parseInt($('#region_id').val());
+  console.log('map desde hnaldesearh', map?.ol_uid)
 
   let filtrados = glaciers.filter(
-    glacier => glacier.region_code == reg
+    glacier => reg === 0 ? true : glacier.region_code == reg
   );
 
   vectorSource.clear();
@@ -29,10 +31,10 @@ export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, po
     finded.style.visibility = 'visible';
     rowForm.style.height = '50px';
 
-    $('#finded_id').empty()
+    $(`#finded_id-${mapaId}`).empty()
 
-    mappingElements(filtrados, vectorLayer, true)
-    zoomToById(map, vectorLayer, '#zoom-to')
+    mappingElements(filtrados, vectorLayer, true, mapaId)
+    zoomToById(map, vectorLayer, `#zoom-to-${mapaId}`, mapaId)
 
   } else {
 
@@ -42,6 +44,6 @@ export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, po
       textError.innerText =
         'No se encontraron resultados';
     }
-    mappingElements(glaciers, vectorLayer, false);
+    mappingElements(glaciers, vectorLayer, false, mapaId);
   }
 }

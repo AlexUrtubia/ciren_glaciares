@@ -9,7 +9,7 @@ import { CloseSquareFilled } from '@ant-design/icons'
 const { Footer } = Layout;
 const { TabPane } = Tabs;
 
-const MapFooter = ({ isOpen, onClose }) => {
+const MapFooter = ({ isOpen, onClose, pointId }) => {
 
   const { id } = React.useContext(FilterContext);
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
@@ -21,10 +21,10 @@ const MapFooter = ({ isOpen, onClose }) => {
           <Button onClick={onClose} type="" icon={ <CloseSquareFilled  style={{ fontSize: '20px', borderRadius: '2px', backgroundColor: '#212121', color:"#efefef", position: 'absolute', top: -2}}  />}
       />}>
         <TabPane  tab="Serie de Tiempo" key="1">
-          <FooterTimeSeries id={id} key={key}/> {/* Agregar el estado local como prop "key" */}
+          <FooterTimeSeries id={pointId} key={key}/>
         </TabPane>
         <TabPane tab="Glaciar" key="2">
-          <FooterGlacier id={id}/>
+          <FooterGlacier id={pointId}/>
         </TabPane>
       </Tabs>
     </Footer>

@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { MultiPolygon } from "ol/geom";
 import { Feature } from "ol";
 
-export const mappingElements = (elements, layer, finded ) => {
+export const mappingElements = (elements, layer, finded, mapaId ) => {
   elements.map(
     element => {
 
@@ -13,10 +13,13 @@ export const mappingElements = (elements, layer, finded ) => {
       feature.setId(element.id)
       layer.getSource().addFeature(feature);
 
-      var value = element.id
+      var value = parseInt(element.id)
       var text = element.name
+      const selectId = `finded_id-${mapaId}`;
+      const selectElement = $(`#${selectId}`);
+
       {
-        finded && $('#finded_id').append(new Option(text, value))
+        finded && selectElement.append(new Option(text, value))
       }
     }
   )

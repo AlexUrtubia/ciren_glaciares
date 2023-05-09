@@ -1,6 +1,6 @@
 import React from "react";
 
-const MapContext2 = React.createContext({
+const MapContext2 = new React.createContext({
   map: null,
   isFooterOpen: false,
   setIsFooterOpen: () => {},

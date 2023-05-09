@@ -12,7 +12,7 @@ function Comparar() {
         <ReMap compare={true} />
       </div>
       <div className='w-50'>
-        <ReMap compare={true} />
+        <ReMap2 compare={true} />
       </div>
     </div>
   )

@@ -11,7 +11,6 @@ import Zoom from "./controls/ZoomControl"
 import Styles from "./features/Styles"
 import Glaciers from "./layers/glaciers/Glaciers"
 import Glacier from "./layers/glaciers/Glacier"
-import GeoGlacier from "./layers/glaciers/GeoGlacier"
 import { useParams, useLocation  } from "react-router-dom";
 import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
@@ -23,22 +22,16 @@ import LayerSwitcher from './controls/LayerSwitcher';
 
 function ReMap({compare = false, mapContext }) {
   
-  // const { map } = React.useContext(MapContext)
-  // const map = mapContext
   let { id } = useParams()
-  // const location = useLocation().pathname
-  // const { center, isFooterOpen, setIsFooterOpen } = React.useContext(FilterContext);
   const { center } = React.useContext(FilterContext);
-  const [isFooterOpen, setIsFooterOpen] = React.useState(true);
-  // const { isFooterOpen, setIsFooterOpen } = React.useContext(MapContext); // utiliza el hook useContext para acceder al contexto
-
-  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaADDDDDDDDDDDDDSDSdSDSDmap', setIsFooterOpen)
+  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
+  const [ pointId, setPointId ] = React.useState('0-0');
+  
 
   useEffect(() => {
 
     setTimeout(() => {
       const layerSwitchers = document.querySelectorAll('.layer-switcher');
-
       layerSwitchers.forEach(layerSwitcher => {
         if (layerSwitcher) {
           if (compare) {
@@ -51,19 +44,14 @@ function ReMap({compare = false, mapContext }) {
     }, 100);
   }, [compare]);
 
+  let numeroMapa = compare ? 'Mapa1' : ''
 
   const handleCloseFooter = () => {
-    // Cierra el footer
     setIsFooterOpen(false);
-    // const footer = document.getElementById("map-footer");
-    // footer.classList.add("slide-bottom");
   };
 
   const handleOpenFooter = () => {
-    // Cierra el footer
     setIsFooterOpen(true);
-    // const footer = document.getElementById("map-footer");
-    // footer.classList.add("slide-bottom");
   };
 
   return (   
@@ -75,14 +63,12 @@ function ReMap({compare = false, mapContext }) {
       <div id="zoom-container" />
       <Layers>
         <TileLayer 
-          // map={map}
           source={osm()}
           zIndex={0}
           title={'Open Street Maps'}
           type={'base'}
         />
         <TileLayer 
-          // map={map}
           source={xyz(
             {
               url:'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -95,21 +81,19 @@ function ReMap({compare = false, mapContext }) {
         />
         { !id && <Glaciers
           openFooter={handleOpenFooter}
-          // map={map}
-          // contextMap={map}
+          setPointId={setPointId}
+          numeroMapa={numeroMapa}
           style={Styles.Filtered}
           point_style={ Styles.SinglePoint }
           zIndex={1}
         /> }
 
-        { !id && <Points
+        {/* { !id && <Points
           style={ Styles.Point }
           zIndex={2}
-          /> }
+          /> } */}
 
         { id && <Glacier
-          // map={map}
-
           style={ Styles.MultiPolygon }
           point_style={ Styles.SinglePoint }
           gla_id = { id }
@@ -118,21 +102,20 @@ function ReMap({compare = false, mapContext }) {
       </Layers>
       <Controls>
         <LayerSwitcher 
-          // map={map}
         />
         { !compare && <Zoom 
-          // map={map}
           />}
         { !compare && <FullScreen 
-          // map={map}
           />}
-        { !id && <SearchFilterControl compare={compare}
-          // map={map}
+        { !id && <SearchFilterControl 
+          compare={compare}
+          numeroMapa={numeroMapa}
           />}
       </Controls>
       <MapFooter
         isOpen={isFooterOpen}
         onClose={handleCloseFooter}
+        pointId={pointId}
       /> 
     </Map>
   )

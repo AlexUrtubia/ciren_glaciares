@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import './map.css'
 import * as ol from "ol";
 import MapContext2 from "../../context/MapContext2";
@@ -8,8 +8,7 @@ const Mapa2 = ({ children, zoom, center }) => {
   
   const mapRef = useRef();
   const [map, setMap] = useState(null);
-  const [isFooterOpen, setIsFooterOpen] = useContext(MapContext2);
-
+  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
 
   // on component mount
   useEffect(() => {
@@ -21,8 +20,6 @@ const Mapa2 = ({ children, zoom, center }) => {
     };
     let mapObject2 = new ol.Map(options);
     mapObject2.setTarget(mapRef.current);
-    mapObject2.setProperties('nombre', 'Mapa 1')
-
     setMap(mapObject2);
     
     return () => mapObject2.setTarget(undefined);

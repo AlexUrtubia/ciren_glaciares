@@ -20,13 +20,14 @@ import LayerSwitcher from './controls/LayerSwitcher';
 import MapContext2 from '../../context/MapContext2';
 
 
-
 function ReMap2({compare = false}) {
 
   let { id } = useParams()
-  // const location = useLocation().pathname
   const { center } = React.useContext(FilterContext);
-  const [isFooterOpen, setIsFooterOpen] = React.useContext(MapContext2);
+  const [isFooterOpen, setIsFooterOpen] = React.useState(false);
+  const [ pointId, setPointId ] = React.useState('0-0');
+
+  let numeroMapa = 'Mapa2'
 
   useEffect(() => {
 
@@ -52,22 +53,31 @@ function ReMap2({compare = false}) {
     // footer.classList.add("slide-bottom");
   };
 
+  const handleOpenFooter = () => {
+    // Cierra el footer
+    setIsFooterOpen(true);
+    // const footer = document.getElementById("map-footer");
+    // footer.classList.add("slide-bottom");
+  };
+
+
   return (   
     
     <Map2 
-      zoom={8.5} 
-      center={center} //{ [-4371356.531, -1872601.1183] }
-      isFooterOpen = {true}
+      zoom={6.5} 
+      center={ center }
     >
       <div id="zoom-container" />
       <Layers>
         <TileLayer 
+          numeroMapa={numeroMapa}
           source={osm()}
           zIndex={0}
           title={'Open Street Maps'}
           type={'base'}
         />
         <TileLayer 
+          numeroMapa={numeroMapa}
           source={xyz(
             {
               url:'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -78,34 +88,40 @@ function ReMap2({compare = false}) {
           title={'Satelital'}
           type={'base'}
         />
-        {/* { !id && <Glaciers
+        { !id && <Glaciers
+          openFooter={handleOpenFooter}
+          numeroMapa={numeroMapa}
+          setPointId={setPointId}
           style={Styles.Filtered}
           point_style={ Styles.SinglePoint }
           zIndex={1}
-        /> } */}
+        /> }
 
         { !id && <Points
           style={ Styles.Point }
           zIndex={2}
+          numeroMapa={numeroMapa}
           /> }
 
-        { id && <Glacier
-          style={ Styles.MultiPolygon }
-          point_style={ Styles.SinglePoint }
-          gla_id = { id }
-          zIndex={100}
-        /> }
       </Layers>
       <Controls>
-        <LayerSwitcher />
-        { !compare && <Zoom />}
-        { !compare && <FullScreen />}
-        { !id && <SearchFilterControl compare={compare}/>}
+        <LayerSwitcher 
+          numeroMapa={numeroMapa}
+        />
+        { !compare && <Zoom 
+          />}
+        { !compare && <FullScreen 
+          />}
+        { !id && <SearchFilterControl 
+          compare={compare}
+          numeroMapa={numeroMapa}
+          />}
       </Controls>
-      {/* <MapFooter
+      <MapFooter
         isOpen={isFooterOpen}
         onClose={handleCloseFooter}
-      />  */}
+        pointId={pointId}
+      /> 
     </Map2>
   )
 }

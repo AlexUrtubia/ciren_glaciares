@@ -3,10 +3,9 @@ import React, { useState } from "react";
 //Hooks & Routing
 import { useNavigate } from "react-router-dom";
 //Components
-import { Row, Form, Col, Input, Button, Dropdown, Menu, Space } from "antd";
+import { Row, Form, Col, Input, Button, Dropdown, Menu } from "antd";
 import { FaUser, FaEnvelope, FaIdCard, FaUserTag } from "react-icons/fa";
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
-import { Select } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 
 
@@ -49,10 +48,12 @@ const CreateUserForm = (props) => {
     />
   );
 
-
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  }
   return (
 
-    <Form layout={"vertical"} name="basic" form={form}>
+    <Form layout={"vertical"} name="basic" form={form} onFinish={onFinish} >
       <Form.Item
         label="Correo Electrónico"
         name="email"
@@ -80,10 +81,10 @@ const CreateUserForm = (props) => {
       >
         <Input addonBefore={<FaIdCard />} placeholder="Nombre Apellido"/>
       </Form.Item>
-      <Form.Item label="Usuario">
+      <Form.Item label="Usuario" name={'user'}>
         <Input addonBefore={<FaUser />} placeholder="Username" />
       </Form.Item>
-      <Form.Item label="Tipo de Usuario">
+      <Form.Item label="Tipo de Usuario" name={'rol_id'}>
         <Dropdown placement="bottom" overlay={menu} trigger="click" ref={userTypeRef}>
           <Input
             className="input-dropdown"

@@ -21,10 +21,6 @@ const Mapa = ({ children, zoom, center }) => {
     let mapObject = new ol.Map(options);
     mapObject.setTarget(mapRef.current);
     setMap(mapObject);
-    mapObject.setProperties('nombre', 'Mapa 1')
-    /* let mapObject = new ol.Map(options);
-    mapObject.setTarget(mapRef.current);
-    setMap(mapObject); */
     
     return () => mapObject.setTarget(undefined);
   }, []);

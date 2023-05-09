@@ -7,13 +7,20 @@ import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
 import { FilterContext } from "../../../../context/FilterContext";
 
-const Points = ({  style, zIndex = 0 }) => {
+const Points = ({  style, zIndex = 0, numeroMapa = null }) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
-  const { map } = mapContext || mapContext2;
-
   const { id, setIsFooterOpen, setId } = useContext(FilterContext);
+
+  let contextMap = mapContext
+  if (numeroMapa === 'Mapa1' ) {
+    contextMap = mapContext;
+  } if (numeroMapa === 'Mapa2' ) {
+    contextMap = mapContext2;
+  }
+  const { map } = contextMap;
+
 
   var pointsLayer = new OLVectorLayer({
     source: new VectorSource({

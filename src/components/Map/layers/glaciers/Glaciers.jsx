@@ -13,27 +13,29 @@ import { FilterContext } from "../../../../context/FilterContext";
 import { hitToleranceByZoom } from "../../functions/hitToleranceByZoom";
 import { clearLayerByName } from "../../functions/clearLayerByName";
 
-const Glaciares = ({ style, point_style, zIndex = 0, openFooter }) => {
-
-  const mapContext = useContext(MapContext);
-  const mapContext2 = useContext(MapContext2);
-  // console.log('mapContex1', mapContext)
-  // console.log('mapContex2', mapContext2)
-  const { map } = mapContext || mapContext2;
-
-  // const map = contextMap
-  // const {  } = React.useContext(MapContext)
+const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = '', setPointId }) => {
 
   const { setId } = useContext(FilterContext);
+  const mapContext = useContext(MapContext);
+  const mapContext2 = useContext(MapContext2);
+  
+  let contextMap = mapContext
+  if (numeroMapa === 'Mapa1' ) {
+    contextMap = mapContext;
+  } if (numeroMapa === 'Mapa2' ) {
+    contextMap = mapContext2;
+  }
+  const { map } = contextMap;
 
-
+  console.log('map', map?.getLayers()?.array_, map?.ol_uid, numeroMapa, `search-button-${numeroMapa}`)
+  
   useEffect(() => {
 
     if (!map) return;
 
     const resolution = map.getView().getResolution();
     const hitTolerance = hitToleranceByZoom(resolution);
-    openMapFooter(map, setId, openFooter, hitTolerance);
+    openMapFooter(map, setPointId, openFooter, hitTolerance);
 
     // falta limpiar puntos al hacer search
     let VectorSource = new vectorSource();
@@ -42,8 +44,9 @@ const Glaciares = ({ style, point_style, zIndex = 0, openFooter }) => {
       style,
     });
 
-    $(document).on("click", "#search-button", function () {
-      handleSearchButtom(map, glaciers, VectorSource, VectorLayer, point_style);
+    $(document).on("click", `#search-button-${numeroMapa}`, function () {
+      // console.log('first', `#search-button-${numeroMapa}`)
+      handleSearchButtom(map, glaciers, VectorSource, VectorLayer, point_style, numeroMapa);
     });
 
     mappingElements(glaciers, VectorLayer, false);

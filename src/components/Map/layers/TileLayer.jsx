@@ -4,11 +4,18 @@ import MapContext2 from "../../../context/MapContext2";
 import OLTileLayer from "ol/layer/Tile";
 
 
-const TileLayer = ({ source, zIndex = 0, title, type }) => {
+const TileLayer = ({ source, zIndex = 0, title, type, numeroMapa = null }) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
-  const { map } = mapContext || mapContext2;
+
+  let contextMap = mapContext
+  if (numeroMapa === 'Mapa1' ) {
+    contextMap = mapContext;
+  } if (numeroMapa === 'Mapa2' ) {
+    contextMap = mapContext2;
+  }
+  const { map } = contextMap;
 
   useEffect(() => {
     if (!map) return;
