@@ -1,14 +1,10 @@
-import { useContext, useEffect } from "react";
-import MapContext from "../../../../context/MapContext";
-import MapContext2 from "../../../../context/MapContext2";
+import { useContext } from "react";
+import { MapContext, MapContext2 } from "../../../../context";
 import OLVectorLayer from "ol/layer/Vector";
 import geoJsonGla from '../../features/glaciar1.geojson'
 import GeoJSON from "ol/format/GeoJSON";
 import VectorSource from 'ol/source/Vector'
-import { FilterContext } from "../../../../context/FilterContext";
-import { pointRadiusResolution } from "../../functions/pointRadiusResolution";
-import { json } from "react-router-dom";
-import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style";
+
 
 
 const GeoGlacier = ({style, zIndex = 0}) => {
@@ -17,7 +13,6 @@ const GeoGlacier = ({style, zIndex = 0}) => {
   const mapContext2 = useContext(MapContext2);
   const { map } = mapContext || mapContext2;
 
-  const { id, setIsFooterOpen, setId } = useContext(FilterContext);
 
   var geojsonFormat = new GeoJSON()
   const vectorSource = new VectorSource();

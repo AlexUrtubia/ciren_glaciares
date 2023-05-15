@@ -1,7 +1,7 @@
 //React Utils
 import { Fragment, useState } from "react";
 //Hooks & Routing
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 //Components
 import { Descriptions, Image, Typography, Button, Space, Row, Col, Badge, Modal,
   // Cascader,
@@ -17,7 +17,7 @@ import "./CustomTables.css";
 // import glaciers from '../../components/Map/features/glaciers.json'
 import { FaMapMarkedAlt, FaEdit, FaTrashAlt } from "react-icons/fa"
 // Css antd-buttons
-import ChartComponent from "../charts/ChartComponent";
+
 
 const GlaTable = ({glaciers, id }) => {
 

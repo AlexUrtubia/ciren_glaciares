@@ -1,9 +1,8 @@
 import { useContext, useEffect } from "react";
 import { FullScreen } from "ol/control";
-import MapContext from "../../../context/MapContext";
-import MapContext2 from "../../../context/MapContext2";
+import { MapContext, MapContext2 } from "../../../context";
 
-const FullScreenControl = () => {
+export const FullScreenControl = () => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
@@ -22,5 +21,3 @@ const FullScreenControl = () => {
   
   return null;
 };
-
-export default FullScreenControl;

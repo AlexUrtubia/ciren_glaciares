@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Button, Tabs } from "antd";
 import FooterTimeSeries from "./footer/FooterTimeSeries";
 import FooterGlacier from "./footer/FooterGlacier";

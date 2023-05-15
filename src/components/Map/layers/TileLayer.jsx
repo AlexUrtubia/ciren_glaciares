@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
-import MapContext from "../../../context/MapContext";
-import MapContext2 from "../../../context/MapContext2";
+import { MapContext, MapContext2 } from "../../../context";
 import OLTileLayer from "ol/layer/Tile";
 
 
@@ -8,6 +7,7 @@ const TileLayer = ({ source, zIndex = 0, title, type, numeroMapa = null }) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
+
 
   let contextMap = mapContext
   if (numeroMapa === 'Mapa1' ) {

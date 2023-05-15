@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 const AuthContext = createContext({
   isLoggedIn: false,
@@ -94,6 +94,7 @@ export const AuthContextProvider = (props) => {
     logout: logoutHandler,
     CheckLogIn : CheckLogIn,
     isLoading: isLoading,
+    setLoading: setLoading
   };
   return (
     <AuthContext.Provider value={contextValue}>

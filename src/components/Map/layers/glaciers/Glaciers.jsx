@@ -1,17 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import MapContext from "../../../../context/MapContext";
-import MapContext2 from "../../../../context/MapContext2";
+import { useContext, useEffect } from "react";
+import { MapContext, MapContext2 } from "../../../../context";
 import OLVectorLayer from "ol/layer/Vector";
 import glaciers from "../../features/glaciers.json";
 import vectorSource from "ol/source/Vector";
 import $ from "jquery";
-import { mappingElements } from "../../functions/mappingElements";
-import { handleSearchButtom } from "../../functions/searchButtonHandler";
-import { addingWktPoints } from "../../functions/addWktPoints";
-import { openMapFooter } from "../../functions/openMapFooter";
-import { FilterContext } from "../../../../context/FilterContext";
-import { hitToleranceByZoom } from "../../functions/hitToleranceByZoom";
-import { clearLayerByName } from "../../functions/clearLayerByName";
+import { addingWktPoints, hitToleranceByZoom, handleSearchButtom, mappingElements, openMapFooter } from "../../functions";
+
 
 const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = '', setPointId }) => {
 
@@ -26,8 +20,6 @@ const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = ''
   }
   const { map } = contextMap;
 
-  console.log('map', map?.getLayers()?.array_, map?.ol_uid, numeroMapa, `search-button-${numeroMapa}`)
-  
   useEffect(() => {
 
     if (!map) return;
@@ -36,7 +28,6 @@ const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = ''
     const hitTolerance = hitToleranceByZoom(resolution);
     openMapFooter(map, setPointId, openFooter, hitTolerance);
 
-    // falta limpiar puntos al hacer search
     let VectorSource = new vectorSource();
     let VectorLayer = new OLVectorLayer({
       source: VectorSource,
@@ -44,10 +35,11 @@ const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = ''
     });
 
     $(document).on("click", `#search-button-${numeroMapa}`, function () {
-      // console.log('first', `#search-button-${numeroMapa}`)
+      VectorSource.clear();
       handleSearchButtom(map, glaciers, VectorSource, VectorLayer, point_style, numeroMapa);
     });
 
+    addingWktPoints(map, point_style );
     mappingElements(glaciers, VectorLayer, false);
 
     map.addLayer(VectorLayer);

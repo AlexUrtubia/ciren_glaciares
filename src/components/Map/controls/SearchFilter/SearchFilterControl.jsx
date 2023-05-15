@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
-import MapContext from "../../../../context/MapContext";
+import { MapContext, MapContext2 } from "../../../../context";
+
 import { CustomControl } from "../../functions/customControl"
 import { Control } from "ol/control";
 import { renderToString } from "react-dom/server";
 import SearchForm from "./SearchFilterContainer";
-import MapContext2 from "../../../../context/MapContext2";
 
-const SearchFilterControl = ({compare, numeroMapa = null}) => {
+export const SearchFilterControl = ({compare, numeroMapa = null}) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
@@ -51,4 +51,3 @@ const SearchFilterControl = ({compare, numeroMapa = null}) => {
 
   return null;
 };
-export default SearchFilterControl;

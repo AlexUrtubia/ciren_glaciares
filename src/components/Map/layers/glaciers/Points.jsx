@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import MapContext from "../../../../context/MapContext";
-import MapContext2 from "../../../../context/MapContext2";
+import { MapContext, MapContext2 } from "../../../../context";
+
 import OLVectorLayer from "ol/layer/Vector";
 import VectorSource from 'ol/source/Vector'
 import glaciers from '../../features/glaciers.json'
@@ -11,7 +11,7 @@ const Points = ({  style, zIndex = 0, numeroMapa = null }) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
-  const { id, setIsFooterOpen, setId } = useContext(FilterContext);
+  const { setIsFooterOpen, setId } = useContext(FilterContext);
 
   let contextMap = mapContext
   if (numeroMapa === 'Mapa1' ) {

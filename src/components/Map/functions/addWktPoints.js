@@ -3,10 +3,6 @@ import WKT from "ol/format/WKT";
 import OLVectorLayer from "ol/layer/Vector";
 import VectorSource from 'ol/source/Vector'
 import { pointRadiusResolution } from './pointRadiusResolution';
-import { hitToleranceByZoom } from './hitToleranceByZoom';
-import { openMapFooter } from './openMapFooter';
-import { FilterContext } from "../../../context/FilterContext";
-import { useContext } from "react";
 
 export function addingWktPoints (map, point_style, hitTolerance, setHitTolerance) {
 

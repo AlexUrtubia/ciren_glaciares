@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef} from "react";
+import { MapContext } from "../../context";
 import './map.css'
 import * as ol from "ol";
-import MapContext from "../../context/MapContext";
 
 
 const Mapa = ({ children, zoom, center }) => {
@@ -10,7 +10,6 @@ const Mapa = ({ children, zoom, center }) => {
   const [map, setMap] = useState(null);
   const [isFooterOpen, setIsFooterOpen] = React.useState(false);
 
-  // on component mount
   useEffect(() => {
     let options = {
       view: new ol.View({ zoom, center }),
@@ -25,13 +24,11 @@ const Mapa = ({ children, zoom, center }) => {
     return () => mapObject.setTarget(undefined);
   }, []);
 
-  // zoom change handler
   useEffect(() => {
     if (!map) return;
     map.getView().setZoom(zoom);
   }, [zoom]);
   
-  // center change handler
   useEffect(() => {
     if (!map) return;
     map.getView().setCenter(center)

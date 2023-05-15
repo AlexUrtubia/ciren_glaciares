@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
+import { MapContext2 } from "../../context";
 import './map.css'
 import * as ol from "ol";
-import MapContext2 from "../../context/MapContext2";
 
 
 const Mapa2 = ({ children, zoom, center }) => {

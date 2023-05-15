@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import LayerSwitcher from 'ol-layerswitcher';
 import 'ol-layerswitcher/src/ol-layerswitcher.css';
-import MapContext from "../../../context/MapContext";
-import MapContext2 from "../../../context/MapContext2";
+import { MapContext, MapContext2 } from "../../../context";
 
 
-function LayerSwitcherControl({numeroMapa = null}) {
+
+export function LayerSwitcherControl({numeroMapa = null}) {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);
@@ -33,4 +33,3 @@ function LayerSwitcherControl({numeroMapa = null}) {
   return null
 }
 
-export default LayerSwitcherControl

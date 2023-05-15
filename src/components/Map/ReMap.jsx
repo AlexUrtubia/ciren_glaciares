@@ -1,26 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
+import { useParams } from "react-router-dom";
 import TileLayer from "./layers/TileLayer"
 import Map from "./Map"
-import MapContext from "./Map"
 import Layers from './layers/Layers'
-import Controls from "./controls/Controls"
 import { osm } from "./source";
 import { xyz } from "./source";
-import FullScreen from "./controls/FullScreenControl"
-import Zoom from "./controls/ZoomControl"
+import { FullScreenControl, Controls, LayerSwitcherControl, SearchFilterControl, ZoomControl } from "./controls"
 import Styles from "./features/Styles"
 import Glaciers from "./layers/glaciers/Glaciers"
 import Glacier from "./layers/glaciers/Glacier"
-import { useParams, useLocation  } from "react-router-dom";
-import SearchFilterControl from "./controls/SearchFilter/SearchFilterControl";
 import { FilterContext } from '../../context/FilterContext';
 import MapFooter from './MapFooter';
-import Points from './layers/glaciers/Points';
-import LayerSwitcher from './controls/LayerSwitcher';
-// import MapContext from '../../context/MapContext';
 
 
-function ReMap({compare = false, mapContext }) {
+
+function ReMap({ compare = false }) {
   
   let { id } = useParams()
   const { center } = React.useContext(FilterContext);
@@ -104,11 +98,10 @@ function ReMap({compare = false, mapContext }) {
         /> }
       </Layers>
       <Controls>
-        <LayerSwitcher 
-        />
-        { !compare && <Zoom 
+        <LayerSwitcherControl />
+        { !compare && <ZoomControl 
           />}
-        { !compare && <FullScreen 
+        { !compare && <FullScreenControl 
           />}
         { !id && <SearchFilterControl 
           compare={compare}
