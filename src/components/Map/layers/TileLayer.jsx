@@ -34,7 +34,7 @@ const TileLayer = ({ source, zIndex = 0, title, type, numeroMapa = null }) => {
       }
     };
 
-  }, [map]);
+  }, [map, source, zIndex, title, type, numeroMapa]);
   return null;
 };
 export default TileLayer;

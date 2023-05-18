@@ -19,6 +19,7 @@ export function addGlacierPoints (map, point_style, glacier, hitTolerance, setHi
     var point = wktFormat.readFeature(wkt);
     point.setId(points.id)
     pointsLayer.getSource().addFeature(point);
+    return wkt
   })
 
   map.addLayer(pointsLayer);

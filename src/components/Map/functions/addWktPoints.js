@@ -23,7 +23,9 @@ export function addingWktPoints (map, point_style, hitTolerance, setHitTolerance
         var point = wktFormat.readFeature(wkt);
         point.setId(points.id)
         pointsLayer.getSource().addFeature(point);
+        return wkt
       })
+      return null
     })
 
   map.addLayer(pointsLayer);

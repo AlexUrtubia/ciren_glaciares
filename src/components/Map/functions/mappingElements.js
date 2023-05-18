@@ -18,9 +18,9 @@ export const mappingElements = (elements, layer, finded, mapaId ) => {
       const selectId = `finded_id-${mapaId}`;
       const selectElement = $(`#${selectId}`);
 
-      {
-        finded && selectElement.append(new Option(text, value))
-      }
+      if (finded) selectElement.append(new Option(text, value));
+      
+      return null
     }
   )
 }

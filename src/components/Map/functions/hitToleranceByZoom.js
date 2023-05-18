@@ -1,7 +1,3 @@
-import { openMapFooter } from "./openMapFooter";
-import { FilterContext } from "../../../context/FilterContext";
-import { useContext } from "react";
-
 export const hitToleranceByZoom = (resolution) => {
   let hitTolerance;
 

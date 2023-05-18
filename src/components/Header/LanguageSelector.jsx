@@ -1,7 +1,7 @@
 //React utilities
 import { useState } from "react";
 //Components
-import { Popover, Menu, Button, Divider } from "antd";
+import { Popover, Button, Divider } from "antd";
 import { FaLanguage } from "react-icons/fa";
 
 const LanguageSelector = () => {
@@ -10,10 +10,10 @@ const LanguageSelector = () => {
   const handleVisibleChange = (newVisible) => {
     setVisible(newVisible);
   };
-  const handleOnSelect_Menu = (e) => {
+ /*  const handleOnSelect_Menu = (e) => {
     setLanguage(e.key);
     setVisible(false);
-  };
+  }; */
   // const menu = (
   //   <Menu
   //     onSelect={handleOnSelect_Menu}

@@ -1,5 +1,5 @@
 import { Layout, Image, Row, Col, Button } from "antd";
-import LanguageSelector from "./LanguageSelector";
+// import LanguageSelector from "./LanguageSelector";
 import ciren_logo from "../../static/img/ciren1.png"
 import cmm_logo from "../../static/img/cmm_logo.png"
 import anid_logo from "../../static/img/anid_logo.png"

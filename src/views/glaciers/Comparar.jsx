@@ -1,7 +1,6 @@
 import React from 'react'
 import ReMap from '../../components/Map/ReMap'
 import ReMap2 from '../../components/Map/ReMap2'
-import MapContext from '../../context/MapContext';
 
 function Comparar() {
 

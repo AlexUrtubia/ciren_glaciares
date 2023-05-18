@@ -1,8 +1,5 @@
-import { useContext } from "react";
 import { Col, Row } from "antd";
 import LoginCard from "../components/Login/LoginCard";
-import AuthContext from "../store/auth-context";
-import { Navigate } from "react-router-dom";
 
 const Login = (props) => {
   // const { CheckLogIn, isLoggedIn } = useContext(AuthContext);

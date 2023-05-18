@@ -47,7 +47,7 @@ export const SearchFilterControl = ({compare, numeroMapa = null}) => {
     map.controls.push(searchControl);
     return () => map.controls.remove(searchControl);
 
-  }, [map]);
+  }, [map, customSearch.element]);
 
   return null;
 };

@@ -57,7 +57,7 @@ const getItems = (routes, parentPath, layout, admin) => {
 
 const CustomSider = ({ routes, layout }) => {
 
-  const { admin, CheckLogIn, isLoggedIn } = useContext(AuthContext);
+  const { admin } = useContext(AuthContext);
   const location = useLocation();
   const [pressedKey, setPressedKey] = useState(
     location.pathname.split("/").slice(-1)

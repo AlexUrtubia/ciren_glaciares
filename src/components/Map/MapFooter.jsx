@@ -11,7 +11,7 @@ const { TabPane } = Tabs;
 const MapFooter = ({ isOpen, onClose, pointId }) => {
 
   const [key, setKey] = useState(0); // Nuevo estado local para forzar la actualización del componente
-
+  console.log('setKey', setKey)
   return (
     <Footer className="map-footer" style={{ display: isOpen ? "block" : "none", padding: 15}}>
       <Tabs size="small" type="card"

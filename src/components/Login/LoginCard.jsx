@@ -14,7 +14,7 @@ const LoginCard = (props) => {
         align="middle"
       >
         <Col style={{ width: "auto" }}>
-          <img src={cepal_logo_login} style={{width:"auto", height:"9em", marginBottom:"2em"}}/>
+          <img src={cepal_logo_login} alt='cepal_logo' style={{width:"auto", height:"9em", marginBottom:"2em"}}/>
         </Col>
       </Row>
       <Row

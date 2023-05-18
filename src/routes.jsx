@@ -1,22 +1,14 @@
-import Default from "./views/Default";
 import Usuarios from "./views/admin/Usuarios";
 import Glaciares from "./views/glaciers/Glaciares";
 import Glaciar from "./views/glaciers/Glaciar";
 import CrearUsuario from "./views/admin/CrearUsuario";
-import Procesos from "./views/admin/Procesos";
 // import Satelites from "./views/admin/Satelites";
 // import Regiones from "./views/admin/Regiones";
 // import EditarRegion from "./views/EditarRegion";
 import {
   FaUsers,
-  FaListAlt,
-  FaChartPie,
-  FaAtlas,
   FaUserPlus,
   FaUsersCog,
-  FaLaptopCode,
-  FaSatellite,
-  FaMapMarkedAlt,
   FaIdBadge,
   FaCogs,
   FaMap,
@@ -25,7 +17,6 @@ import {
 import { GiMountainCave } from "react-icons/gi";
 import { MdOutlineFormatListNumbered, MdCompare } from "react-icons/md";
 
-import { RiMapPinAddFill } from "react-icons/ri";
 import Configuracion from "./views/perfil/Configuracion";
 // import MisRegiones from "./views/perfil/MisRegiones";
 // import Graficos from "./views/Graficos";
