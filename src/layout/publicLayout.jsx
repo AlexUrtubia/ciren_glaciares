@@ -6,7 +6,7 @@ import CustomSider from "../components/CustomSider/CustomSider";
 import { Outlet } from "react-router-dom";
 
 
-const { Content, Footer } = Layout;
+const { Content } = Layout; // incluir Footer
 
 
 const PublicLayout = (props) => {

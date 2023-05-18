@@ -6,7 +6,8 @@ import glaciers from "../features/glaciers.json"
 export default function FooterGlacier({ id }) {
 
     var id_code = id.split('-')
-    const glacier =  glaciers.find(glacier => glacier.id == id_code[0])
+    console.log('id_coddsfghje', typeof id_code[0])
+    const glacier =  glaciers.find(glacier => glacier.id === Number(id_code[0]))
     var dateFormat = new Date(glacier.creation);
     var fecha = dateFormat.getDate()+ "/" + (dateFormat.getMonth()+1)+ "/"+dateFormat.getFullYear()
 

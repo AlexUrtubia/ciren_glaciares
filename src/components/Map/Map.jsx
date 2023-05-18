@@ -22,17 +22,18 @@ const Mapa = ({ children, zoom, center }) => {
     setMap(mapObject);
     
     return () => mapObject.setTarget(undefined);
-  }, []);
-
-  useEffect(() => {
-    if (!map) return;
-    map.getView().setZoom(zoom);
-  }, [zoom]);
+  }, [ zoom, center ]);
   
   useEffect(() => {
     if (!map) return;
+    map.getView().setZoom(zoom);
+  }, [zoom, map]);
+  
+
+  useEffect(() => {
+    if (!map) return;
     map.getView().setCenter(center)
-  }, [center])
+  }, [center, map])
   
   return (
     

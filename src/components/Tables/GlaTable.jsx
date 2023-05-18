@@ -23,7 +23,7 @@ const GlaTable = ({glaciers, id }) => {
 
   const [modal2Open, setModal2Open] = useState(false);
   // let { id } = useParams();
-  const glacier =  glaciers.find(glacier => glacier.id == id)
+  const glacier =  glaciers.find(glacier => glacier.id === Number(id))
   console.log('glaciers', glaciers, id)
   var dateFormat = new Date(glacier.creation);
   var fecha = dateFormat.getDate()+ "/" + (dateFormat.getMonth()+1)+ "/"+dateFormat.getFullYear()
@@ -32,8 +32,10 @@ const GlaTable = ({glaciers, id }) => {
 
   const navigate = useNavigate()
   const [componentSize, setComponentSize] = useState('default');
+
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
+    console.log('componentSize', componentSize)
   };
   return (
 

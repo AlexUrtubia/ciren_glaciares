@@ -1,10 +1,10 @@
 //React Utils
 import { Fragment } from "react";
 //Hooks & Routing
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //Components
 import { Table, Button, Typography, Row, Col } from "antd";
-import { FaEye, FaTrash, FaPlus } from "react-icons/fa";
+import { FaEye, FaTrash } from "react-icons/fa";
 //Style
 import "./CustomTables.css";
 // Dummies
@@ -12,13 +12,6 @@ import glaciers from '../../components/Map/features/glaciers.json'
 
 const Text = Typography.Text;
 
-
-
-const date_format = {
-  day: "numeric",
-  year: "numeric",
-  month: "numeric",
-};
 
 const DUMMY_DATA = glaciers
 console.log('DUMMY_DATA', DUMMY_DATA)

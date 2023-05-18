@@ -51,7 +51,7 @@ const Glaciares = ({ style, point_style, zIndex = 0, openFooter, numeroMapa = ''
         map.removeLayer(VectorLayer);
       }
     };
-  }, [map]);
+  }, [map, point_style, zIndex, openFooter, numeroMapa, setPointId, style]);
 
   return null;
 };

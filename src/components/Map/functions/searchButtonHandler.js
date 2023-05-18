@@ -15,10 +15,10 @@ export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, po
   const inputSelector = `#region_id-${mapaId}`
   const reg = parseInt($(inputSelector).val());
 
-  // console.log('map desde hnaldesearh', map?.ol_uid)
+  console.log('map desde hnaldesearh', reg)
 
   let filtrados = glaciers.filter(
-    glacier => reg === 0 ? true : glacier.region_code == reg
+    glacier => reg === 0 ? true : Number(glacier.region_code) === reg
   );
 
   vectorSource.clear();
@@ -38,7 +38,7 @@ export function handleSearchButtom (map, glaciers, vectorSource, vectorLayer, po
 
   } else {
 
-    if (reg == 0 || reg == -1) {
+    if (reg === 0 || reg === -1) {
       textError.innerText = '';
     } else {
       textError.innerText =

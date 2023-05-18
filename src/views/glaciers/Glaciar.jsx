@@ -11,8 +11,7 @@ import glaciers from '../../components/Map/features/glaciers.json'
 const Glaciares = () => {
 
     const { id } = useParams()
-    
-    let glacier = glaciers.find(glacier => glacier.id == id)
+    let glacier = glaciers.find(glacier => glacier.id === Number(id))
 
     return (
         <Card title={<CardTitle title={`Glaciar ${glacier.name}`} icon={GiMountainCave}/>} style={{ margin: "1rem" }}>

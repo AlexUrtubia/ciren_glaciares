@@ -27,7 +27,7 @@ ChartJS.register(
 
 function ChartComponent({gla_id, point_id}) {
   
-  console.log('id from chart', point_id)
+  console.log('id from chart',typeof point_id)
 
   const options = {
     responsive: true,
@@ -50,13 +50,13 @@ function ChartComponent({gla_id, point_id}) {
     },
   };
   
-  console.log('from chart', gla_id)
+  console.log('from chart', typeof gla_id)
 
-  var glaById = glaciers.find(glacier => glacier.id == gla_id)
+  var glaById = glaciers.find(glacier => glacier.id === Number(gla_id))
   const selectedGla = Object.entries(glaById)[13][1]  // reemplazar 0 por id de glaciar
   
-  var selectedPoint =  selectedGla.find(point => point.id == point_id)
-  console.log('selectedGla', selectedPoint)
+  var selectedPoint =  selectedGla.find(point => point.id === point_id)
+  console.log('selectedGla', selectedGla)
   console.log('selectedPoint',  Object.values(selectedPoint['fechas']))
 
   const labelsFechas = Object.keys(selectedPoint['fechas']).map(date => {

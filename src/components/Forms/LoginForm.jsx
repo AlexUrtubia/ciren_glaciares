@@ -8,7 +8,7 @@ const LoginForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const authCtx = useContext(AuthContext)
-  console.log(authCtx)
+  console.log(authCtx, setIsLogin)
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);

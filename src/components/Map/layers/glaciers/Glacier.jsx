@@ -15,13 +15,13 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id, openFooter, pointId,
   useEffect(() => {
 
     if (!map) return;
-    let Vectorsource = new VectorSource
+    let Vectorsource = new VectorSource()
     let VectorLayer = new OLVectorLayer({
       source: Vectorsource,
       style: style
     });
 
-    const glacier =  glaciers.find(glacier => glacier.id == gla_id)
+    const glacier =  glaciers.find(glacier => glacier.id === Number(gla_id))
 
     const feature = new Feature({
       geometry: new MultiPolygon(glacier.wkt)
@@ -36,9 +36,14 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id, openFooter, pointId,
     addGlacierPoints(map, point_style, glacier)
     openMapFooter(map, setPointId, openFooter);
 
-    map.getView().fit(
-      VectorLayer.getSource().getExtent(),
-    {"maxZoom":12} );   
+    const zoomToFeature = () => {
+      const extent = feature.getGeometry().getExtent();
+      map.getView().fit(extent, {
+        maxZoom: 13,
+      });
+    };
+
+    map.once('postrender', zoomToFeature);
 
     return () => {
       if (map) {
@@ -46,7 +51,7 @@ const Glaciar = ({  style, point_style, zIndex = 0, gla_id, openFooter, pointId,
       }
     };
 
-  }, [map]);
+  }, [map, gla_id, openFooter, point_style, setPointId, style, zIndex]);
 
   return null;
 };

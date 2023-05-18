@@ -1,4 +1,4 @@
-import { Card, Row, Col, Button, Form, Input } from "antd";
+import { Row, Col, Button, Form, Input } from "antd";
 //Import Antd Components
 import { FaEnvelope } from "react-icons/fa";
 

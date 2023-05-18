@@ -7,7 +7,7 @@ import glaciers from '../../features/glaciers.json'
 import WKT from "ol/format/WKT";
 import { FilterContext } from "../../../../context/FilterContext";
 
-const Points = ({  style, zIndex = 0, numeroMapa = null }) => {
+const Points = ({  style, zIndex = 0, numeroMapa = null}) => {
 
   const mapContext = useContext(MapContext);
   const mapContext2 = useContext(MapContext2);

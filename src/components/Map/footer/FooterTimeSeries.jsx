@@ -6,14 +6,14 @@ import { convertCoords } from '../functions/convertCoords';
 
 export default function FooterTimeSeries({ id }) {
 
-  if (typeof id == 'number') {
+  if (typeof id === 'number') {
     return null
   }
-  if (id.includes('-') && id != '0-0' ) {
+  if (id.includes('-') && id !== '0-0' ) {
     
     var id_code = id.split('-')
-    const glacier = glaciers.find((glacier) => glacier.id == id_code[0]);
-    var selectedPoint = glacier.points.find((point) => point.id == id);
+    const glacier = glaciers.find((glacier) => glacier.id === Number(id_code[0]));
+    var selectedPoint = glacier.points.find((point) => point.id === id);
     const coords = convertCoords(selectedPoint.point);
 
     return (

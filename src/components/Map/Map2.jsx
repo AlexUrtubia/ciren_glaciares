@@ -23,19 +23,19 @@ const Mapa2 = ({ children, zoom, center }) => {
     setMap(mapObject2);
     
     return () => mapObject2.setTarget(undefined);
-  }, []);
+  }, [zoom, center]);
 
   // zoom change handler
   useEffect(() => {
     if (!map) return;
     map.getView().setZoom(zoom);
-  }, [zoom]);
+  }, [zoom, map]);
   
   // center change handler
   useEffect(() => {
     if (!map) return;
     map.getView().setCenter(center)
-  }, [center])
+  }, [center, map])
   
   return (
     
