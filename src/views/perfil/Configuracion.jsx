@@ -54,9 +54,23 @@ const Configuracion = (props) => {
           />
         </Form.Item>
         <Form.Item
-          label="Nombre / Apellido"
+          label="Nombre"
           name="full_name"
           initialValue={"admin"}
+          rules={[
+            {
+              required: true,
+              message: "Ingrese un nombre de al menos 4 caracteres",
+              min: 4,
+            },
+          ]}
+        >
+          <Input addonBefore={<FaIdCard/>} />
+        </Form.Item>
+        <Form.Item
+          label="Apellido"
+          name="LastName"
+          initialValue={"LastName"}
           rules={[
             {
               required: true,
@@ -74,13 +88,13 @@ const Configuracion = (props) => {
             value="Administrador"
           />
         </Form.Item>
-        <Form.Item>
+        {/* <Form.Item>
           <Checkbox checked={emailReport} onChange={handle_onCheckEmailReport}>
             <Typography.Text>
               Habilitar correos electrónicos con reportes
             </Typography.Text>
           </Checkbox>
-        </Form.Item>
+        </Form.Item> */}
         <Typography.Text
           style={{ color: "#17a2b8", fontSize: "0.8rem", fontWeigh: "400" }}
         >

@@ -27,7 +27,7 @@ const DUMMY_DATA = [
   {
     key: "2",
     nombre: "Bastian B",
-    tipo: "Pais",
+    tipo: "General",
     status: <Text type="success">Activo</Text>,
     fecha_creacion: new Date(2021, 4, 6).toLocaleString([], date_format),
   },

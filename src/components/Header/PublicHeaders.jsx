@@ -3,7 +3,9 @@ import { Layout, Image, Row, Col, Button } from "antd";
 import ciren_logo from "../../static/img/ciren1.png"
 import cmm_logo from "../../static/img/cmm_logo.png"
 import anid_logo from "../../static/img/anid_logo.png"
+import uchile from "../../static/img/uchile.png"
 import "./CustomHeader.css";
+import UserAvatarHeader from "./UserAvatarHeader";
 const { Header } = Layout;
 
 const PublicHeader = (props) => {
@@ -22,13 +24,22 @@ const PublicHeader = (props) => {
               <Image src={ciren_logo} height={60} width={150} preview={false} />
             </a>
           </div>
-          <div className="logo px-4">
+          <div className="logo px-2">
             <a
               href="https://www.anid.cl/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Image src={anid_logo} height={45} style={{marginTop: '14px'}} preview={false} />
+            </a>
+          </div>
+          <div className="logo px-2" style={{marginTop: '3px'}}>
+            <a
+              href="https://www.cmm.uchile.cl/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image src={uchile} height={50} preview={false}/>
             </a>
           </div>
           <div className="logo" style={{marginTop: '3px'}}>
@@ -40,10 +51,13 @@ const PublicHeader = (props) => {
               <Image src={cmm_logo} height={40} preview={false}/>
             </a>
           </div>
+
         </Col>
         <Col >
-          <div >
-            {/* <Divider type="vertical" style={{ height: "2em" }} /> */}
+        <UserAvatarHeader></UserAvatarHeader>
+
+          {/* <div >
+            <Divider type="vertical" style={{ height: "2em" }} />
             <Button
               style={{ padding: "5px", marginTop:'12px' }}
               type={"text"}
@@ -52,7 +66,7 @@ const PublicHeader = (props) => {
                 Iniciar Sesion
               </a>
             </Button>
-          </div>
+          </div> */}
         </Col>
       </Row>
     </Header>

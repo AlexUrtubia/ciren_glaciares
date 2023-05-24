@@ -37,12 +37,8 @@ const CreateUserForm = (props) => {
           key: "Publico",
         },
         {
-          label: "Pais",
-          key: "Pais",
-        },
-        {
-          label: "Administrador",
-          key: "Administrador",
+          label: "General",
+          key: "General",
         },
       ]}
     />

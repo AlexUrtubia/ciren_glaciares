@@ -38,7 +38,7 @@ const RecoveryForm = (props) => {
               <Button
                 type="primary"
                 className="form_button"
-                style={{ borderRadius: "10px 0 0 10px" }}
+                style={{ borderRadius: "10px 0 0 10px", marginRight: "5px" }}
               >
                 <a href="login">Cancelar</a>
               </Button>
@@ -49,7 +49,7 @@ const RecoveryForm = (props) => {
                 type="primary"
                 htmlType="submit"
                 className="form_button"
-                style={{ borderRadius: "0 10px 10px 0" }}
+                style={{ borderRadius: "0 10px 10px 0", marginLeft: "5px" }}
               >
                 Generar Contraseña
               </Button>
